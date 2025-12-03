@@ -1,0 +1,229 @@
+{
+  "method": "pso",
+  "n_evals": 15,
+  "time_s": 3971.960438966751,
+  "best": {
+    "roc_auc": 0.8183899467462865,
+    "hparams": {
+      "lr": 1e-05,
+      "batch_size": 32,
+      "weight_decay": 1e-07,
+      "dropout": 0.5,
+      "epochs": 49,
+      "beta1": 0.8326209687300036,
+      "beta2": 0.9
+    }
+  },
+  "all_results": [
+    {
+      "gen": 0,
+      "particle": 0,
+      "roc_auc": 0.8048261058415698,
+      "hparams": {
+        "lr": 0.0639462855778038,
+        "batch_size": 16,
+        "weight_decay": 0.007415530842548354,
+        "dropout": 0.12244592690173811,
+        "epochs": 18,
+        "beta1": 0.9399295306911624,
+        "beta2": 0.9676022787935489
+      }
+    },
+    {
+      "gen": 0,
+      "particle": 1,
+      "roc_auc": 0.812650085735996,
+      "hparams": {
+        "lr": 0.019891776692157984,
+        "batch_size": 128,
+        "weight_decay": 0.002204484176344763,
+        "dropout": 0.29463284193795436,
+        "epochs": 10,
+        "beta1": 0.9441733997546558,
+        "beta2": 0.9159499657060514
+      }
+    },
+    {
+      "gen": 0,
+      "particle": 2,
+      "roc_auc": 0.8063237538043293,
+      "hparams": {
+        "lr": 0.03440213269067233,
+        "batch_size": 64,
+        "weight_decay": 0.008071302019916475,
+        "dropout": 0.36486589334690894,
+        "epochs": 44,
+        "beta1": 0.8237169709421098,
+        "beta2": 0.9921373076656131
+      }
+    },
+    {
+      "gen": 0,
+      "particle": 3,
+      "roc_auc": 0.7919429489066088,
+      "hparams": {
+        "lr": 0.06612971922358533,
+        "batch_size": 64,
+        "weight_decay": 0.009852216684455512,
+        "dropout": 0.42765886050757346,
+        "epochs": 16,
+        "beta1": 0.8722239827574416,
+        "beta2": 0.9452956892066067
+      }
+    },
+    {
+      "gen": 0,
+      "particle": 4,
+      "roc_auc": 0.7956860078557555,
+      "hparams": {
+        "lr": 0.06350147903682406,
+        "batch_size": 32,
+        "weight_decay": 0.0016341085973699079,
+        "dropout": 0.1897277208788239,
+        "epochs": 50,
+        "beta1": 0.9307507721023295,
+        "beta2": 0.92193955587963
+      }
+    },
+    {
+      "gen": 1,
+      "particle": 0,
+      "roc_auc": 0.8108892141549588,
+      "hparams": {
+        "lr": 0.1,
+        "batch_size": 128,
+        "weight_decay": 1e-07,
+        "dropout": 0.0,
+        "epochs": 17,
+        "beta1": 0.9505371925294718,
+        "beta2": 0.9
+      }
+    },
+    {
+      "gen": 1,
+      "particle": 1,
+      "roc_auc": 0.7581631415638052,
+      "hparams": {
+        "lr": 1e-05,
+        "batch_size": 128,
+        "weight_decay": 1e-07,
+        "dropout": 0.5,
+        "epochs": 10,
+        "beta1": 0.8241007003919931,
+        "beta2": 0.9
+      }
+    },
+    {
+      "gen": 1,
+      "particle": 2,
+      "roc_auc": 0.8155809550020233,
+      "hparams": {
+        "lr": 1e-05,
+        "batch_size": 64,
+        "weight_decay": 0.01,
+        "dropout": 0.5,
+        "epochs": 28,
+        "beta1": 0.8,
+        "beta2": 0.9
+      }
+    },
+    {
+      "gen": 1,
+      "particle": 3,
+      "roc_auc": 0.5013494586887454,
+      "hparams": {
+        "lr": 0.1,
+        "batch_size": 64,
+        "weight_decay": 1e-07,
+        "dropout": 0.5,
+        "epochs": 11,
+        "beta1": 0.99,
+        "beta2": 0.9
+      }
+    },
+    {
+      "gen": 1,
+      "particle": 4,
+      "roc_auc": 0.8183899467462865,
+      "hparams": {
+        "lr": 1e-05,
+        "batch_size": 32,
+        "weight_decay": 1e-07,
+        "dropout": 0.5,
+        "epochs": 49,
+        "beta1": 0.8326209687300036,
+        "beta2": 0.9
+      }
+    },
+    {
+      "gen": 2,
+      "particle": 0,
+      "roc_auc": 0.5650170294328778,
+      "hparams": {
+        "lr": 0.1,
+        "batch_size": 64,
+        "weight_decay": 1e-07,
+        "dropout": 0.1852541981016331,
+        "epochs": 52,
+        "beta1": 0.8446006181514422,
+        "beta2": 0.9
+      }
+    },
+    {
+      "gen": 2,
+      "particle": 1,
+      "roc_auc": 0.8164523196037619,
+      "hparams": {
+        "lr": 1e-05,
+        "batch_size": 16,
+        "weight_decay": 1e-07,
+        "dropout": 0.48457147984060644,
+        "epochs": 46,
+        "beta1": 0.8402433781703953,
+        "beta2": 0.9
+      }
+    },
+    {
+      "gen": 2,
+      "particle": 2,
+      "roc_auc": 0.8174133351355469,
+      "hparams": {
+        "lr": 1e-05,
+        "batch_size": 32,
+        "weight_decay": 0.01,
+        "dropout": 0.5,
+        "epochs": 46,
+        "beta1": 0.8,
+        "beta2": 0.9
+      }
+    },
+    {
+      "gen": 2,
+      "particle": 3,
+      "roc_auc": 0.5071215728146975,
+      "hparams": {
+        "lr": 0.1,
+        "batch_size": 64,
+        "weight_decay": 1e-07,
+        "dropout": 0.4504766300692415,
+        "epochs": 30,
+        "beta1": 0.9837114756934368,
+        "beta2": 0.9
+      }
+    },
+    {
+      "gen": 2,
+      "particle": 4,
+      "roc_auc": 0.816928901825972,
+      "hparams": {
+        "lr": 1e-05,
+        "batch_size": 32,
+        "weight_decay": 1e-07,
+        "dropout": 0.5,
+        "epochs": 48,
+        "beta1": 0.8,
+        "beta2": 0.9
+      }
+    }
+  ]
+}
