@@ -36,6 +36,12 @@ def load_hpo_results(filepath, method_name):
         if "all_results" in data:
             scores = [r["roc_auc"] for r in data["all_results"]]
             
+    elif method_name == "enhanced_alshade":
+        # "all_results" is list of dicts
+        if "all_results" in data:
+            scores = [r["roc_auc"] for r in data["all_results"]]
+            
+            
     return scores
 
 def get_best_so_far(scores):
@@ -77,6 +83,9 @@ def plot_evo_comparison():
     # PSO (Load from file)
     pso_scores = load_hpo_results("experiments/hpo_results/pso.json", "pso")
     
+    # Enhanced ALSHADE (Load from file)
+    alshade_scores = load_hpo_results("experiments/hpo_results/raw_adam_alshade.json", "enhanced_alshade")
+    
     # Normalize lengths? They ran for different generations/pop sizes in our tests.
     # GA: 32 evals. DE: 15 evals (pop 5, gen 3). PSO: 15 evals.
     # We will plot by "Evaluation Number".
@@ -84,12 +93,14 @@ def plot_evo_comparison():
     gen_cum = get_best_so_far(gen_scores)
     de_cum = get_best_so_far(de_scores)
     pso_cum = get_best_so_far(pso_scores)
+    alshade_cum = get_best_so_far(alshade_scores)
     
     plt.figure(figsize=(10, 6))
     
     plt.plot(range(1, len(gen_cum)+1), gen_cum, label='Genetic Algorithm', marker='^', linestyle='-', markevery=5)
     plt.plot(range(1, len(de_cum)+1), de_cum, label='Differential Evolution', marker='o', linestyle='--', markevery=3)
     plt.plot(range(1, len(pso_cum)+1), pso_cum, label='Particle Swarm (PSO)', marker='s', linestyle=':', markevery=3)
+    plt.plot(range(1, len(alshade_cum)+1), alshade_cum, label='Enhanced ALSHADE', marker='x', linestyle='-.', markevery=3)
     
     plt.title("Evolutionary HPO Comparison: Best ROC-AUC vs Evaluations")
     plt.xlabel("Evaluation Trial #")
