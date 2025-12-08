@@ -28,8 +28,11 @@ def generate_all_figures():
     # --- 1. Data Loading and Preparation ---
     print("\n--- 1. Loading and preparing data ---")
     X_raw, y_raw = load_raw_cdc()
+    # feature_names is also returned by prepare_data now
+    X_train_orig, X_test_orig, y_train_orig, y_test_orig, scaler, feature_names_prep = prepare_data()
+    
+    # Use the feature names from prepare_data if X_raw wasn't available, but we have X_raw
     feature_names = X_raw.columns.tolist()
-    X_train_orig, X_test_orig, y_train_orig, y_test_orig, scaler = prepare_data()
 
     # --- 2. Data-related plots ---
     print("\n--- 2. Generating data-related plots ---")

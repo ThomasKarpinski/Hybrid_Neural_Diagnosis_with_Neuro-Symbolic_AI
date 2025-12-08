@@ -24,14 +24,19 @@ def plot_class_distribution(y, save_path=None):
 def pairplot_features(X, y, sample_size=5000, save_path=None):
     """
     Pairwise relationships between a random subset of features.
-    CDC dataset has many features, so we limit pairplot to 4.
+    CDC dataset has many features, so we limit pairplot to 8.
     """
     df = pd.DataFrame(X)
     df["target"] = y
 
-    # pick 4 random features
-    selected_features = df.columns[:4].tolist()
-    sns.pairplot(df[selected_features + ["target"]], hue="target", diag_kind="kde")
+    # pick 8 features (or less if not enough)
+    n_features = min(df.shape[1] - 1, 8) # -1 because of target column
+    selected_features = df.columns[:n_features].tolist()
+    
+    if "target" in selected_features:
+        selected_features.remove("target")
+
+    sns.pairplot(df[selected_features + ["target"]], hue="target", diag_kind="kde", corner=True)
     if save_path:
         plt.savefig(save_path)
     plt.close()
