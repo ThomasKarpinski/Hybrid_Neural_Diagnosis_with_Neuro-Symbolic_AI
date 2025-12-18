@@ -11,7 +11,8 @@ def run_optuna(
     input_dim: int,
     n_trials: int = 30,
     seed: int = 42,
-    save_path: str = "experiments/hpo_results/optuna.json"
+    save_path: str = "experiments/hpo_results/optuna.json",
+    fixed_hparams: Dict[str, Any] = None
 ):
     study = optuna.create_study(direction="maximize", sampler=optuna.samplers.TPESampler(seed=seed))
     start = time.time()
@@ -31,6 +32,10 @@ def run_optuna(
             "dropout": dropout, "epochs": int(epochs), "beta1": float(beta1), "beta2": float(beta2),
             "save_dir": "experiments/best_models/optuna"
         }
+        
+        if fixed_hparams:
+            hparams.update(fixed_hparams)
+
         res = train_and_eval_on_val(hparams, X_train, y_train, X_val, y_val, input_dim, seed=seed + trial.number)
         # report result and let optuna drive next trials
         return float(res["roc_auc"]) if (res["roc_auc"] is not None and not (res["roc_auc"]!=res["roc_auc"])) else 0.0
@@ -54,15 +59,19 @@ def run_optuna(
         "roc_auc": best_trial.value,
         "hparams": best_trial.params
     }
+    
+    if fixed_hparams:
+        best["hparams"].update(fixed_hparams)
+
     summary = {
         "method": "optuna", 
         "n_evals": n_trials, 
         "time_s": elapsed, 
         "best": best,
-        "all_results": all_trials 
+        "all_results": all_trials,
+        "fixed_hparams": fixed_hparams
     }
     os.makedirs(os.path.dirname(save_path), exist_ok=True)
     with open(save_path, "w") as f:
         json.dump(summary, f, indent=2)
     return summary
-

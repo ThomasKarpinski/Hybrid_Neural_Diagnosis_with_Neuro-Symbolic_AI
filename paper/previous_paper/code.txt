@@ -1,0 +1,378 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Enhanced_ALSHADE_GNBG.m
+%
+% This combined file implements an enhanced version of ALSHADE for the
+% GNBG test suite. It includes modifications to the mutation strategy,
+% a distance-based parameter adaptation for scaling factor (F) and
+% crossover rate (CR), as well as logging of key prompts for analysis.
+%
+% Benchmark settings:
+%   - For functions f1 to f15: Maximum FEs = 500,000
+%   - For functions f16 to f24: Maximum FEs = 1,000,000
+%   - Acceptance threshold: 1e-8 absolute error.
+%
+% Author: [Your Name]
+% Date: [Today’s Date]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+clear all; close all; clc;
+RunNumber = 30;  % number of independent runs
+for ProblemIndex = 1:24
+    % Initialize storage for metrics across runs
+    AbsError = NaN(1, RunNumber);
+    FEtoThreshold = NaN(1, RunNumber);
+    BestValues = NaN(1, RunNumber);
+    SuccessFlag = zeros(1, RunNumber);
+    
+    % Set maximum function evaluations (FEs) based on problem instance
+    if ProblemIndex <= 15
+        MaxFEs = 500000;
+    else
+        MaxFEs = 1000000;
+    end
+    
+    for RunCounter = 1:RunNumber
+        disp(['Problem Index = ', num2str(ProblemIndex), ...
+              '   RunCounter = ', num2str(RunCounter)]);
+          
+        % Clear GNBG parameters and load for current problem instance.
+        clear GNBG;
+        filename = sprintf('f%d.mat', ProblemIndex);
+        load(filename, 'GNBG');  % GNBG structure is expected to be in the file
+        GNBG.FE = 0;
+        GNBG.FEhistory = NaN(1, MaxFEs);
+        GNBG.AcceptanceReachPoint = Inf;  % to record when threshold is reached
+        % Set initial best found result to a high value
+        GNBG.BestFoundResult = inf;
+        
+        % Population settings
+        PopulationSize = 100;
+        Dimension = GNBG.Dimension;
+        LB = GNBG.MinCoordinate;
+        UB = GNBG.MaxCoordinate;
+        
+        % Ensure LB and UB are vectors of length 'Dimension'
+        if numel(LB) < Dimension
+            LB = repmat(LB, Dimension, 1);
+        end
+        if numel(UB) < Dimension
+            UB = repmat(UB, Dimension, 1);
+        end
+        
+        % Run the enhanced ALSHADE algorithm with logging.
+        [BestFoundResult, GNBG, PromptLog] = EnhancedALSHADE(PopulationSize, Dimension, LB, UB, GNBG, MaxFEs);
+        
+        % Store run metrics:
+        AbsError(RunCounter) = abs(BestFoundResult - GNBG.OptimumValue);
+        FEtoThreshold(RunCounter) = GNBG.AcceptanceReachPoint;
+        BestValues(RunCounter) = BestFoundResult;
+        if AbsError(RunCounter) <= 1e-8
+            SuccessFlag(RunCounter) = 1;
+        end
+        
+        % Optionally, you can save PromptLog per run for further analysis.
+        % save(['PromptLog_f' num2str(ProblemIndex) '_run' num2str(RunCounter) '.mat'], 'PromptLog');
+    end
+    
+    % Output run metrics for the current problem instance:
+    nonInfIdx = isfinite(FEtoThreshold);
+    nonInfFEs = FEtoThreshold(nonInfIdx);
+    fprintf('Problem f%d:\n', ProblemIndex);
+    fprintf('  Mean FE to threshold: %g (Std: %g)\n', mean(nonInfFEs), std(nonInfFEs));
+    fprintf('  Success Rate: %g%%\n', (sum(nonInfIdx)/length(FEtoThreshold))*100);
+    fprintf('  Mean Absolute Error: %g (Std: %g)\n\n', mean(AbsError), std(AbsError));
+    
+    % Save the results for this problem instance
+    save(sprintf('Enhanced_ALSHADE_f%d.mat', ProblemIndex));
+end
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Enhanced ALSHADE Function
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+function [Global_score, GNBG, PromptLog] = EnhancedALSHADE(SearchAgents_no, dim, lb, ub, GNBG, FEsmax)
+    % Ensure bounds are column vectors with length = dim
+    if numel(lb) < dim, lb = repmat(lb, dim, 1); end
+    if numel(ub) < dim, ub = repmat(ub, dim, 1); end
+    % Enhanced ALSHADE parameters
+    p = 0.11;      % fraction for selecting p-best
+    H = 6;         % historical memory size
+    rarc = 2.6;    % archive size factor
+    NPinit = SearchAgents_no;
+    NPmin = 4;
+    
+    % Initialize population X within bounds
+    X = lb + (ub - lb) .* rand(dim, SearchAgents_no);
+    [FitnessValue, GNBG] = fitness(X, GNBG);
+    GNBG.FE = GNBG.FE + SearchAgents_no;
+    
+    % Sort population
+    [FitnessValue, idx] = sort(FitnessValue);
+    X = X(:, idx);
+    
+    % Initialize archive A
+    Asize = round(rarc * SearchAgents_no);
+    A = [];
+    nA = 0;
+    
+    % Initialize historical memories for F and CR
+    MF = 0.5 * ones(H, 1);
+    MCR = 0.5 * ones(H, 1);
+    MCR(H) = 0.9; MF(H) = 0.9;
+    iM = 1;
+    
+    % Initialize population for next generation
+    V = X;
+    U = X;
+    
+    % Prompt log to track changes (preallocate as structure array)
+    PromptLog = struct('F', {}, 'CR', {}, 'Distance', {}, 'FEs', {});
+    
+    % For adaptive CR update: record successful values per generation
+    S_CR = zeros(1, SearchAgents_no);  
+    S_F = zeros(1, SearchAgents_no);
+    S_d = zeros(1, SearchAgents_no);  % store distances (norm differences)
+    
+    % Generate Cauchy random numbers for F perturbation
+    Chy = cauchyrnd(0, 0.1, SearchAgents_no + 200);
+    iChy = 1;
+    
+    counteval = GNBG.FE;  % starting function evaluations count
+    countiter = 1;
+    
+    while counteval < FEsmax
+        %%% Set up mutation and adaptation %%%
+        % Calculate weighted mean from archive for enhanced mutation:
+        if nA > 0
+            SEL = ceil(nA/2);
+            weights = log(SEL + 0.5) - log(1:SEL)';
+            weights = weights / sum(weights);
+            Xsel = A(:, 1:SEL);
+            xmean = Xsel * weights;
+        else
+            xmean = mean(X, 2);
+        end
+        
+        % p-best selection indices for each individual (choose from top floor(p*N))
+        popSize = size(X, 2);
+        pNum = max(2, round(p * popSize));
+        pbest_idx = randi(pNum, 1, popSize);
+        
+        % Random memory indices for F and CR from historical memory
+        r_idx = randi(H, 1, popSize);
+        
+        % Generate CR and F values
+        CR = MCR(r_idx)' + 0.1 * randn(1, popSize);
+        CR(CR < 0) = 0; CR(CR > 1) = 1;
+        F = zeros(1, popSize);
+        for i = 1:popSize
+            while F(i) <= 0
+                F(i) = MF(r_idx(i)) + Chy(iChy);
+                iChy = mod(iChy, numel(Chy)) + 1;
+            end
+        end
+        F(F > 1) = 1;
+        
+        % Create union population (current population + archive)
+        PA = [X, A];
+        
+        % Mutation and Crossover: Enhanced current-to-pbest/1
+        memory = zeros(1, popSize);
+        for i = 1:popSize
+            % Select r1: random individual (not equal to i)
+            r1 = randi(popSize);
+            while r1 == i
+                r1 = randi(popSize);
+            end
+            % Select r2 from union (archive included)
+            r2 = randi(size(PA, 2));
+            % Current-to-pbest/1 mutation
+            pbest = X(:, pbest_idx(i));
+            mutant = X(:, i) + F(i) .* (pbest - X(:, i)) + F(i) .* (X(:, r1) - PA(:, r2));
+            
+            % Boundary handling with reflection
+            for j = 1:dim
+                if mutant(j) < lb(j)
+                    mutant(j) = lb(j) + (lb(j) - mutant(j));
+                    if mutant(j) > ub(j)
+                        mutant(j) = lb(j);
+                    end
+                elseif mutant(j) > ub(j)
+                    mutant(j) = ub(j) - (mutant(j) - ub(j));
+                    if mutant(j) < lb(j)
+                        mutant(j) = ub(j);
+                    end
+                end
+            end
+            
+            V(:, i) = mutant;
+            
+            % Binomial Crossover
+            jrand = randi(dim);
+            for j = 1:dim
+                if (rand < CR(i)) || (j == jrand)
+                    U(j, i) = V(j, i);
+                else
+                    U(j, i) = X(j, i);
+                end
+            end
+            
+            % Record type of mutation in memory: 1 means current-to-pbest type
+            memory(i) = 1;
+        end
+        
+        % Evaluate trial vectors
+        [fu, GNBG] = fitness(U, GNBG);
+        counteval = counteval + popSize;
+        
+        % Selection: replace parent if trial is at least as good
+        successfulCount = 0;
+        for i = 1:popSize
+            if fu(i) <= FitnessValue(i)
+                d = norm(U(:, i) - X(:, i)); % Euclidean distance improvement
+                successfulCount = successfulCount + 1;
+                S_CR(successfulCount) = CR(i);
+                S_F(successfulCount) = F(i);
+                S_d(successfulCount) = d;
+                
+                % Log prompt if acceptance threshold is met (or improved)
+                if abs(fu(i) - GNBG.OptimumValue) < GNBG.AcceptanceThreshold && isinf(GNBG.AcceptanceReachPoint)
+                    GNBG.AcceptanceReachPoint = counteval;
+                end
+                
+                % Log detailed prompt (F, CR, improvement distance, FEs count)
+                logEntry.F = F(i);
+                logEntry.CR = CR(i);
+                logEntry.Distance = d;
+                logEntry.FEs = counteval;
+                PromptLog(end+1) = logEntry;  %#ok<AGROW>
+                
+                % Replace parent with trial vector
+                X(:, i) = U(:, i);
+                FitnessValue(i) = fu(i);
+                
+                % Add replaced individual to archive
+                if nA < Asize
+                    A(:, nA+1) = X(:, i);
+                    nA = nA + 1;
+                else
+                    r_archive = randi(Asize);
+                    A(:, r_archive) = X(:, i);
+                end
+                
+                % Update global best value if improved
+                if fu(i) < GNBG.BestFoundResult
+                    GNBG.BestFoundResult = fu(i);
+                end
+            end
+        end
+        
+        % Adaptation of historical memories using weighted average
+        if successfulCount > 0
+            w = S_d(1:successfulCount) / sum(S_d(1:successfulCount) + eps);
+            % Distance-based weighted update (ensure non-zero w)
+            if all(S_CR(1:successfulCount) == 0)
+                MCR(iM) = -1;
+            else
+                MCR(iM) = sum(w .* S_CR(1:successfulCount).^2) / sum(w .* S_CR(1:successfulCount) + eps);
+            end
+            MF(iM) = sum(w .* S_F(1:successfulCount).^2) / sum(w .* S_F(1:successfulCount) + eps);
+            iM = mod(iM, H) + 1;
+        end
+        
+        % Sort population by fitness
+        [FitnessValue, idx] = sort(FitnessValue);
+        X = X(:, idx);
+        
+        % Linear population size reduction (optional)
+        popSize_new = round(NPinit - (NPinit - NPmin) * counteval / FEsmax);
+        popSize_new = max(popSize_new, NPmin);
+        FitnessValue = FitnessValue(1:popSize_new);
+        X = X(:, 1:popSize_new);
+        U = U(:, 1:popSize_new);
+        
+        % Adjust archive size according to new population size
+        Asize = round(rarc * popSize_new);
+        if nA > Asize
+            nA = Asize;
+            A = A(:, 1:Asize);
+        end
+        
+        countiter = countiter + 1;
+    end
+    Global_score = FitnessValue(1);
+end
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Fitness Function for GNBG
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+function [result, GNBG] = fitness(X, GNBG)
+    % Each column of X is a candidate solution
+    X = X';
+    [SolutionNumber, ~] = size(X);
+    result = NaN(SolutionNumber, 1);
+    
+    for jj = 1:SolutionNumber
+        x = X(jj, :)';
+        f = NaN(1, GNBG.o);
+        for k = 1:GNBG.o
+            % Two transformation operations are performed.
+            a = Transform(((x - GNBG.Component_MinimumPosition(k,:)')') * GNBG.RotationMatrix(:,:,k)', GNBG.Mu(k,:), GNBG.Omega(k,:));
+            b = Transform(GNBG.RotationMatrix(:,:,k) * (x - GNBG.Component_MinimumPosition(k,:)'), GNBG.Mu(k,:), GNBG.Omega(k,:));
+            f(k) = GNBG.ComponentSigma(k) + (a * diag(GNBG.Component_H(k,:)) * b)^GNBG.lambda(k);
+        end
+        result(jj) = min(f);
+        
+        % Update GNBG structure data
+        if GNBG.FE >= GNBG.MaxEvals
+            return;
+        end
+        GNBG.FE = GNBG.FE + 1;
+        GNBG.FEhistory(GNBG.FE) = result(jj);
+        if GNBG.BestFoundResult > result(jj)
+            GNBG.BestFoundResult = result(jj);
+        end
+        if (abs(GNBG.FEhistory(GNBG.FE) - GNBG.OptimumValue)) < GNBG.AcceptanceThreshold && isinf(GNBG.AcceptanceReachPoint)
+            GNBG.AcceptanceReachPoint = GNBG.FE;
+        end
+    end
+end
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Transformation Function
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+function Y = Transform(X, Alpha, Beta)
+    Y = X;
+    tmp = (X > 0);
+    Y(tmp) = log(X(tmp));
+    Y(tmp) = exp(Y(tmp) + Alpha(1)*(sin(Beta(1).*Y(tmp)) + sin(Beta(2).*Y(tmp))));
+    tmp = (X < 0);
+    Y(tmp) = log(-X(tmp));
+    Y(tmp) = -exp(Y(tmp) + Alpha(2)*(sin(Beta(3).*Y(tmp)) + sin(Beta(4).*Y(tmp))));
+end
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Cauchy Random Number Generator and Inverse
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+function r = cauchyrnd(varargin)
+    % Default parameters
+    a = 0.0; b = 1.0; n = 1;
+    if nargin >= 1, a = varargin{1}; end
+    if nargin >= 2, b = varargin{2}; end
+    if nargin >= 3, n = [varargin{3:end}]; end
+    r = cauchyinv(rand(n), a, b);
+end
+function x = cauchyinv(p, varargin)
+    a = 0.0; b = 1.0;
+    if nargin >= 2, a = varargin{1}; end
+    if nargin == 3, b = varargin{2}; end
+    x = a + b .* tan(pi * (p - 0.5));
+    x(p == 0) = -Inf;
+    x(p == 1) = Inf;
+end
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Boundary Constraint Handling (if needed separately)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+function vi = boundConstraint(vi, pop, lu)
+    [NP, D] = size(pop);
+    xl = repmat(lu(1, :), NP, 1);
+    pos = vi < xl;
+    vi(pos) = (pop(pos) + xl(pos)) / 2;
+    xu = repmat(lu(2, :), NP, 1);
+    pos = vi > xu;
+    vi(pos) = (pop(pos) + xu(pos)) / 2;
+end    

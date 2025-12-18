@@ -1,0 +1,17 @@
+
+\begin{table}[H]
+\centering
+\caption{Representation learning performance}
+\label{tab:repr_results}
+\resizebox{\linewidth}{!}{
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Representation} & \textbf{Acc} & \textbf{F1} & \textbf{ROC} & \textbf{Notes} \\
+\midrule
+Raw Features & 0.8629 & 0.1961 & 0.8193 & Best: SGD / Bayesian Opt. \\
+PCA Features & 0.8647 & 0.1936 & 0.8212 & Best: Lion / Bayesian Opt. \\
+AE Embeddings & 0.8607 & 0.0000 & 0.7552 & Best: Adagrad / Genetic Algo. \\
+\bottomrule
+\end{tabular}
+}
+\end{table}

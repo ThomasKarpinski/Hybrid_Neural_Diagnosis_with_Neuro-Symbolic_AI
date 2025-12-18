@@ -1,0 +1,16 @@
+\begin{table}[htbp]
+\centering
+\caption{MLP vs hybrid AI system with integrated Wilcoxon significance.}
+\label{tab:nn_vs_hybrid_stat}
+\resizebox{\columnwidth}{!}{
+\begin{tabular}{lcccccccc}
+\toprule
+\textbf{Model} & \textbf{Acc} & \textbf{Prec} & \textbf{Rec} & \textbf{F1} &
+\textbf{ROC} & \textbf{Time} & \textbf{Epochs} & $p$ \\
+\midrule
+MLP Only & 0.8628 & 0.5720 & 0.0596 & 0.1079 & 0.8106 & 602s & 66 & - \\
+Hybrid System & 0.5959 & 0.2313 & 0.8179 & 0.3606 & 0.7103 & 605s & 66 & $< 0.001$ \\
+\bottomrule
+\end{tabular}
+}
+\end{table}

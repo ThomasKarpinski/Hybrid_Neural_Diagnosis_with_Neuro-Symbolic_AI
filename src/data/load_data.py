@@ -5,7 +5,18 @@ from sklearn.preprocessing import StandardScaler
 from ucimlrepo import fetch_ucirepo
 
 def load_raw_cdc():
-    """Fetch raw CDC Diabetes dataset from ucimlrepo."""
+    """Fetch raw CDC Diabetes dataset from local file or ucimlrepo."""
+    import os
+    local_file = "diabetes_binary_health_indicators_BRFSS2015.csv"
+    
+    if os.path.exists(local_file):
+        print(f"Loading data from local file: {local_file}")
+        df = pd.read_csv(local_file)
+        y = df["Diabetes_binary"]
+        X = df.drop(columns=["Diabetes_binary"])
+        return X, y
+    
+    print("Local file not found, fetching from ucimlrepo...")
     ds = fetch_ucirepo(id=891)
     X = pd.DataFrame(ds.data.features)
     y = pd.Series(ds.data.targets["Diabetes_binary"], name="target")

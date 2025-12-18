@@ -1,0 +1,17 @@
+
+\begin{table}[H]
+\centering
+\scriptsize
+\caption{Hyperparameter Optimization (HPO) Strategy Analysis (Best Configurations)}
+\label{tab:optimizers}
+\begin{tabular}{lllllll}
+\toprule 
+\textbf{Feature} & \textbf{Optimizer} & \textbf{HPO Method} & \textbf{Rec} & \textbf{F1} &
+\textbf{ROC} & \textbf{Rank}  \\
+\midrule
+Raw & SGD & Bayesian Opt. & 0.1200 & 0.1961 & 0.8193 & 2 \\
+PCA & Lion & Bayesian Opt. & 0.1166 & 0.1936 & 0.8212 & 1 \\
+AE & Adagrad & Genetic Algo. & 0.0000 & 0.0000 & 0.7552 & 3 \\
+\bottomrule
+\end{tabular}
+\end{table}

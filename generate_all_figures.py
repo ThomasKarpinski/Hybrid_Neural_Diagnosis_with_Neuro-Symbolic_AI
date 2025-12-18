@@ -56,20 +56,32 @@ def generate_all_figures():
     pairplot_features(X_train_clean, y_train_clean, save_path="figures/pairplot.png")
     print("Saved pairplot.")
 
-    # --- 3. Model Training ---
-    print("\n--- 3. Training baseline model ---")
-    X_tr, X_val, y_tr, y_val = torch.utils.data.random_split(
-        torch.utils.data.TensorDataset(torch.from_numpy(X_train_clean).float(), torch.from_numpy(y_train_clean).float()),
-        [int(len(X_train_clean)*0.9), len(X_train_clean) - int(len(X_train_clean)*0.9)]
-    )
+    # --- 3. Model Training (Skipped - Loading existing) ---
+    print("\n--- 3. Loading baseline model ---")
     
-    model, history = train_baseline(
-        np.array([item[0] for item in X_tr]), np.array([item[1] for item in X_tr]),
-        np.array([item[0] for item in X_val]), np.array([item[1] for item in X_val]),
-        input_dim=X_train_clean.shape[1],
-        epochs=50
-    )
-    print("Model trained.")
+    # Define model (match parameters from training)
+    input_dim = X_train_clean.shape[1]
+    model = BaselineMLP(input_dim)
+    
+    model_path = "experiments/best_models/baseline_mlp_hpo.pth"
+    if os.path.exists(model_path):
+        model.load_state_dict(torch.load(model_path))
+        print(f"Loaded model from {model_path}")
+    else:
+        print(f"Warning: {model_path} not found. Training a quick dummy model for plots.")
+        # Train a quick dummy model if file missing
+        X_tr, X_val, y_tr, y_val = torch.utils.data.random_split(
+            torch.utils.data.TensorDataset(torch.from_numpy(X_train_clean).float(), torch.from_numpy(y_train_clean).float()),
+            [int(len(X_train_clean)*0.9), len(X_train_clean) - int(len(X_train_clean)*0.9)]
+        )
+        model, history = train_baseline(
+            np.array([item[0] for item in X_tr]), np.array([item[1] for item in X_tr]),
+            np.array([item[0] for item in X_val]), np.array([item[1] for item in X_val]),
+            input_dim=input_dim,
+            epochs=5 # Short training
+        )
+    
+    print("Model ready.")
 
     # --- 4. Model-related plots ---
     print("\n--- 4. Generating model-related plots ---")

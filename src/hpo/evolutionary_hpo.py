@@ -48,7 +48,8 @@ def run_genetic(
     generations: int = 6,
     mut_rate: float = 0.2,
     seed: int = 42,
-    save_path: str = "experiments/hpo_results/genetic.json"
+    save_path: str = "experiments/hpo_results/genetic.json",
+    fixed_hparams: Dict[str, Any] = None
 ):
     random.seed(seed)
     np.random.seed(seed)
@@ -84,6 +85,10 @@ def run_genetic(
                 "beta2": float(ind["beta2"]),
                 "save_dir": "experiments/best_models/genetic"
             }
+            
+            if fixed_hparams:
+                hparams.update(fixed_hparams)
+
             res = train_and_eval_on_val(hparams, X_train, y_train, X_val, y_val, input_dim, seed=seed + gen * pop_size + i)
             scored.append((ind, res["roc_auc"], res["train_time"], hparams))
             if res["roc_auc"] is not None and not np.isnan(res["roc_auc"]) and res["roc_auc"] > best["roc_auc"]:
@@ -119,6 +124,10 @@ def run_genetic(
                 "train_time": t_time,
                 "hparams": hparams
             })
+            
+    if fixed_hparams:
+         if "hparams" in best:
+             best["hparams"].update(fixed_hparams)
 
     summary = {
         "method": "genetic",
@@ -126,10 +135,10 @@ def run_genetic(
         "time_s": elapsed,
         "best": best,
         "history_len": len(history),
-        "all_results": all_results
+        "all_results": all_results,
+        "fixed_hparams": fixed_hparams
     }
     os.makedirs(os.path.dirname(save_path), exist_ok=True)
     with open(save_path, "w") as f:
         json.dump(summary, f, indent=2)
     return summary
-

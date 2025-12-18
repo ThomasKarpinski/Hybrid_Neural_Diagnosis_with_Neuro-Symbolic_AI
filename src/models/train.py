@@ -7,6 +7,51 @@ from torch.utils.data import DataLoader, TensorDataset
 from typing import Tuple, Dict, Any
 
 from src.models.mlp_baseline import BaselineMLP
+from src.hpo.fuzzy_controller import FuzzyController
+
+class Lion(torch.optim.Optimizer):
+    def __init__(self, params, lr=1e-4, betas=(0.9, 0.99), weight_decay=0.0):
+        if not 0.0 <= lr:
+            raise ValueError('Invalid learning rate: {}'.format(lr))
+        if not 0.0 <= betas[0] < 1.0:
+            raise ValueError('Invalid beta parameter at index 0: {}'.format(betas[0]))
+        if not 0.0 <= betas[1] < 1.0:
+            raise ValueError('Invalid beta parameter at index 1: {}'.format(betas[1]))
+        defaults = dict(lr=lr, betas=betas, weight_decay=weight_decay)
+        super().__init__(params, defaults)
+
+    @torch.no_grad()
+    def step(self, closure=None):
+        loss = None
+        if closure is not None:
+            with torch.enable_grad():
+                loss = closure()
+
+        for group in self.param_groups:
+            for p in group['params']:
+                if p.grad is None:
+                    continue
+
+                # Perform stepweight decay
+                p.data.mul_(1 - group['lr'] * group['weight_decay'])
+
+                grad = p.grad
+                state = self.state[p]
+                # State initialization
+                if len(state) == 0:
+                    state['exp_avg'] = torch.zeros_like(p)
+
+                exp_avg = state['exp_avg']
+                beta1, beta2 = group['betas']
+
+                # Weight update
+                update = exp_avg * beta1 + grad * (1 - beta1)
+                p.add_(torch.sign(update), alpha=-group['lr'])
+
+                # Decay the momentum running average coefficient
+                exp_avg.mul_(beta2).add_(grad, alpha=1 - beta2)
+
+        return loss
 
 def set_seed(seed: int = 42):
     import random
@@ -28,14 +73,17 @@ def train_baseline(
     dropout: float = 0.0,
     weight_decay: float = 0.0,
     betas: tuple = (0.9, 0.999),
+    optimizer_name: str = "adam",
     device: str = None,
     save_dir: str = "experiments/best_models",
     verbose: bool = False,
     seed: int = 42,
+    use_fuzzy: bool = False
 ) -> Tuple[nn.Module, Dict[str, Any]]:
     """
     Train the baseline MLP and return (model, history).
     Uses BCE loss and returns the trained best model on validation loss.
+    Supports optimizers: adam, rmsprop, sgd, adagrad, adadelta, nadam, lion.
     """
     set_seed(seed)
     device = device or ("cuda" if torch.cuda.is_available() else "cpu")
@@ -54,13 +102,36 @@ def train_baseline(
     model = BaselineMLP(input_dim=input_dim, hidden_dims=(32,16), dropout=dropout).to(device)
 
     criterion = nn.BCELoss()
-    optimizer = torch.optim.Adam(model.parameters(), lr=lr, betas=betas, weight_decay=weight_decay)
+    
+    opt_name = optimizer_name.lower()
+    if opt_name == "adam":
+        optimizer = torch.optim.Adam(model.parameters(), lr=lr, betas=betas, weight_decay=weight_decay)
+    elif opt_name == "rmsprop":
+        optimizer = torch.optim.RMSprop(model.parameters(), lr=lr, weight_decay=weight_decay, alpha=0.99)
+    elif opt_name == "sgd":
+        optimizer = torch.optim.SGD(model.parameters(), lr=lr, weight_decay=weight_decay, momentum=0.9)
+    elif opt_name == "adagrad":
+        optimizer = torch.optim.Adagrad(model.parameters(), lr=lr, weight_decay=weight_decay)
+    elif opt_name == "adadelta":
+        optimizer = torch.optim.Adadelta(model.parameters(), lr=lr, weight_decay=weight_decay)
+    elif opt_name == "nadam":
+        optimizer = torch.optim.NAdam(model.parameters(), lr=lr, betas=betas, weight_decay=weight_decay)
+    elif opt_name == "lion":
+        optimizer = Lion(model.parameters(), lr=lr, betas=betas, weight_decay=weight_decay)
+    else:
+        # Fallback to Adam if unknown
+        print(f"Warning: Optimizer {optimizer_name} not found, defaulting to Adam.")
+        optimizer = torch.optim.Adam(model.parameters(), lr=lr, betas=betas, weight_decay=weight_decay)
+
+    fuzzy_ctrl = None
+    if use_fuzzy:
+        fuzzy_ctrl = FuzzyController()
 
     history = {"train_loss": [], "val_loss": []}
     start_time = time.time()
     best_val_loss = float("inf")
     os.makedirs(save_dir, exist_ok=True)
-    best_path = os.path.join(save_dir, "baseline_mlp_hpo.pth")
+    best_path = os.path.join(save_dir, f"baseline_mlp_{opt_name}.pth")
 
     for epoch in range(1, epochs + 1):
         model.train()
@@ -78,6 +149,12 @@ def train_baseline(
 
         avg_train_loss = running_loss / len(train_loader.dataset)
         history["train_loss"].append(avg_train_loss)
+        
+        # Check for NaN
+        if np.isnan(avg_train_loss):
+            if verbose:
+                print(f"Epoch {epoch}: Train loss is NaN. Stopping early.")
+            break
 
         # validation
         model.eval()
@@ -92,6 +169,21 @@ def train_baseline(
         avg_val_loss = val_loss / len(val_loader.dataset)
         history["val_loss"].append(avg_val_loss)
 
+        if np.isnan(avg_val_loss):
+             if verbose:
+                print(f"Epoch {epoch}: Val loss is NaN. Stopping early.")
+             break
+
+        # Fuzzy Update
+        if fuzzy_ctrl:
+            prev_loss = history["val_loss"][-2] if len(history["val_loss"]) > 1 else None
+            factor = fuzzy_ctrl.compute_update(avg_val_loss, prev_loss)
+            
+            # Update LR
+            if factor != 1.0:
+                for param_group in optimizer.param_groups:
+                    param_group['lr'] = param_group['lr'] * factor
+
         # save best
         if avg_val_loss < best_val_loss:
             best_val_loss = avg_val_loss
@@ -104,6 +196,9 @@ def train_baseline(
     history["train_time"] = total_time
 
     # load best model
-    model.load_state_dict(torch.load(best_path, map_location=device))
-    return model, history
+    if os.path.exists(best_path):
+        model.load_state_dict(torch.load(best_path, map_location=device))
+    else:
+        print("Warning: No best model saved (likely NaN or divergence). Returning last model.")
 
+    return model, history

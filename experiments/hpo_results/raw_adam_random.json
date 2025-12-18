@@ -1,0 +1,76 @@
+{
+  "method": "random_search",
+  "n_evals": 5,
+  "time_s": 558.0871715545654,
+  "best": {
+    "roc_auc": 0.8203581559960134,
+    "train_time": 76.41070365905762,
+    "hparams": {
+      "lr": 0.001681154540009978,
+      "batch_size": 32,
+      "epochs": 14,
+      "optimizer_name": "adam"
+    },
+    "eval_index": 4
+  },
+  "all_results": [
+    {
+      "roc_auc": 0.818357958870063,
+      "train_time": 139.98594284057617,
+      "hparams": {
+        "lr": 0.008284768840933803,
+        "batch_size": 32,
+        "epochs": 25,
+        "optimizer_name": "adam"
+      },
+      "eval_index": 1
+    },
+    {
+      "roc_auc": 0.8186848664774059,
+      "train_time": 137.1708471775055,
+      "hparams": {
+        "lr": 0.008284768840933803,
+        "batch_size": 32,
+        "epochs": 25,
+        "optimizer_name": "adam"
+      },
+      "eval_index": 2
+    },
+    {
+      "roc_auc": 0.8201677140795247,
+      "train_time": 157.66516137123108,
+      "hparams": {
+        "lr": 0.00013051352453616747,
+        "batch_size": 32,
+        "epochs": 29,
+        "optimizer_name": "adam"
+      },
+      "eval_index": 3
+    },
+    {
+      "roc_auc": 0.8203581559960134,
+      "train_time": 76.41070365905762,
+      "hparams": {
+        "lr": 0.001681154540009978,
+        "batch_size": 32,
+        "epochs": 14,
+        "optimizer_name": "adam"
+      },
+      "eval_index": 4
+    },
+    {
+      "roc_auc": 0.8198217888044769,
+      "train_time": 46.79279971122742,
+      "hparams": {
+        "lr": 0.0006540730319855326,
+        "batch_size": 64,
+        "epochs": 15,
+        "optimizer_name": "adam"
+      },
+      "eval_index": 5
+    }
+  ],
+  "fixed_hparams": {
+    "optimizer_name": "adam"
+  }
+}

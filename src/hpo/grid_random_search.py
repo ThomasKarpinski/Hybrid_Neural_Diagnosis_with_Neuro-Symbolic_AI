@@ -39,7 +39,8 @@ def run_random_search(
     search_space: Dict[str, Any],
     n_iter: int = 20,
     seed: int = 42,
-    save_path: str = "experiments/hpo_results/random_search.json"
+    save_path: str = "experiments/hpo_results/random_search.json",
+    fixed_hparams: Dict[str, Any] = None
 ):
     random.seed(seed)
     results = []
@@ -47,6 +48,9 @@ def run_random_search(
     best = {"roc_auc": -1.0}
     for i in range(n_iter):
         hparams = _sample_from_space(search_space, mode="random")
+        if fixed_hparams:
+            hparams.update(fixed_hparams)
+            
         res = train_and_eval_on_val(hparams, X_train, y_train, X_val, y_val, input_dim, seed=seed+i)
         res["eval_index"] = i+1
         results.append(res)
@@ -61,6 +65,7 @@ def run_random_search(
         "time_s": elapsed,
         "best": best,
         "all_results": results,
+        "fixed_hparams": fixed_hparams
     }
     os.makedirs(os.path.dirname(save_path), exist_ok=True)
     with open(save_path, "w") as f:
@@ -71,7 +76,8 @@ def run_grid_search(
     X_train, y_train, X_val, y_val,
     input_dim: int,
     grid_space: Dict[str, list],
-    save_path: str = "experiments/hpo_results/grid_search.json"
+    save_path: str = "experiments/hpo_results/grid_search.json",
+    fixed_hparams: Dict[str, Any] = None
 ):
     # cartesian product
     keys = list(grid_space.keys())
@@ -83,6 +89,10 @@ def run_grid_search(
         hparams = {}
         for k, v in zip(keys, combo):
             hparams[k] = v
+        
+        if fixed_hparams:
+            hparams.update(fixed_hparams)
+            
         res = train_and_eval_on_val(hparams, X_train, y_train, X_val, y_val, input_dim, seed=i)
         res["eval_index"] = i+1
         results.append(res)
@@ -97,9 +107,9 @@ def run_grid_search(
         "time_s": elapsed,
         "best": best,
         "all_results": results,
+        "fixed_hparams": fixed_hparams
     }
     os.makedirs(os.path.dirname(save_path), exist_ok=True)
     with open(save_path, "w") as f:
         json.dump(summary, f, default=lambda x: x if isinstance(x, (int, float, str, dict, list, type(None))) else str(x), indent=2)
     return summary
-

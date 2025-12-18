@@ -11,6 +11,7 @@ def train_and_eval_on_val(hparams: Dict[str, Any], X_train, y_train, X_val, y_va
     Train with hparams and return validation ROC-AUC and training time.
     hparams keys:
       - lr, batch_size, epochs, dropout, weight_decay, beta1, beta2
+      - optimizer_name (optional, default="adam")
     """
     start = time.time()
     model, history = train_baseline(
@@ -22,9 +23,11 @@ def train_and_eval_on_val(hparams: Dict[str, Any], X_train, y_train, X_val, y_va
         dropout=float(hparams.get("dropout", 0.0)),
         weight_decay=float(hparams.get("weight_decay", 0.0)),
         betas=(hparams.get("beta1", 0.9), hparams.get("beta2", 0.999)),
+        optimizer_name=hparams.get("optimizer_name", "adam"),
         save_dir=hparams.get("save_dir", "experiments/best_models"),
         verbose=False,
         seed=seed,
+        use_fuzzy=hparams.get("use_fuzzy", False)
     )
     train_time = history.get("train_time", time.time() - start)
 
@@ -40,4 +43,3 @@ def train_and_eval_on_val(hparams: Dict[str, Any], X_train, y_train, X_val, y_va
         roc = float("nan")
 
     return {"roc_auc": roc, "train_time": train_time, "hparams": hparams}
-

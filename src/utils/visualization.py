@@ -36,6 +36,10 @@ def pairplot_features(X, y, sample_size=5000, save_path=None):
     if "target" in selected_features:
         selected_features.remove("target")
 
+    # Sample if too large
+    if len(df) > sample_size:
+        df = df.sample(n=sample_size, random_state=42)
+
     sns.pairplot(df[selected_features + ["target"]], hue="target", diag_kind="kde", corner=True)
     if save_path:
         plt.savefig(save_path)

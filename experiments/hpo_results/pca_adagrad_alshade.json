@@ -1,0 +1,311 @@
+{
+  "method": "enhanced_alshade",
+  "n_evals": 15,
+  "best": {
+    "roc_auc": 0.8196210555977934,
+    "hparams": {
+      "lr": 0.037717895392293865,
+      "batch_size": 16,
+      "weight_decay": 0.002185954375724283,
+      "dropout": 0.13782269123623017,
+      "epochs": 45,
+      "beta1": 0.99,
+      "beta2": 0.9999,
+      "save_dir": "experiments/best_models/enhanced_alshade",
+      "optimizer_name": "adagrad",
+      "use_fuzzy": true
+    }
+  },
+  "all_results": [
+    {
+      "eval_idx": 1,
+      "generation": 0,
+      "individual": 0,
+      "roc_auc": 0.8181473852802297,
+      "train_time": 43.85984444618225,
+      "hparams": {
+        "lr": 0.037460266483547784,
+        "batch_size": 128,
+        "weight_decay": 0.007319966218719871,
+        "dropout": 0.2993292420985183,
+        "epochs": 18,
+        "beta1": 0.8296389588638785,
+        "beta2": 0.9058025528556032,
+        "save_dir": "experiments/best_models/enhanced_alshade",
+        "optimizer_name": "adagrad",
+        "use_fuzzy": true
+      }
+    },
+    {
+      "eval_idx": 2,
+      "generation": 0,
+      "individual": 1,
+      "roc_auc": 0.818299155286657,
+      "train_time": 223.1601984500885,
+      "hparams": {
+        "lr": 0.08661895281603578,
+        "batch_size": 64,
+        "weight_decay": 0.007080754970702676,
+        "dropout": 0.010292247147901223,
+        "epochs": 58,
+        "beta1": 0.9581641017520801,
+        "beta2": 0.9212126771567598,
+        "save_dir": "experiments/best_models/enhanced_alshade",
+        "optimizer_name": "adagrad",
+        "use_fuzzy": true
+      }
+    },
+    {
+      "eval_idx": 3,
+      "generation": 0,
+      "individual": 2,
+      "roc_auc": 0.8194321520700453,
+      "train_time": 173.24901366233826,
+      "hparams": {
+        "lr": 0.01819067847103799,
+        "batch_size": 32,
+        "weight_decay": 0.0030424920053710816,
+        "dropout": 0.2623782158161189,
+        "epochs": 32,
+        "beta1": 0.855333536637628,
+        "beta2": 0.9611241041827657,
+        "save_dir": "experiments/best_models/enhanced_alshade",
+        "optimizer_name": "adagrad",
+        "use_fuzzy": true
+      }
+    },
+    {
+      "eval_idx": 4,
+      "generation": 0,
+      "individual": 3,
+      "roc_auc": 0.8191786627391425,
+      "train_time": 264.68374586105347,
+      "hparams": {
+        "lr": 0.013957991126597664,
+        "batch_size": 32,
+        "weight_decay": 0.0036636817967525877,
+        "dropout": 0.22803499210851796,
+        "epochs": 49,
+        "beta1": 0.8379380186100884,
+        "beta2": 0.9513720203975198,
+        "save_dir": "experiments/best_models/enhanced_alshade",
+        "optimizer_name": "adagrad",
+        "use_fuzzy": true
+      }
+    },
+    {
+      "eval_idx": 5,
+      "generation": 0,
+      "individual": 4,
+      "roc_auc": 0.8186415794011234,
+      "train_time": 129.04934239387512,
+      "hparams": {
+        "lr": 0.05924553274051564,
+        "batch_size": 16,
+        "weight_decay": 0.006075487764529194,
+        "dropout": 0.08526206184364576,
+        "epochs": 13,
+        "beta1": 0.9802882520781333,
+        "beta2": 0.9964666401041485,
+        "save_dir": "experiments/best_models/enhanced_alshade",
+        "optimizer_name": "adagrad",
+        "use_fuzzy": true
+      }
+    },
+    {
+      "eval_idx": 6,
+      "generation": 1,
+      "individual": 0,
+      "roc_auc": 0.40113656160143507,
+      "train_time": 303.19431495666504,
+      "hparams": {
+        "lr": 1e-05,
+        "batch_size": 16,
+        "weight_decay": 1e-07,
+        "dropout": 0.19108396582611858,
+        "epochs": 32,
+        "beta1": 0.8636325963838378,
+        "beta2": 0.9999,
+        "save_dir": "experiments/best_models/enhanced_alshade",
+        "optimizer_name": "adagrad",
+        "use_fuzzy": true
+      }
+    },
+    {
+      "eval_idx": 7,
+      "generation": 1,
+      "individual": 1,
+      "roc_auc": 0.34853814875179384,
+      "train_time": 465.57516860961914,
+      "hparams": {
+        "lr": 1e-05,
+        "batch_size": 16,
+        "weight_decay": 0.0036636817967525877,
+        "dropout": 0.19108396582611858,
+        "epochs": 49,
+        "beta1": 0.8636325963838378,
+        "beta2": 0.9999,
+        "save_dir": "experiments/best_models/enhanced_alshade",
+        "optimizer_name": "adagrad",
+        "use_fuzzy": true
+      }
+    },
+    {
+      "eval_idx": 8,
+      "generation": 1,
+      "individual": 2,
+      "roc_auc": 0.8188938486306112,
+      "train_time": 312.1515996456146,
+      "hparams": {
+        "lr": 0.05924553274051564,
+        "batch_size": 16,
+        "weight_decay": 0.005079805115383518,
+        "dropout": 0.05120625816271436,
+        "epochs": 31,
+        "beta1": 0.9802882520781333,
+        "beta2": 0.9904015114731146,
+        "save_dir": "experiments/best_models/enhanced_alshade",
+        "optimizer_name": "adagrad",
+        "use_fuzzy": true
+      }
+    },
+    {
+      "eval_idx": 9,
+      "generation": 1,
+      "individual": 3,
+      "roc_auc": 0.818274010587934,
+      "train_time": 207.8945608139038,
+      "hparams": {
+        "lr": 0.043970396547822074,
+        "batch_size": 64,
+        "weight_decay": 0.005530036657044497,
+        "dropout": 0.010292247147901223,
+        "epochs": 60,
+        "beta1": 0.8818331865861937,
+        "beta2": 0.9325314292787337,
+        "save_dir": "experiments/best_models/enhanced_alshade",
+        "optimizer_name": "adagrad",
+        "use_fuzzy": true
+      }
+    },
+    {
+      "eval_idx": 10,
+      "generation": 1,
+      "individual": 4,
+      "roc_auc": 0.8183267136642659,
+      "train_time": 61.92109656333923,
+      "hparams": {
+        "lr": 0.037460266483547784,
+        "batch_size": 64,
+        "weight_decay": 0.006076780239394883,
+        "dropout": 0.1843352106394411,
+        "epochs": 18,
+        "beta1": 0.8296389588638785,
+        "beta2": 0.9252632274466165,
+        "save_dir": "experiments/best_models/enhanced_alshade",
+        "optimizer_name": "adagrad",
+        "use_fuzzy": true
+      }
+    },
+    {
+      "eval_idx": 11,
+      "generation": 2,
+      "individual": 0,
+      "roc_auc": 0.8192168572182155,
+      "train_time": 290.12940073013306,
+      "hparams": {
+        "lr": 0.01819067847103799,
+        "batch_size": 32,
+        "weight_decay": 0.002793617417138951,
+        "dropout": 0.21692266326318083,
+        "epochs": 55,
+        "beta1": 0.8437730961741283,
+        "beta2": 0.9611241041827657,
+        "save_dir": "experiments/best_models/enhanced_alshade",
+        "optimizer_name": "adagrad",
+        "use_fuzzy": true
+      }
+    },
+    {
+      "eval_idx": 12,
+      "generation": 2,
+      "individual": 1,
+      "roc_auc": 0.8196210555977934,
+      "train_time": 440.6985991001129,
+      "hparams": {
+        "lr": 0.037717895392293865,
+        "batch_size": 16,
+        "weight_decay": 0.002185954375724283,
+        "dropout": 0.13782269123623017,
+        "epochs": 45,
+        "beta1": 0.99,
+        "beta2": 0.9999,
+        "save_dir": "experiments/best_models/enhanced_alshade",
+        "optimizer_name": "adagrad",
+        "use_fuzzy": true
+      }
+    },
+    {
+      "eval_idx": 13,
+      "generation": 2,
+      "individual": 2,
+      "roc_auc": 0.8193794489937134,
+      "train_time": 518.8744785785675,
+      "hparams": {
+        "lr": 0.028849963401458793,
+        "batch_size": 16,
+        "weight_decay": 0.002838503597447875,
+        "dropout": 0.05120625816271436,
+        "epochs": 53,
+        "beta1": 0.9210562040037863,
+        "beta2": 0.9932912750589382,
+        "save_dir": "experiments/best_models/enhanced_alshade",
+        "optimizer_name": "adagrad",
+        "use_fuzzy": true
+      }
+    },
+    {
+      "eval_idx": 14,
+      "generation": 2,
+      "individual": 3,
+      "roc_auc": 0.38758921858976225,
+      "train_time": 95.28214764595032,
+      "hparams": {
+        "lr": 1e-05,
+        "batch_size": 32,
+        "weight_decay": 0.0023778744388208623,
+        "dropout": 0.3343100943265268,
+        "epochs": 18,
+        "beta1": 0.8,
+        "beta2": 0.9189918072014021,
+        "save_dir": "experiments/best_models/enhanced_alshade",
+        "optimizer_name": "adagrad",
+        "use_fuzzy": true
+      }
+    },
+    {
+      "eval_idx": 15,
+      "generation": 3,
+      "individual": 0,
+      "roc_auc": 0.3033203945998948,
+      "train_time": 170.40739178657532,
+      "hparams": {
+        "lr": 1e-05,
+        "batch_size": 32,
+        "weight_decay": 0.0010457926327848699,
+        "dropout": 0.4620025524044519,
+        "epochs": 32,
+        "beta1": 0.99,
+        "beta2": 0.9341874458572774,
+        "save_dir": "experiments/best_models/enhanced_alshade",
+        "optimizer_name": "adagrad",
+        "use_fuzzy": true
+      }
+    }
+  ],
+  "fixed_hparams": {
+    "optimizer_name": "adagrad",
+    "use_fuzzy": true
+  },
+  "time_s": 3700.4566502571106
+}

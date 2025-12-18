@@ -1,0 +1,76 @@
+{
+  "method": "random_search",
+  "n_evals": 5,
+  "time_s": 557.2816154956818,
+  "best": {
+    "roc_auc": 0.8183994953660548,
+    "train_time": 136.88900566101074,
+    "hparams": {
+      "lr": 0.008284768840933803,
+      "batch_size": 32,
+      "epochs": 25,
+      "optimizer_name": "adadelta"
+    },
+    "eval_index": 2
+  },
+  "all_results": [
+    {
+      "roc_auc": 0.8161413794105871,
+      "train_time": 136.4613606929779,
+      "hparams": {
+        "lr": 0.008284768840933803,
+        "batch_size": 32,
+        "epochs": 25,
+        "optimizer_name": "adadelta"
+      },
+      "eval_index": 1
+    },
+    {
+      "roc_auc": 0.8183994953660548,
+      "train_time": 136.88900566101074,
+      "hparams": {
+        "lr": 0.008284768840933803,
+        "batch_size": 32,
+        "epochs": 25,
+        "optimizer_name": "adadelta"
+      },
+      "eval_index": 2
+    },
+    {
+      "roc_auc": 0.584852297705594,
+      "train_time": 157.62922835350037,
+      "hparams": {
+        "lr": 0.00013051352453616747,
+        "batch_size": 32,
+        "epochs": 29,
+        "optimizer_name": "adadelta"
+      },
+      "eval_index": 3
+    },
+    {
+      "roc_auc": 0.8085660880132357,
+      "train_time": 78.5738914012909,
+      "hparams": {
+        "lr": 0.001681154540009978,
+        "batch_size": 32,
+        "epochs": 14,
+        "optimizer_name": "adadelta"
+      },
+      "eval_index": 4
+    },
+    {
+      "roc_auc": 0.7557266255623342,
+      "train_time": 47.67189407348633,
+      "hparams": {
+        "lr": 0.0006540730319855326,
+        "batch_size": 64,
+        "epochs": 15,
+        "optimizer_name": "adadelta"
+      },
+      "eval_index": 5
+    }
+  ],
+  "fixed_hparams": {
+    "optimizer_name": "adadelta"
+  }
+}

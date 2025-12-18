@@ -1,0 +1,280 @@
+{
+  "method": "genetic",
+  "n_evals": 15,
+  "time_s": 2343.9819889068604,
+  "best": {
+    "roc_auc": 0.8196005525892356,
+    "hparams": {
+      "lr": 0.0026633316086895242,
+      "batch_size": 42,
+      "weight_decay": 0.0010221925441708352,
+      "dropout": 0.19343187849205548,
+      "epochs": 36,
+      "beta1": 0.9610239296060173,
+      "beta2": 0.9588676418192033,
+      "save_dir": "experiments/best_models/genetic",
+      "optimizer_name": "sgd"
+    }
+  },
+  "history_len": 3,
+  "all_results": [
+    {
+      "generation": 1,
+      "individual": 1,
+      "roc_auc": 0.8176973270018204,
+      "train_time": 215.82518410682678,
+      "hparams": {
+        "lr": 0.0026633316086895242,
+        "batch_size": 41,
+        "weight_decay": 0.007160224527262743,
+        "dropout": 0.35066248679511797,
+        "epochs": 36,
+        "beta1": 0.8418837181877324,
+        "beta2": 0.9588676418192033,
+        "save_dir": "experiments/best_models/genetic",
+        "optimizer_name": "sgd"
+      }
+    },
+    {
+      "generation": 1,
+      "individual": 2,
+      "roc_auc": 0.8168293574648882,
+      "train_time": 124.76697278022766,
+      "hparams": {
+        "lr": 0.09572173508995606,
+        "batch_size": 59,
+        "weight_decay": 0.0010221925441708352,
+        "dropout": 0.1899636503186687,
+        "epochs": 32,
+        "beta1": 0.9610239296060173,
+        "beta2": 0.9603122305335524,
+        "save_dir": "experiments/best_models/genetic",
+        "optimizer_name": "sgd"
+      }
+    },
+    {
+      "generation": 1,
+      "individual": 3,
+      "roc_auc": 0.8115990744628955,
+      "train_time": 172.39608812332153,
+      "hparams": {
+        "lr": 0.0639462855778038,
+        "batch_size": 19,
+        "weight_decay": 0.007415530842548354,
+        "dropout": 0.12244592690173811,
+        "epochs": 18,
+        "beta1": 0.9399295306911624,
+        "beta2": 0.9676022787935489,
+        "save_dir": "experiments/best_models/genetic",
+        "optimizer_name": "sgd"
+      }
+    },
+    {
+      "generation": 1,
+      "individual": 4,
+      "roc_auc": 0.8106668108861905,
+      "train_time": 453.84045338630676,
+      "hparams": {
+        "lr": 0.08094495136321589,
+        "batch_size": 16,
+        "weight_decay": 0.007588097790560961,
+        "dropout": 0.07982965818844506,
+        "epochs": 37,
+        "beta1": 0.8646475981384185,
+        "beta2": 0.915532402031197,
+        "save_dir": "experiments/best_models/genetic",
+        "optimizer_name": "sgd"
+      }
+    },
+    {
+      "generation": 1,
+      "individual": 5,
+      "roc_auc": 0.8091698790699136,
+      "train_time": 129.25450992584229,
+      "hparams": {
+        "lr": 0.0892190349748075,
+        "batch_size": 27,
+        "weight_decay": 0.005904966075239153,
+        "dropout": 0.015891339740891797,
+        "epochs": 15,
+        "beta1": 0.8415412152126847,
+        "beta2": 0.9504849932815259,
+        "save_dir": "experiments/best_models/genetic",
+        "optimizer_name": "sgd"
+      }
+    },
+    {
+      "generation": 2,
+      "individual": 1,
+      "roc_auc": 0.8188284671091427,
+      "train_time": 97.38594007492065,
+      "hparams": {
+        "lr": 0.0026633316086895242,
+        "batch_size": 59,
+        "weight_decay": 0.0010221925441708352,
+        "dropout": 0.35066248679511797,
+        "epochs": 32,
+        "beta1": 0.9610239296060173,
+        "beta2": 0.9588676418192033,
+        "save_dir": "experiments/best_models/genetic",
+        "optimizer_name": "sgd"
+      }
+    },
+    {
+      "generation": 2,
+      "individual": 2,
+      "roc_auc": 0.8182325801877173,
+      "train_time": 140.7777965068817,
+      "hparams": {
+        "lr": 0.0026633316086895242,
+        "batch_size": 41,
+        "weight_decay": 0.007160224527262743,
+        "dropout": 0.19343187849205548,
+        "epochs": 36,
+        "beta1": 0.9610239296060173,
+        "beta2": 0.9588676418192033,
+        "save_dir": "experiments/best_models/genetic",
+        "optimizer_name": "sgd"
+      }
+    },
+    {
+      "generation": 2,
+      "individual": 3,
+      "roc_auc": 0.8179170778762086,
+      "train_time": 106.29137253761292,
+      "hparams": {
+        "lr": 0.0026633316086895242,
+        "batch_size": 61,
+        "weight_decay": 0.007160224527262743,
+        "dropout": 0.35066248679511797,
+        "epochs": 36,
+        "beta1": 0.8418837181877324,
+        "beta2": 0.9588676418192033,
+        "save_dir": "experiments/best_models/genetic",
+        "optimizer_name": "sgd"
+      }
+    },
+    {
+      "generation": 2,
+      "individual": 4,
+      "roc_auc": 0.8169425616570292,
+      "train_time": 177.33115649223328,
+      "hparams": {
+        "lr": 0.0026633316086895242,
+        "batch_size": 41,
+        "weight_decay": 0.007160224527262743,
+        "dropout": 0.35066248679511797,
+        "epochs": 36,
+        "beta1": 0.8418837181877324,
+        "beta2": 0.9588676418192033,
+        "save_dir": "experiments/best_models/genetic",
+        "optimizer_name": "sgd"
+      }
+    },
+    {
+      "generation": 2,
+      "individual": 5,
+      "roc_auc": 0.8163574434567871,
+      "train_time": 141.52519750595093,
+      "hparams": {
+        "lr": 0.09572173508995606,
+        "batch_size": 59,
+        "weight_decay": 0.0010221925441708352,
+        "dropout": 0.1899636503186687,
+        "epochs": 32,
+        "beta1": 0.9610239296060173,
+        "beta2": 0.9603122305335524,
+        "save_dir": "experiments/best_models/genetic",
+        "optimizer_name": "sgd"
+      }
+    },
+    {
+      "generation": 3,
+      "individual": 1,
+      "roc_auc": 0.8196005525892356,
+      "train_time": 139.22972750663757,
+      "hparams": {
+        "lr": 0.0026633316086895242,
+        "batch_size": 42,
+        "weight_decay": 0.0010221925441708352,
+        "dropout": 0.19343187849205548,
+        "epochs": 36,
+        "beta1": 0.9610239296060173,
+        "beta2": 0.9588676418192033,
+        "save_dir": "experiments/best_models/genetic",
+        "optimizer_name": "sgd"
+      }
+    },
+    {
+      "generation": 3,
+      "individual": 2,
+      "roc_auc": 0.8185691690345475,
+      "train_time": 97.02599501609802,
+      "hparams": {
+        "lr": 0.0026633316086895242,
+        "batch_size": 59,
+        "weight_decay": 0.0010221925441708352,
+        "dropout": 0.35066248679511797,
+        "epochs": 32,
+        "beta1": 0.9610239296060173,
+        "beta2": 0.9588676418192033,
+        "save_dir": "experiments/best_models/genetic",
+        "optimizer_name": "sgd"
+      }
+    },
+    {
+      "generation": 3,
+      "individual": 3,
+      "roc_auc": 0.818279474520357,
+      "train_time": 141.52830910682678,
+      "hparams": {
+        "lr": 0.0026633316086895242,
+        "batch_size": 41,
+        "weight_decay": 0.007160224527262743,
+        "dropout": 0.19343187849205548,
+        "epochs": 36,
+        "beta1": 0.9610239296060173,
+        "beta2": 0.9588676418192033,
+        "save_dir": "experiments/best_models/genetic",
+        "optimizer_name": "sgd"
+      }
+    },
+    {
+      "generation": 3,
+      "individual": 4,
+      "roc_auc": 0.8182677774611408,
+      "train_time": 98.35853719711304,
+      "hparams": {
+        "lr": 0.0026633316086895242,
+        "batch_size": 58,
+        "weight_decay": 0.007160224527262743,
+        "dropout": 0.22186211252953617,
+        "epochs": 32,
+        "beta1": 0.9610239296060173,
+        "beta2": 0.9588676418192033,
+        "save_dir": "experiments/best_models/genetic",
+        "optimizer_name": "sgd"
+      }
+    },
+    {
+      "generation": 3,
+      "individual": 5,
+      "roc_auc": 0.8180901200855641,
+      "train_time": 108.20360946655273,
+      "hparams": {
+        "lr": 0.0026633316086895242,
+        "batch_size": 59,
+        "weight_decay": 0.007160224527262743,
+        "dropout": 0.17841990932304175,
+        "epochs": 36,
+        "beta1": 0.9582192421542428,
+        "beta2": 0.9588676418192033,
+        "save_dir": "experiments/best_models/genetic",
+        "optimizer_name": "sgd"
+      }
+    }
+  ],
+  "fixed_hparams": {
+    "optimizer_name": "sgd"
+  }
+}

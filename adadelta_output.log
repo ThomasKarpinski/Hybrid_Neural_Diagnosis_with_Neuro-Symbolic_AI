@@ -1,0 +1,50 @@
+nohup: zignorowane dane wejściowe
+Loading Data...
+Local file not found, fetching from ucimlrepo...
+Outliers detected: 66777
+Remaining samples: 136167
+Training Autoencoder (dim=10)...
+[Autoencoder] Epoch 10/20, Loss: 0.042226
+[Autoencoder] Epoch 20/20, Loss: 0.040651
+
+
+>>> STARTING REPRESENTATION: AE (dim=10)
+
+   >>> OPTIMIZER: ADADELTA
+      Running Random Search...
+[Random 1/5] roc_auc=0.7920 time=223.8s hparams={'lr': np.float64(0.008284768840933803), 'batch_size': 32, 'epochs': 25, 'optimizer_name': 'adadelta'}
+[Random 2/5] roc_auc=0.7927 time=429.0s hparams={'lr': np.float64(0.008284768840933803), 'batch_size': 32, 'epochs': 25, 'optimizer_name': 'adadelta'}
+[Random 3/5] roc_auc=0.3288 time=257.9s hparams={'lr': np.float64(0.00013051352453616747), 'batch_size': 32, 'epochs': 29, 'optimizer_name': 'adadelta'}
+[Random 4/5] roc_auc=0.6112 time=124.1s hparams={'lr': np.float64(0.001681154540009978), 'batch_size': 32, 'epochs': 14, 'optimizer_name': 'adadelta'}
+[Random 5/5] roc_auc=0.4278 time=84.5s hparams={'lr': np.float64(0.0006540730319855326), 'batch_size': 64, 'epochs': 15, 'optimizer_name': 'adadelta'}
+      Running Optuna...
+[I 2025-12-16 00:58:43,183] A new study created in memory with name: no-name-33e23fb6-800e-4693-9267-f9bdfb8996aa
+[I 2025-12-16 01:21:04,392] Trial 0 finished with value: 0.6848316249437958 and parameters: {'lr': 0.00031489116479568613, 'batch_size': 16, 'weight_decay': 6.025215736203855e-07, 'dropout': 0.02904180608409973, 'epochs': 71, 'beta1': 0.9142118522312097, 'beta2': 0.970736450521825}. Best is trial 0 with value: 0.6848316249437958.
+[I 2025-12-16 01:32:10,902] Trial 1 finished with value: 0.32240349687431236 and parameters: {'lr': 1.2087541473056957e-05, 'batch_size': 16, 'weight_decay': 8.260808399079598e-07, 'dropout': 0.15212112147976886, 'epochs': 47, 'beta1': 0.882069553542002, 'beta2': 0.9290937911057844}. Best is trial 0 with value: 0.6848316249437958.
+[I 2025-12-16 01:35:18,655] Trial 2 finished with value: 0.714645492637696 and parameters: {'lr': 0.0028016351587162596, 'batch_size': 128, 'weight_decay': 0.0008431013932082463, 'dropout': 0.09983689107917987, 'epochs': 46, 'beta1': 0.9125587680837881, 'beta2': 0.9046403962307278}. Best is trial 2 with value: 0.714645492637696.
+[I 2025-12-16 01:36:11,346] Trial 3 finished with value: 0.5444287198717175 and parameters: {'lr': 0.0026926469100861782, 'batch_size': 128, 'weight_decay': 0.001101505679026963, 'dropout': 0.15230688458668534, 'epochs': 16, 'beta1': 0.9300042750373099, 'beta2': 0.9439712341245862}. Best is trial 2 with value: 0.714645492637696.
+[I 2025-12-16 01:40:07,977] Trial 4 finished with value: 0.34325396909599826 and parameters: {'lr': 3.077180271250682e-05, 'batch_size': 64, 'weight_decay': 0.0002054051942538847, 'dropout': 0.15585553804470548, 'epochs': 46, 'beta1': 0.9038749530752231, 'beta2': 0.9184669601070001}. Best is trial 2 with value: 0.714645492637696.
+      Running Genetic Algorithm...
+GA Generation 1/3 — evaluating 5 individuals
+  ind roc_auc=0.7919 time=248.1s
+  ind roc_auc=0.7970 time=115.5s
+  ind roc_auc=0.6968 time=201.2s
+  ind roc_auc=0.7901 time=601.5s
+  ind roc_auc=0.8082 time=131.0s
+GA Generation 2/3 — evaluating 5 individuals
+  ind roc_auc=0.8094 time=136.0s
+  ind roc_auc=0.7959 time=163.5s
+  ind roc_auc=0.7937 time=162.4s
+  ind roc_auc=0.8108 time=136.5s
+  ind roc_auc=0.8070 time=278.6s
+GA Generation 3/3 — evaluating 5 individuals
+  ind roc_auc=0.8105 time=169.7s
+  ind roc_auc=0.8074 time=203.0s
+  ind roc_auc=0.8109 time=200.1s
+  ind roc_auc=0.8075 time=204.7s
+  ind roc_auc=0.8060 time=199.4s
+      Running Enhanced ALSHADE...
+Evaluating initial population (5)...
+[ALSHADE] Generation 1, Evals 5/15, Best AUC: 0.7950
+[ALSHADE] Generation 2, Evals 10/15, Best AUC: 0.7959
+[ALSHADE] Generation 3, Evals 14/15, Best AUC: 0.7959
