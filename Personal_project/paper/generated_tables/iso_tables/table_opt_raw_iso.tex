@@ -1,0 +1,41 @@
+\begin{table*}[t]
+\centering
+\scriptsize
+\caption{Hyperparameter Optimization (HPO) Strategy Analysis for Raw Input (ISO)}
+\label{tab:opt_raw_iso}
+\begin{tabular}{llllllllllll}
+\toprule 
+\textbf{Feature} & \textbf{Optimizer} & \textbf{HPO Method} & \textbf{Acc} & \textbf{Prec} & \textbf{Rec} & \textbf{F1} & \textbf{ROC} & \textbf{Epochs} & \textbf{Run-Time} & \textbf{$p$-value} & \textbf{F-Rank}  \\
+\midrule
+\multirow{24}{*}{ Raw Input} & \multirow{4}{*}{ RMSProp} & Random Search & 0.7880 & 0.3487 & 0.6011 & 0.4413 & 0.8036 & 15 & 211.9s & n.s. & 21 \\
+ &  & Bayesian Opt. & 0.8014 & 0.3661 & 0.5816 & 0.4493 & 0.8094 & 66 & 4926.3s & < 0.001 & 14 \\
+ &  & Genetic Algo. & 0.7821 & 0.3456 & 0.6312 & 0.4466 & 0.8096 & 36 & 1329.5s & < 0.001 & 13 \\
+ &  & ALSHADE & 0.8025 & 0.3690 & 0.5881 & 0.4534 & 0.8136 & 26 & 1749.3s & n.s. & 6 \\
+\cline{2-12}
+ & \multirow{4}{*}{ Adam} & Random Search & 0.8020 & 0.3702 & 0.5999 & 0.4578 & 0.8150 & 15 & 189.5s & < 0.001 & 4 \\
+ &  & Bayesian Opt. & 0.7901 & 0.3534 & 0.6108 & 0.4478 & 0.8083 & 64 & 2332.0s & < 0.001 & 16 \\
+ &  & Genetic Algo. & 0.7850 & 0.3494 & 0.6302 & 0.4495 & 0.8108 & 36 & 1654.2s & < 0.001 & 11 \\
+ &  & ALSHADE & 0.8064 & 0.3726 & 0.5692 & 0.4504 & 0.8111 & 22 & 2355.1s & < 0.001 & 10 \\
+\cline{2-12}
+ & \multirow{4}{*}{ SGD} & Random Search & 0.7941 & 0.3599 & 0.6141 & 0.4538 & 0.8149 & 15 & 228.6s & < 0.001 & 5 \\
+ &  & Bayesian Opt. & 0.7994 & 0.3675 & 0.6104 & 0.4588 & 0.8193 & 71 & 2565.1s & < 0.001 & 1 \\
+ &  & Genetic Algo. & 0.7998 & 0.3665 & 0.5990 & 0.4547 & 0.8157 & 32 & 1140.5s & < 0.001 & 3 \\
+ &  & ALSHADE & 0.7900 & 0.3504 & 0.5941 & 0.4408 & 0.8065 & 32 & 1651.1s & < 0.001 & 18 \\
+\cline{2-12}
+ & \multirow{4}{*}{ Adagrad} & Random Search & 0.7998 & 0.3602 & 0.5629 & 0.4393 & 0.8026 & 15 & 187.5s & < 0.001 & 22 \\
+ &  & Bayesian Opt. & 0.7802 & 0.3422 & 0.6261 & 0.4426 & 0.8045 & 28 & 2155.9s & < 0.001 & 19 \\
+ &  & Genetic Algo. & 0.8030 & 0.3685 & 0.5804 & 0.4508 & 0.8129 & 32 & 1859.8s & < 0.001 & 8 \\
+ &  & ALSHADE & 0.7924 & 0.3544 & 0.5968 & 0.4447 & 0.8078 & 50 & 1984.2s & < 0.001 & 17 \\
+\cline{2-12}
+ & \multirow{4}{*}{ Adadelta} & Random Search & 0.8022 & 0.3677 & 0.5835 & 0.4511 & 0.8100 & 15 & 197.8s & < 0.001 & 12 \\
+ &  & Bayesian Opt. & 0.7945 & 0.3589 & 0.6040 & 0.4503 & 0.8090 & 23 & 1449.4s & < 0.001 & 15 \\
+ &  & Genetic Algo. & 0.8067 & 0.3753 & 0.5824 & 0.4565 & 0.8171 & 32 & 1591.7s & < 0.001 & 2 \\
+ &  & ALSHADE & 0.7830 & 0.3409 & 0.5970 & 0.4340 & 0.8011 & 60 & 2427.9s & < 0.001 & 23 \\
+\cline{2-12}
+ & \multirow{4}{*}{ Lion} & Random Search & 0.7873 & 0.3527 & 0.6306 & 0.4524 & 0.8119 & 15 & 176.5s & < 0.001 & 9 \\
+ &  & Bayesian Opt. & 0.7950 & 0.3604 & 0.6089 & 0.4528 & 0.8135 & 74 & 1980.7s & < 0.001 & 7 \\
+ &  & Genetic Algo. & 0.6264 & 0.2405 & 0.7790 & 0.3675 & 0.7175 & 36 & 1199.0s & < 0.001 & 24 \\
+ &  & ALSHADE & 0.7888 & 0.3508 & 0.6067 & 0.4446 & 0.8043 & 28 & 1265.0s & < 0.001 & 20 \\
+\bottomrule
+\end{tabular}
+\end{table*}

@@ -1,0 +1,15 @@
+
+\begin{table}[htbp]
+\centering
+\caption{Ablation Study of Neuro-Symbolic Components}
+\begin{tabular}{lccccccc}
+\toprule
+\textbf{Configuration} & \textbf{Acc} & \textbf{Prec} & \textbf{Rec} & \textbf{F1} & \textbf{ROC} & \textbf{p-val} \\
+\midrule
+MLP (Baseline) & 0.8615 & 0.5091 & 0.1705 & 0.2554 & 0.8149 & -- \\
+MLP + Rules & 0.8615 & 0.5091 & 0.1705 & 0.2554 & 0.8149 & -- \\
+MLP + Fuzzy & 0.8616 & 0.5745 & 0.0267 & 0.0511 & 0.7671 & -- \\
+Full Hybrid & 0.8507 & 0.4453 & 0.2918 & 0.3526 & 0.7833 & 0.0 \\
+\bottomrule
+\end{tabular}
+\end{table}

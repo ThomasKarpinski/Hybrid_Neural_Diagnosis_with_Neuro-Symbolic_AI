@@ -1,0 +1,144 @@
+a) Summary and scope.: The paper proposes a hybrid
+neuro–symbolic safety-net for medical diagnosis using the
+CDC Diabetes Health Indicators dataset. It combines (i)
+representation learning (Raw vs PCA vs Autoencoder), (ii)
+broad optimizer and hyperparameter optimization comparisons
+(Random Search, Optuna/TPE, GA, DE, PSO, Enhanced
+ALSHADE), and (iii) a symbolic expert layer consisting of
+explicit IF–THEN rules, fuzzy risk scoring, and a Bayesian
+component for decision fusion. The paper’s own framing high-
+lights a safety–performance trade-off: a strong neural ROC-
+AUC near 0.81 versus lower ROC-AUC for the hybrid, but
+improved detection of missed (false-negative) diabetic cases.
+:contentReference[oaicite:1]index=1
+b) Strengths (what is already IJCNN-appropriate).: The
+paper has a clear narrative for trustworthiness: not only
+predictive performance, but interpretability and auditing of
+failures. The dataset description is detailed (scale, features,
+class proportions), and the methodology is organized into
+representation learning, MLP baseline, HPO, and a dedi-
+cated interpretability layer. The error-analysis section is a
+strong idea: isolating hard false negatives and passing them
+through the symbolic layer is a useful “audit” framing that
+fits IJCNN’s interest in practical neural systems. :contentRefer-
+ence[oaicite:2]index=2
+Major issues to fix (required for IJCNN credibility)
+c) 1) Metric interpretation is currently problematic (high
+accuracy but extremely low recall/F1).: Several key tables
+show high accuracy (≈ 0.86) while recall is extremely low
+for the positive class (e.g., the MLP-only comparison reports
+recall ≈ 0.0596 and F1 ≈ 0.1079). This indicates the classifier
+is likely predicting very few positives (threshold issue and/or
+class imbalance handling), making accuracy misleading for
+a diagnostic task. You must clarify (i) which F1 is used
+(positive-class F1 vs macro-F1), (ii) what decision threshold
+is used (0.5 or tuned), and (iii) whether class-weighting or
+threshold optimization was applied. Without this, reviewers
+will argue that the baseline is not clinically meaningful even
+if ROC-AUC is decent. :contentReference[oaicite:3]index=3
+d) 2) Internal contradiction: the ROC discussion/caption
+conflicts with your reported AUC values.: The discussion and
+the ROC figure caption state that the Hybrid system shows
+superior discrimination, while your own table reports Hybrid
+ROC-AUC lower than the MLP baseline (roughly 0.71 vs
+0.81). This is a direct inconsistency and will be flagged in-
+stantly. Fix: align the figure caption and discussion with the re-
+ported AUC numbers, and reframe the contribution as a safety-
+driven operating-point shift (higher sensitivity/recall) rather
+than better discrimination. :contentReference[oaicite:4]index=4
+e) 3) Evaluation protocol is underspecified/inconsistent
+(CV vs split; what are the statistical samples?).: Algorithm 1
+explicitly uses a train/val/test split, but later sections and large
+supplementary-style tables report many p-values and ranks
+across configurations. Reviewers will ask: what constitutes
+one sample for Friedman/Wilcoxon (folds? repeated seeds?
+repeated splits?), and how many independent repeats exist.
+If you only have one split, p-values are not meaningful. Fix:
+define one consistent protocol and state it once (recommended
+lightweight option: repeated stratified splits with multiple
+seeds, or stratified 5-fold CV with a small number of repeats).
+Then compute all mean±std and all tests on those repeated
+measurements. :contentReference[oaicite:5]index=5
+f) 4) The “Bayesian probability update” is not repro-
+ducible as written.: The paper states it uses a Naive Bayes
+“second opinion” and a Bayes update rule, but it does not fully
+define the evidence term and how it is computed from features,
+nor how it is fused with the neural probability and fuzzy
+score. Fix: explicitly state whether the Bayesian component
+is: (a) a standalone GaussianNB classifier trained on the same
+training folds, whose posterior is directly fused, or (b) a
+heuristic reweighting of pN N (y=1 | x) using rule-derived
+evidence. Then provide exact equations/pseudocode for fusion
+and overrides. :contentReference[oaicite:6]index=6
+g) 5) The reported “80.02% false-negative recovery”
+needs concrete auditing outputs.: The claim that the rule-
+based system flags 80.02% of MLP false negatives is strong,
+but the paper should show auditable numbers: FN count
+before/after, and how “flagged” is operationalized (changed
+label? raised-risk warning?). Fix: add one compact table: FN,
+FP, TN, TP for MLP and Hybrid (or at least FN/FP rates)
+and explicitly define whether the hybrid changes the predicted
+label or only adds a warning. :contentReference[oaicite:7]index=7
+Moderate issues (should fix)
+h) 6) “Outlier removal” in survey health data must be
+justified and quantified.: You remove “statistical outliers” and
+show before/after boxplots. This can inadvertently remove rare
+but real clinical profiles and bias the model. Fix: specify
+the exact rule (IQR? z-score?), the fraction removed, and
+confirm it is applied using training data only (no test leakage).
+:contentReference[oaicite:8]index=8
+i) 7) Baseline model table shows unusually low F1
+for many classifiers.: Classical baselines achieve respectable
+ROC-AUC values but very low F1 in several cases, consistent
+with the same threshold/imbalance issue. Fix: add threshold
+tuning (e.g., maximize F1 on validation) or report PR-AUC /
+balanced accuracy, and clearly explain why F1 is small despite
+AUC being moderate. :contentReference[oaicite:9]index=9
+Minimal additions (keep experiments light; no new datasets)
+j) A) Add one threshold/operating-point experiment
+(small but high value).: Without expanding scope, add a
+single operating-point selection rule: choose threshold τ on
+validation to maximize F1 (or to reach a target sensitivity),
+then report Acc/Prec/Rec/F1 and FN/FP at that τ for MLP
+and Hybrid. This directly supports the safety narrative and
+fixes the “accuracy looks high but recall is tiny” issue. :con-
+tentReference[oaicite:10]index=10
+k) B) Tighten statistical testing so it is interpretable.:
+State: number of repeats, the test used, the sample unit, and the
+correction strategy (Holm is enough). If repeats are limited,
+remove p-values and keep ranks/mean±std only. :contentRefer-
+ence[oaicite:11]index=11
+l) C) Add a short reproducibility appendix (no new ex-
+periments).: List: full rule set, fuzzy membership parameters,
+fusion equation, optimizer/HPO budgets (trials, population
+sizes), and random seeds. This is often the difference between
+“student project” and “IJCNN-ready” for engineering-track
+papers. :contentReference[oaicite:12]index=12
+How to rewrite contributions and discussion (to match the
+evidence)
+m) Rewrite the contributions to avoid over-claiming dis-
+crimination gains.: The correct framing (based on your own
+results) is: (i) a comprehensive, reproducible benchmark of
+representations/optimizers/HPO on a large medical tabular
+dataset, (ii) a neuro–symbolic safety audit layer that prior-
+itizes sensitivity and flags missed diagnoses, and (iii) a docu-
+mented trade-off: improved FN coverage at the cost of ROC-
+AUC/precision. Remove or revise any statement implying the
+hybrid improves AUC/discrimination.
+n) Rewrite the discussion around “safety vs discrimi-
+nation”.: Keep ROC-AUC as a discrimination metric, but
+emphasize clinical costs: show FN reduction explicitly, discuss
+precision drop transparently, and argue that the hybrid is best
+used as a human-in-the-loop warning system (flagging high-
+risk profiles) rather than a replacement for the neural classifier.
+o) Overall recommendation.: Major revision. The pa-
+per has an IJCNN-suitable idea and strong structure, but
+it currently contains critical inconsistencies (ROC claim vs
+values), unclear evaluation/statistical sampling, and a base-
+line/threshold issue that makes F1/recall clinically weak
+despite high accuracy. With (1) a clearly defined eval-
+uation protocol, (2) threshold/operating-point reporting in-
+cluding FN/FP, (3) corrected ROC narrative, and (4)
+fully specified fusion logic, the work can reach a solid
+student-level IJCNN engineering-paper standard. :contentRef-
+erence[oaicite:13]index=13

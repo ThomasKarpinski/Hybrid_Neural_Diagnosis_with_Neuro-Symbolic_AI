@@ -1,0 +1,120 @@
+{
+  "method": "random_search",
+  "n_evals": 10,
+  "time_s": 171.05279278755188,
+  "best": {
+    "roc_auc": 0.82230928,
+    "train_time": 17.171527862548828,
+    "hparams": {
+      "lr": 0.005977728042983692,
+      "epochs": 15,
+      "optimizer_name": "adagrad"
+    },
+    "eval_index": 6
+  },
+  "all_results": [
+    {
+      "roc_auc": 0.8183742400000001,
+      "train_time": 17.14237380027771,
+      "hparams": {
+        "lr": 0.0019004375238737116,
+        "epochs": 15,
+        "optimizer_name": "adagrad"
+      },
+      "eval_index": 1
+    },
+    {
+      "roc_auc": 0.8168294400000001,
+      "train_time": 17.157058000564575,
+      "hparams": {
+        "lr": 0.0019004375238737116,
+        "epochs": 15,
+        "optimizer_name": "adagrad"
+      },
+      "eval_index": 2
+    },
+    {
+      "roc_auc": 0.76341512,
+      "train_time": 17.108725786209106,
+      "hparams": {
+        "lr": 0.00011942731780421021,
+        "epochs": 15,
+        "optimizer_name": "adagrad"
+      },
+      "eval_index": 3
+    },
+    {
+      "roc_auc": 0.8112152,
+      "train_time": 17.113402128219604,
+      "hparams": {
+        "lr": 0.0006562536901904111,
+        "epochs": 15,
+        "optimizer_name": "adagrad"
+      },
+      "eval_index": 4
+    },
+    {
+      "roc_auc": 0.8013710399999999,
+      "train_time": 17.068121910095215,
+      "hparams": {
+        "lr": 0.0003497444477863494,
+        "epochs": 15,
+        "optimizer_name": "adagrad"
+      },
+      "eval_index": 5
+    },
+    {
+      "roc_auc": 0.82230928,
+      "train_time": 17.171527862548828,
+      "hparams": {
+        "lr": 0.005977728042983692,
+        "epochs": 15,
+        "optimizer_name": "adagrad"
+      },
+      "eval_index": 6
+    },
+    {
+      "roc_auc": 0.80452656,
+      "train_time": 17.13058590888977,
+      "hparams": {
+        "lr": 0.0005054666557506716,
+        "epochs": 15,
+        "optimizer_name": "adagrad"
+      },
+      "eval_index": 7
+    },
+    {
+      "roc_auc": 0.8173124799999999,
+      "train_time": 17.016836643218994,
+      "hparams": {
+        "lr": 0.0012482904754698156,
+        "epochs": 15,
+        "optimizer_name": "adagrad"
+      },
+      "eval_index": 8
+    },
+    {
+      "roc_auc": 0.7359992,
+      "train_time": 17.03817915916443,
+      "hparams": {
+        "lr": 0.00013607174450468637,
+        "epochs": 15,
+        "optimizer_name": "adagrad"
+      },
+      "eval_index": 9
+    },
+    {
+      "roc_auc": 0.8160630400000001,
+      "train_time": 17.029629230499268,
+      "hparams": {
+        "lr": 0.000988719586312263,
+        "epochs": 15,
+        "optimizer_name": "adagrad"
+      },
+      "eval_index": 10
+    }
+  ],
+  "fixed_hparams": {
+    "optimizer_name": "adagrad"
+  }
+}

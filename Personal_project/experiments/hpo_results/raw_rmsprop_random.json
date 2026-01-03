@@ -1,0 +1,120 @@
+{
+  "method": "random_search",
+  "n_evals": 10,
+  "time_s": 211.85768294334412,
+  "best": {
+    "roc_auc": 0.82816784,
+    "train_time": 20.387213706970215,
+    "hparams": {
+      "lr": 0.0019004375238737116,
+      "epochs": 15,
+      "optimizer_name": "rmsprop"
+    },
+    "eval_index": 2
+  },
+  "all_results": [
+    {
+      "roc_auc": 0.82713792,
+      "train_time": 22.234821319580078,
+      "hparams": {
+        "lr": 0.0019004375238737116,
+        "epochs": 15,
+        "optimizer_name": "rmsprop"
+      },
+      "eval_index": 1
+    },
+    {
+      "roc_auc": 0.82816784,
+      "train_time": 20.387213706970215,
+      "hparams": {
+        "lr": 0.0019004375238737116,
+        "epochs": 15,
+        "optimizer_name": "rmsprop"
+      },
+      "eval_index": 2
+    },
+    {
+      "roc_auc": 0.8222678400000001,
+      "train_time": 20.636074781417847,
+      "hparams": {
+        "lr": 0.00011942731780421021,
+        "epochs": 15,
+        "optimizer_name": "rmsprop"
+      },
+      "eval_index": 3
+    },
+    {
+      "roc_auc": 0.82599296,
+      "train_time": 20.3354651927948,
+      "hparams": {
+        "lr": 0.0006562536901904111,
+        "epochs": 15,
+        "optimizer_name": "rmsprop"
+      },
+      "eval_index": 4
+    },
+    {
+      "roc_auc": 0.824252,
+      "train_time": 23.840819597244263,
+      "hparams": {
+        "lr": 0.0003497444477863494,
+        "epochs": 15,
+        "optimizer_name": "rmsprop"
+      },
+      "eval_index": 5
+    },
+    {
+      "roc_auc": 0.8272350399999999,
+      "train_time": 20.427467584609985,
+      "hparams": {
+        "lr": 0.005977728042983692,
+        "epochs": 15,
+        "optimizer_name": "rmsprop"
+      },
+      "eval_index": 6
+    },
+    {
+      "roc_auc": 0.8254809599999999,
+      "train_time": 19.989393949508667,
+      "hparams": {
+        "lr": 0.0005054666557506716,
+        "epochs": 15,
+        "optimizer_name": "rmsprop"
+      },
+      "eval_index": 7
+    },
+    {
+      "roc_auc": 0.8268764799999999,
+      "train_time": 20.020753622055054,
+      "hparams": {
+        "lr": 0.0012482904754698156,
+        "epochs": 15,
+        "optimizer_name": "rmsprop"
+      },
+      "eval_index": 8
+    },
+    {
+      "roc_auc": 0.82183376,
+      "train_time": 21.92909860610962,
+      "hparams": {
+        "lr": 0.00013607174450468637,
+        "epochs": 15,
+        "optimizer_name": "rmsprop"
+      },
+      "eval_index": 9
+    },
+    {
+      "roc_auc": 0.8257412799999999,
+      "train_time": 21.959362983703613,
+      "hparams": {
+        "lr": 0.000988719586312263,
+        "epochs": 15,
+        "optimizer_name": "rmsprop"
+      },
+      "eval_index": 10
+    }
+  ],
+  "fixed_hparams": {
+    "optimizer_name": "rmsprop"
+  }
+}
