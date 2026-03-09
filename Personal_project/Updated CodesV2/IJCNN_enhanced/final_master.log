@@ -1,0 +1,1837 @@
+=== FINAL DATA SETUP (ISO + OVERSAMPLE + SUBSAMPLE) ===
+Local file not found, fetching from ucimlrepo...
+Outliers detected: 64925
+Remaining samples: 138019
+Final training pool: 50000 samples. Class dist: [25000 25000]
+Computing PCA...
+Computing Autoencoder embeddings...
+
+
+################ REPRESENTATION: RAW ################
+
+--- OPTIMIZER: RMSPROP ---
+   Running Random Search...
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 1/10] roc_auc=0.8271 time=22.2s hparams={'lr': 0.0019004375238737116, 'epochs': 15, 'optimizer_name': 'rmsprop'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 2/10] roc_auc=0.8282 time=20.4s hparams={'lr': 0.0019004375238737116, 'epochs': 15, 'optimizer_name': 'rmsprop'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 3/10] roc_auc=0.8223 time=20.6s hparams={'lr': 0.00011942731780421021, 'epochs': 15, 'optimizer_name': 'rmsprop'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 4/10] roc_auc=0.8260 time=20.3s hparams={'lr': 0.0006562536901904111, 'epochs': 15, 'optimizer_name': 'rmsprop'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 5/10] roc_auc=0.8243 time=23.8s hparams={'lr': 0.0003497444477863494, 'epochs': 15, 'optimizer_name': 'rmsprop'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 6/10] roc_auc=0.8272 time=20.4s hparams={'lr': 0.005977728042983692, 'epochs': 15, 'optimizer_name': 'rmsprop'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 7/10] roc_auc=0.8255 time=20.0s hparams={'lr': 0.0005054666557506716, 'epochs': 15, 'optimizer_name': 'rmsprop'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 8/10] roc_auc=0.8269 time=20.0s hparams={'lr': 0.0012482904754698156, 'epochs': 15, 'optimizer_name': 'rmsprop'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 9/10] roc_auc=0.8218 time=21.9s hparams={'lr': 0.00013607174450468637, 'epochs': 15, 'optimizer_name': 'rmsprop'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 10/10] roc_auc=0.8257 time=22.0s hparams={'lr': 0.000988719586312263, 'epochs': 15, 'optimizer_name': 'rmsprop'}
+      Evaluating best rmsprop on Test Set...
+Using BCEWithLogitsLoss with pos_weight=1.00
+Threshold Moving: Optimal Threshold = 0.780 (F1=0.4558)
+=== Baseline MLP Evaluation ===
+Accuracy: 0.8010
+F1-score: 0.4558
+Precision: 0.3682
+Recall: 0.5980
+ROC-AUC: 0.8159938277325596
+Brier score: 0.2414
+Confusion matrix:
+[[36415, 7252], [2842, 4227]]
+   Running Optuna...
+[I 2025-12-31 10:28:22,209] A new study created in memory with name: no-name-49a502fd-5524-4787-9a47-d5ff921e8ddc
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 10:33:49,027] Trial 0 finished with value: 0.82834336 and parameters: {'lr': 0.00031489116479568613, 'batch_size': 16, 'weight_decay': 6.025215736203855e-07, 'dropout': 0.02904180608409973, 'epochs': 71, 'beta1': 0.9142118522312097, 'beta2': 0.970736450521825}. Best is trial 0 with value: 0.82834336.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 10:37:17,013] Trial 1 finished with value: 0.8196598399999999 and parameters: {'lr': 1.2087541473056957e-05, 'batch_size': 16, 'weight_decay': 8.260808399079598e-07, 'dropout': 0.15212112147976886, 'epochs': 47, 'beta1': 0.882069553542002, 'beta2': 0.9290937911057844}. Best is trial 0 with value: 0.82834336.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 10:38:02,626] Trial 2 finished with value: 0.8259696000000001 and parameters: {'lr': 0.0028016351587162596, 'batch_size': 128, 'weight_decay': 0.0008431013932082463, 'dropout': 0.09983689107917987, 'epochs': 46, 'beta1': 0.9125587680837881, 'beta2': 0.9046403962307278}. Best is trial 0 with value: 0.82834336.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 10:38:18,117] Trial 3 finished with value: 0.82396976 and parameters: {'lr': 0.0026926469100861782, 'batch_size': 128, 'weight_decay': 0.001101505679026963, 'dropout': 0.15230688458668534, 'epochs': 16, 'beta1': 0.9300042750373099, 'beta2': 0.9439712341245862}. Best is trial 0 with value: 0.82834336.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 10:39:28,288] Trial 4 finished with value: 0.82024768 and parameters: {'lr': 3.077180271250682e-05, 'batch_size': 64, 'weight_decay': 0.0002054051942538847, 'dropout': 0.15585553804470548, 'epochs': 46, 'beta1': 0.9038749530752231, 'beta2': 0.9184669601070001}. Best is trial 0 with value: 0.82834336.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 10:40:31,167] Trial 5 finished with value: 0.8068111199999999 and parameters: {'lr': 0.07556810141274425, 'batch_size': 32, 'weight_decay': 0.004067908494359549, 'dropout': 0.04424625102595975, 'epochs': 23, 'beta1': 0.8085931848930022, 'beta2': 0.9325005000432501}. Best is trial 0 with value: 0.82834336.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 10:43:20,812] Trial 6 finished with value: 0.8288502399999998 and parameters: {'lr': 0.00035868164986275477, 'batch_size': 32, 'weight_decay': 5.1698794422985435e-05, 'dropout': 0.07046211248738132, 'epochs': 66, 'beta1': 0.8141646222991565, 'beta2': 0.9985900049663917}. Best is trial 6 with value: 0.8288502399999998.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 10:43:44,423] Trial 7 finished with value: 0.8187804799999999 and parameters: {'lr': 0.012273800987852962, 'batch_size': 64, 'weight_decay': 0.00044160688951185945, 'dropout': 0.38563517334297287, 'epochs': 15, 'beta1': 0.8681084884234118, 'beta2': 0.9115753190465605}. Best is trial 6 with value: 0.8288502399999998.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 11:35:22,106] Trial 8 finished with value: 0.79552832 and parameters: {'lr': 0.028340904295147733, 'batch_size': 16, 'weight_decay': 4.225874644996163e-06, 'dropout': 0.36480308916903204, 'epochs': 55, 'beta1': 0.9685704210895021, 'beta2': 0.9471742710236788}. Best is trial 6 with value: 0.8288502399999998.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 11:36:01,830] Trial 9 finished with value: 0.8178364 and parameters: {'lr': 3.0086868214458443e-05, 'batch_size': 128, 'weight_decay': 2.9442723591496814e-05, 'dropout': 0.26136641469099703, 'epochs': 40, 'beta1': 0.8048296340813781, 'beta2': 0.9107783535566312}. Best is trial 6 with value: 0.8288502399999998.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 11:39:20,458] Trial 10 finished with value: 0.82850768 and parameters: {'lr': 0.00034163330287042653, 'batch_size': 32, 'weight_decay': 3.067572745464553e-05, 'dropout': 0.2765046693392435, 'epochs': 79, 'beta1': 0.8409634651758155, 'beta2': 0.9972064723008855}. Best is trial 6 with value: 0.8288502399999998.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 11:42:26,527] Trial 11 finished with value: 0.8261256 and parameters: {'lr': 0.00032065697677486553, 'batch_size': 32, 'weight_decay': 3.611589708141568e-05, 'dropout': 0.2723330000837792, 'epochs': 78, 'beta1': 0.8366173501476013, 'beta2': 0.9994598586436143}. Best is trial 6 with value: 0.8288502399999998.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 11:44:54,815] Trial 12 finished with value: 0.82301168 and parameters: {'lr': 0.0002344574163871335, 'batch_size': 32, 'weight_decay': 3.207702158866985e-05, 'dropout': 0.4955447965334115, 'epochs': 63, 'beta1': 0.8464198205610034, 'beta2': 0.9982767088980287}. Best is trial 6 with value: 0.8288502399999998.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 11:48:02,660] Trial 13 finished with value: 0.8251896 and parameters: {'lr': 9.188227716652768e-05, 'batch_size': 32, 'weight_decay': 5.8464220584832185e-06, 'dropout': 0.33036283657747684, 'epochs': 80, 'beta1': 0.8395382613549711, 'beta2': 0.9711265824411198}. Best is trial 6 with value: 0.8288502399999998.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 11:50:28,495] Trial 14 finished with value: 0.82874696 and parameters: {'lr': 0.0011399654597808394, 'batch_size': 32, 'weight_decay': 1.2996363819830086e-07, 'dropout': 0.21284997859756055, 'epochs': 65, 'beta1': 0.8149712315145087, 'beta2': 0.9808769339434762}. Best is trial 6 with value: 0.8288502399999998.
+      Evaluating best rmsprop on Test Set...
+Using BCEWithLogitsLoss with pos_weight=1.00
+Threshold Moving: Optimal Threshold = 0.750 (F1=0.4604)
+=== Baseline MLP Evaluation ===
+Accuracy: 0.7933
+F1-score: 0.4604
+Precision: 0.3617
+Recall: 0.6329
+ROC-AUC: 0.8219203617179871
+Brier score: 0.2311
+Confusion matrix:
+[[35773, 7894], [2595, 4474]]
+   Running Genetic...
+GA Generation 1/3 — evaluating 8 individuals
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8021 time=65.3s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.7920 time=41.6s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8181 time=65.5s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.7709 time=154.6s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8010 time=49.1s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8135 time=39.7s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8087 time=14.9s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8114 time=92.3s
+GA Generation 2/3 — evaluating 8 individuals
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8196 time=67.0s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8150 time=39.5s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8099 time=92.4s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8104 time=15.0s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8116 time=75.5s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.7998 time=37.8s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8060 time=36.6s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8077 time=97.5s
+GA Generation 3/3 — evaluating 8 individuals
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8186 time=64.0s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8112 time=38.9s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8068 time=72.6s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8051 time=15.0s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8105 time=35.7s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8123 time=38.9s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8135 time=38.7s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.7967 time=41.2s
+      Evaluating best rmsprop on Test Set...
+Using BCEWithLogitsLoss with pos_weight=1.00
+Threshold Moving: Optimal Threshold = 0.720 (F1=0.4481)
+=== Baseline MLP Evaluation ===
+Accuracy: 0.7957
+F1-score: 0.4481
+Precision: 0.3592
+Recall: 0.5953
+ROC-AUC: 0.8152147622798234
+Brier score: 0.2218
+Confusion matrix:
+[[36161, 7506], [2861, 4208]]
+   Running ALSHADE...
+Evaluating initial population (8)...
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+[ALSHADE] Generation 1, Evals 8/24, Best AUC: 0.8194
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+[ALSHADE] Generation 2, Evals 16/24, Best AUC: 0.8203
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+[ALSHADE] Generation 3, Evals 21/24, Best AUC: 0.8203
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+      Evaluating best rmsprop on Test Set...
+Using BCEWithLogitsLoss with pos_weight=1.00
+Threshold Moving: Optimal Threshold = 0.760 (F1=0.4525)
+=== Baseline MLP Evaluation ===
+Accuracy: 0.7955
+F1-score: 0.4525
+Precision: 0.3608
+Recall: 0.6066
+ROC-AUC: 0.8165645963127566
+Brier score: 0.2346
+Confusion matrix:
+[[36071, 7596], [2781, 4288]]
+
+--- OPTIMIZER: ADAM ---
+   Running Random Search...
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 1/10] roc_auc=0.8259 time=18.9s hparams={'lr': 0.0019004375238737116, 'epochs': 15, 'optimizer_name': 'adam'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 2/10] roc_auc=0.8277 time=18.8s hparams={'lr': 0.0019004375238737116, 'epochs': 15, 'optimizer_name': 'adam'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 3/10] roc_auc=0.8225 time=18.8s hparams={'lr': 0.00011942731780421021, 'epochs': 15, 'optimizer_name': 'adam'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 4/10] roc_auc=0.8260 time=19.0s hparams={'lr': 0.0006562536901904111, 'epochs': 15, 'optimizer_name': 'adam'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 5/10] roc_auc=0.8246 time=19.0s hparams={'lr': 0.0003497444477863494, 'epochs': 15, 'optimizer_name': 'adam'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 6/10] roc_auc=0.8279 time=19.1s hparams={'lr': 0.005977728042983692, 'epochs': 15, 'optimizer_name': 'adam'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 7/10] roc_auc=0.8259 time=19.1s hparams={'lr': 0.0005054666557506716, 'epochs': 15, 'optimizer_name': 'adam'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 8/10] roc_auc=0.8277 time=18.9s hparams={'lr': 0.0012482904754698156, 'epochs': 15, 'optimizer_name': 'adam'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 9/10] roc_auc=0.8223 time=18.9s hparams={'lr': 0.00013607174450468637, 'epochs': 15, 'optimizer_name': 'adam'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 10/10] roc_auc=0.8266 time=19.0s hparams={'lr': 0.000988719586312263, 'epochs': 15, 'optimizer_name': 'adam'}
+      Evaluating best adam on Test Set...
+Using BCEWithLogitsLoss with pos_weight=1.00
+Threshold Moving: Optimal Threshold = 0.750 (F1=0.4595)
+=== Baseline MLP Evaluation ===
+Accuracy: 0.7949
+F1-score: 0.4595
+Precision: 0.3630
+Recall: 0.6258
+ROC-AUC: 0.8168850328546668
+Brier score: 0.2344
+Confusion matrix:
+[[35905, 7762], [2645, 4424]]
+   Running Optuna...
+[I 2025-12-31 12:46:31,269] A new study created in memory with name: no-name-009a79b8-d29d-4d17-8bc4-0652aaa7e96f
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 12:51:34,050] Trial 0 finished with value: 0.8290238400000001 and parameters: {'lr': 0.00031489116479568613, 'batch_size': 16, 'weight_decay': 6.025215736203855e-07, 'dropout': 0.02904180608409973, 'epochs': 71, 'beta1': 0.9142118522312097, 'beta2': 0.970736450521825}. Best is trial 0 with value: 0.8290238400000001.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 12:54:54,516] Trial 1 finished with value: 0.8193548799999999 and parameters: {'lr': 1.2087541473056957e-05, 'batch_size': 16, 'weight_decay': 8.260808399079598e-07, 'dropout': 0.15212112147976886, 'epochs': 47, 'beta1': 0.882069553542002, 'beta2': 0.9290937911057844}. Best is trial 0 with value: 0.8290238400000001.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 12:55:35,455] Trial 2 finished with value: 0.8258211200000001 and parameters: {'lr': 0.0028016351587162596, 'batch_size': 128, 'weight_decay': 0.0008431013932082463, 'dropout': 0.09983689107917987, 'epochs': 46, 'beta1': 0.9125587680837881, 'beta2': 0.9046403962307278}. Best is trial 0 with value: 0.8290238400000001.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 12:55:49,691] Trial 3 finished with value: 0.82441728 and parameters: {'lr': 0.0026926469100861782, 'batch_size': 128, 'weight_decay': 0.001101505679026963, 'dropout': 0.15230688458668534, 'epochs': 16, 'beta1': 0.9300042750373099, 'beta2': 0.9439712341245862}. Best is trial 0 with value: 0.8290238400000001.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 12:56:52,740] Trial 4 finished with value: 0.82007376 and parameters: {'lr': 3.077180271250682e-05, 'batch_size': 64, 'weight_decay': 0.0002054051942538847, 'dropout': 0.15585553804470548, 'epochs': 46, 'beta1': 0.9038749530752231, 'beta2': 0.9184669601070001}. Best is trial 0 with value: 0.8290238400000001.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 12:57:46,744] Trial 5 finished with value: 0.80661248 and parameters: {'lr': 0.07556810141274425, 'batch_size': 32, 'weight_decay': 0.004067908494359549, 'dropout': 0.04424625102595975, 'epochs': 23, 'beta1': 0.8085931848930022, 'beta2': 0.9325005000432501}. Best is trial 0 with value: 0.8290238400000001.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 13:00:21,306] Trial 6 finished with value: 0.8287284800000001 and parameters: {'lr': 0.00035868164986275477, 'batch_size': 32, 'weight_decay': 5.1698794422985435e-05, 'dropout': 0.07046211248738132, 'epochs': 66, 'beta1': 0.8141646222991565, 'beta2': 0.9985900049663917}. Best is trial 0 with value: 0.8290238400000001.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 13:00:42,151] Trial 7 finished with value: 0.81995184 and parameters: {'lr': 0.012273800987852962, 'batch_size': 64, 'weight_decay': 0.00044160688951185945, 'dropout': 0.38563517334297287, 'epochs': 15, 'beta1': 0.8681084884234118, 'beta2': 0.9115753190465605}. Best is trial 0 with value: 0.8290238400000001.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 13:04:37,629] Trial 8 finished with value: 0.80823808 and parameters: {'lr': 0.028340904295147733, 'batch_size': 16, 'weight_decay': 4.225874644996163e-06, 'dropout': 0.36480308916903204, 'epochs': 55, 'beta1': 0.9685704210895021, 'beta2': 0.9471742710236788}. Best is trial 0 with value: 0.8290238400000001.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 13:05:13,608] Trial 9 finished with value: 0.81764704 and parameters: {'lr': 3.0086868214458443e-05, 'batch_size': 128, 'weight_decay': 2.9442723591496814e-05, 'dropout': 0.26136641469099703, 'epochs': 40, 'beta1': 0.8048296340813781, 'beta2': 0.9107783535566312}. Best is trial 0 with value: 0.8290238400000001.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 13:10:52,600] Trial 10 finished with value: 0.8240128 and parameters: {'lr': 0.00031470708498898336, 'batch_size': 16, 'weight_decay': 1.0907785690006111e-07, 'dropout': 0.4661451709558936, 'epochs': 79, 'beta1': 0.9724563111036784, 'beta2': 0.9764787717520845}. Best is trial 0 with value: 0.8290238400000001.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 13:13:45,515] Trial 11 finished with value: 0.8286059199999999 and parameters: {'lr': 0.00022552353528655793, 'batch_size': 32, 'weight_decay': 1.0232319754608961e-05, 'dropout': 0.00818622053115401, 'epochs': 74, 'beta1': 0.8489325741465695, 'beta2': 0.9985546176604633}. Best is trial 0 with value: 0.8290238400000001.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 13:16:20,340] Trial 12 finished with value: 0.8254545600000001 and parameters: {'lr': 0.0002344574163871335, 'batch_size': 32, 'weight_decay': 6.313486264438969e-07, 'dropout': 0.24215308915193964, 'epochs': 66, 'beta1': 0.8407306107637741, 'beta2': 0.9738679588514415}. Best is trial 0 with value: 0.8290238400000001.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 13:20:53,254] Trial 13 finished with value: 0.8309956799999999 and parameters: {'lr': 0.0007510744896915734, 'batch_size': 16, 'weight_decay': 8.367086029042142e-05, 'dropout': 0.06487809737516287, 'epochs': 64, 'beta1': 0.9330099741097112, 'beta2': 0.9995020515215688}. Best is trial 13 with value: 0.8309956799999999.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 13:25:23,283] Trial 14 finished with value: 0.8300870399999999 and parameters: {'lr': 0.0011399654597808394, 'batch_size': 16, 'weight_decay': 6.635139581380289e-05, 'dropout': 0.0023369998520831464, 'epochs': 62, 'beta1': 0.9413799335046389, 'beta2': 0.9756882622258031}. Best is trial 13 with value: 0.8309956799999999.
+      Evaluating best adam on Test Set...
+Using BCEWithLogitsLoss with pos_weight=1.00
+Threshold Moving: Optimal Threshold = 0.770 (F1=0.4617)
+=== Baseline MLP Evaluation ===
+Accuracy: 0.7991
+F1-score: 0.4617
+Precision: 0.3684
+Recall: 0.6185
+ROC-AUC: 0.8206073033932397
+Brier score: 0.2342
+Confusion matrix:
+[[36170, 7497], [2697, 4372]]
+   Running Genetic...
+GA Generation 1/3 — evaluating 8 individuals
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8065 time=76.2s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8028 time=64.8s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8181 time=90.4s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8111 time=214.9s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8069 time=70.1s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8147 time=37.9s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8134 time=13.6s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8116 time=108.3s
+GA Generation 2/3 — evaluating 8 individuals
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8182 time=105.6s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8129 time=53.4s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8132 time=22.9s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8103 time=158.3s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8092 time=114.8s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8152 time=53.2s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8018 time=136.4s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8151 time=16.2s
+GA Generation 3/3 — evaluating 8 individuals
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8199 time=87.8s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8128 time=38.5s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8139 time=16.5s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8058 time=15.6s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8110 time=39.0s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8072 time=38.7s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8124 time=38.0s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8150 time=43.1s
+      Evaluating best adam on Test Set...
+Using BCEWithLogitsLoss with pos_weight=1.00
+Threshold Moving: Optimal Threshold = 0.740 (F1=0.4475)
+=== Baseline MLP Evaluation ===
+Accuracy: 0.7785
+F1-score: 0.4475
+Precision: 0.3430
+Recall: 0.6437
+ROC-AUC: 0.8145140735973471
+Brier score: 0.2350
+Confusion matrix:
+[[34950, 8717], [2519, 4550]]
+   Running ALSHADE...
+Evaluating initial population (8)...
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+[ALSHADE] Generation 1, Evals 8/24, Best AUC: 0.8205
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+[ALSHADE] Generation 2, Evals 16/24, Best AUC: 0.8212
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+[ALSHADE] Generation 3, Evals 21/24, Best AUC: 0.8212
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+      Evaluating best adam on Test Set...
+Using BCEWithLogitsLoss with pos_weight=1.00
+Threshold Moving: Optimal Threshold = 0.730 (F1=0.4596)
+=== Baseline MLP Evaluation ===
+Accuracy: 0.7956
+F1-score: 0.4596
+Precision: 0.3638
+Recall: 0.6239
+ROC-AUC: 0.8206615242378401
+Brier score: 0.2263
+Confusion matrix:
+[[35954, 7713], [2659, 4410]]
+
+--- OPTIMIZER: SGD ---
+   Running Random Search...
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 1/10] roc_auc=0.8224 time=22.7s hparams={'lr': 0.0019004375238737116, 'epochs': 15, 'optimizer_name': 'sgd'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 2/10] roc_auc=0.8227 time=20.2s hparams={'lr': 0.0019004375238737116, 'epochs': 15, 'optimizer_name': 'sgd'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 3/10] roc_auc=0.8010 time=18.8s hparams={'lr': 0.00011942731780421021, 'epochs': 15, 'optimizer_name': 'sgd'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 4/10] roc_auc=0.8210 time=21.2s hparams={'lr': 0.0006562536901904111, 'epochs': 15, 'optimizer_name': 'sgd'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 5/10] roc_auc=0.8172 time=22.6s hparams={'lr': 0.0003497444477863494, 'epochs': 15, 'optimizer_name': 'sgd'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 6/10] roc_auc=0.8255 time=26.6s hparams={'lr': 0.005977728042983692, 'epochs': 15, 'optimizer_name': 'sgd'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 7/10] roc_auc=0.8198 time=31.3s hparams={'lr': 0.0005054666557506716, 'epochs': 15, 'optimizer_name': 'sgd'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 8/10] roc_auc=0.8213 time=20.1s hparams={'lr': 0.0012482904754698156, 'epochs': 15, 'optimizer_name': 'sgd'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 9/10] roc_auc=0.7972 time=23.1s hparams={'lr': 0.00013607174450468637, 'epochs': 15, 'optimizer_name': 'sgd'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 10/10] roc_auc=0.8209 time=22.0s hparams={'lr': 0.000988719586312263, 'epochs': 15, 'optimizer_name': 'sgd'}
+      Evaluating best sgd on Test Set...
+Using BCEWithLogitsLoss with pos_weight=1.00
+Threshold Moving: Optimal Threshold = 0.730 (F1=0.4606)
+=== Baseline MLP Evaluation ===
+Accuracy: 0.7888
+F1-score: 0.4606
+Precision: 0.3576
+Recall: 0.6472
+ROC-AUC: 0.8209558157521858
+Brier score: 0.2234
+Confusion matrix:
+[[35447, 8220], [2494, 4575]]
+   Running Optuna...
+[I 2025-12-31 14:38:24,235] A new study created in memory with name: no-name-25d28592-9fce-4d7b-99cc-e54f13081f69
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 14:44:39,776] Trial 0 finished with value: 0.82491072 and parameters: {'lr': 0.00031489116479568613, 'batch_size': 16, 'weight_decay': 6.025215736203855e-07, 'dropout': 0.02904180608409973, 'epochs': 71, 'beta1': 0.9142118522312097, 'beta2': 0.970736450521825}. Best is trial 0 with value: 0.82491072.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 14:48:47,109] Trial 1 finished with value: 0.79869712 and parameters: {'lr': 1.2087541473056957e-05, 'batch_size': 16, 'weight_decay': 8.260808399079598e-07, 'dropout': 0.15212112147976886, 'epochs': 47, 'beta1': 0.882069553542002, 'beta2': 0.9290937911057844}. Best is trial 0 with value: 0.82491072.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 14:49:45,046] Trial 2 finished with value: 0.82446128 and parameters: {'lr': 0.0028016351587162596, 'batch_size': 128, 'weight_decay': 0.0008431013932082463, 'dropout': 0.09983689107917987, 'epochs': 46, 'beta1': 0.9125587680837881, 'beta2': 0.9046403962307278}. Best is trial 0 with value: 0.82491072.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 14:50:05,563] Trial 3 finished with value: 0.82188408 and parameters: {'lr': 0.0026926469100861782, 'batch_size': 128, 'weight_decay': 0.001101505679026963, 'dropout': 0.15230688458668534, 'epochs': 16, 'beta1': 0.9300042750373099, 'beta2': 0.9439712341245862}. Best is trial 0 with value: 0.82491072.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 14:51:48,726] Trial 4 finished with value: 0.799416 and parameters: {'lr': 3.077180271250682e-05, 'batch_size': 64, 'weight_decay': 0.0002054051942538847, 'dropout': 0.15585553804470548, 'epochs': 46, 'beta1': 0.9038749530752231, 'beta2': 0.9184669601070001}. Best is trial 0 with value: 0.82491072.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 14:53:41,257] Trial 5 finished with value: 0.81756112 and parameters: {'lr': 0.07556810141274425, 'batch_size': 32, 'weight_decay': 0.004067908494359549, 'dropout': 0.04424625102595975, 'epochs': 23, 'beta1': 0.8085931848930022, 'beta2': 0.9325005000432501}. Best is trial 0 with value: 0.82491072.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 14:57:22,695] Trial 6 finished with value: 0.82348896 and parameters: {'lr': 0.00035868164986275477, 'batch_size': 32, 'weight_decay': 5.1698794422985435e-05, 'dropout': 0.07046211248738132, 'epochs': 66, 'beta1': 0.8141646222991565, 'beta2': 0.9985900049663917}. Best is trial 0 with value: 0.82491072.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 14:57:46,407] Trial 7 finished with value: 0.82312656 and parameters: {'lr': 0.012273800987852962, 'batch_size': 64, 'weight_decay': 0.00044160688951185945, 'dropout': 0.38563517334297287, 'epochs': 15, 'beta1': 0.8681084884234118, 'beta2': 0.9115753190465605}. Best is trial 0 with value: 0.82491072.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 15:01:07,932] Trial 8 finished with value: 0.8231764 and parameters: {'lr': 0.028340904295147733, 'batch_size': 16, 'weight_decay': 4.225874644996163e-06, 'dropout': 0.36480308916903204, 'epochs': 55, 'beta1': 0.9685704210895021, 'beta2': 0.9471742710236788}. Best is trial 0 with value: 0.82491072.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 15:01:41,619] Trial 9 finished with value: 0.7446868799999999 and parameters: {'lr': 3.0086868214458443e-05, 'batch_size': 128, 'weight_decay': 2.9442723591496814e-05, 'dropout': 0.26136641469099703, 'epochs': 40, 'beta1': 0.8048296340813781, 'beta2': 0.9107783535566312}. Best is trial 0 with value: 0.82491072.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 15:07:14,345] Trial 10 finished with value: 0.8219921600000001 and parameters: {'lr': 0.00031470708498898336, 'batch_size': 16, 'weight_decay': 1.0907785690006111e-07, 'dropout': 0.4661451709558936, 'epochs': 79, 'beta1': 0.9724563111036784, 'beta2': 0.9764787717520845}. Best is trial 0 with value: 0.82491072.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 15:08:48,622] Trial 11 finished with value: 0.8215796799999998 and parameters: {'lr': 0.0019167856130641373, 'batch_size': 128, 'weight_decay': 0.009427822434124756, 'dropout': 0.009021842447038325, 'epochs': 77, 'beta1': 0.9257784123155853, 'beta2': 0.9717707592828586}. Best is trial 0 with value: 0.82491072.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 15:12:46,212] Trial 12 finished with value: 0.8226416000000001 and parameters: {'lr': 0.000260539988845906, 'batch_size': 16, 'weight_decay': 2.1548788259714427e-06, 'dropout': 0.0901382178494968, 'epochs': 32, 'beta1': 0.8566373273284794, 'beta2': 0.9670448482437872}. Best is trial 0 with value: 0.82491072.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 15:14:15,160] Trial 13 finished with value: 0.8246420799999998 and parameters: {'lr': 0.005729891581071084, 'batch_size': 128, 'weight_decay': 1.7226810497465198e-07, 'dropout': 0.2364769764046162, 'epochs': 61, 'beta1': 0.9333139293065431, 'beta2': 0.9886274911834095}. Best is trial 0 with value: 0.82491072.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 15:21:09,312] Trial 14 finished with value: 0.8209272 and parameters: {'lr': 0.00010466369837118252, 'batch_size': 16, 'weight_decay': 1.0245926743566015e-07, 'dropout': 0.2587602769802579, 'epochs': 64, 'beta1': 0.9511440413222764, 'beta2': 0.9967409308301424}. Best is trial 0 with value: 0.82491072.
+      Evaluating best sgd on Test Set...
+Using BCEWithLogitsLoss with pos_weight=1.00
+Threshold Moving: Optimal Threshold = 0.750 (F1=0.4600)
+=== Baseline MLP Evaluation ===
+Accuracy: 0.7976
+F1-score: 0.4600
+Precision: 0.3661
+Recall: 0.6188
+ROC-AUC: 0.8197008868248865
+Brier score: 0.2307
+Confusion matrix:
+[[36092, 7575], [2695, 4374]]
+   Running Genetic...
+GA Generation 1/3 — evaluating 8 individuals
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8149 time=69.3s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8163 time=36.1s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8202 time=70.1s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8137 time=165.0s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8199 time=42.8s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8207 time=31.6s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8214 time=12.4s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8141 time=84.8s
+GA Generation 2/3 — evaluating 8 individuals
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8223 time=11.8s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8213 time=31.3s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8195 time=77.2s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8219 time=43.5s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8195 time=12.2s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8252 time=56.0s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8173 time=57.0s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8221 time=64.7s
+GA Generation 3/3 — evaluating 8 individuals
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8220 time=60.2s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8224 time=18.4s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8214 time=86.6s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8194 time=41.6s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8224 time=11.8s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8208 time=13.1s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8203 time=12.0s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8197 time=30.8s
+      Evaluating best sgd on Test Set...
+Using BCEWithLogitsLoss with pos_weight=1.00
+Threshold Moving: Optimal Threshold = 0.720 (F1=0.4564)
+=== Baseline MLP Evaluation ===
+Accuracy: 0.7941
+F1-score: 0.4564
+Precision: 0.3610
+Recall: 0.6203
+ROC-AUC: 0.8179444061761899
+Brier score: 0.2214
+Confusion matrix:
+[[35906, 7761], [2684, 4385]]
+   Running ALSHADE...
+Evaluating initial population (8)...
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+[ALSHADE] Generation 1, Evals 8/24, Best AUC: 0.8212
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+[ALSHADE] Generation 2, Evals 16/24, Best AUC: 0.8221
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+[ALSHADE] Generation 3, Evals 21/24, Best AUC: 0.8242
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+      Evaluating best sgd on Test Set...
+Using BCEWithLogitsLoss with pos_weight=1.00
+Threshold Moving: Optimal Threshold = 0.740 (F1=0.4611)
+=== Baseline MLP Evaluation ===
+Accuracy: 0.8000
+F1-score: 0.4611
+Precision: 0.3691
+Recall: 0.6141
+ROC-AUC: 0.8217620467000761
+Brier score: 0.2212
+Confusion matrix:
+[[36247, 7420], [2728, 4341]]
+
+--- OPTIMIZER: ADAGRAD ---
+   Running Random Search...
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 1/10] roc_auc=0.8180 time=18.6s hparams={'lr': 0.0019004375238737116, 'epochs': 15, 'optimizer_name': 'adagrad'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 2/10] roc_auc=0.8183 time=18.4s hparams={'lr': 0.0019004375238737116, 'epochs': 15, 'optimizer_name': 'adagrad'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 3/10] roc_auc=0.7829 time=19.3s hparams={'lr': 0.00011942731780421021, 'epochs': 15, 'optimizer_name': 'adagrad'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 4/10] roc_auc=0.8104 time=18.3s hparams={'lr': 0.0006562536901904111, 'epochs': 15, 'optimizer_name': 'adagrad'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 5/10] roc_auc=0.8026 time=18.9s hparams={'lr': 0.0003497444477863494, 'epochs': 15, 'optimizer_name': 'adagrad'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 6/10] roc_auc=0.8235 time=18.3s hparams={'lr': 0.005977728042983692, 'epochs': 15, 'optimizer_name': 'adagrad'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 7/10] roc_auc=0.8035 time=18.1s hparams={'lr': 0.0005054666557506716, 'epochs': 15, 'optimizer_name': 'adagrad'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 8/10] roc_auc=0.8163 time=18.4s hparams={'lr': 0.0012482904754698156, 'epochs': 15, 'optimizer_name': 'adagrad'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 9/10] roc_auc=0.7493 time=19.3s hparams={'lr': 0.00013607174450468637, 'epochs': 15, 'optimizer_name': 'adagrad'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 10/10] roc_auc=0.8143 time=19.8s hparams={'lr': 0.000988719586312263, 'epochs': 15, 'optimizer_name': 'adagrad'}
+      Evaluating best adagrad on Test Set...
+Using BCEWithLogitsLoss with pos_weight=1.00
+Threshold Moving: Optimal Threshold = 0.760 (F1=0.4605)
+=== Baseline MLP Evaluation ===
+Accuracy: 0.8041
+F1-score: 0.4605
+Precision: 0.3736
+Recall: 0.6001
+ROC-AUC: 0.8205555802645494
+Brier score: 0.2287
+Confusion matrix:
+[[36556, 7111], [2827, 4242]]
+   Running Optuna...
+[I 2025-12-31 16:12:58,041] A new study created in memory with name: no-name-c6c55036-1fd3-446e-b3e7-935a75834e57
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 16:17:39,929] Trial 0 finished with value: 0.8118313599999999 and parameters: {'lr': 0.00031489116479568613, 'batch_size': 16, 'weight_decay': 6.025215736203855e-07, 'dropout': 0.02904180608409973, 'epochs': 71, 'beta1': 0.9142118522312097, 'beta2': 0.970736450521825}. Best is trial 0 with value: 0.8118313599999999.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 16:21:04,536] Trial 1 finished with value: 0.56250416 and parameters: {'lr': 1.2087541473056957e-05, 'batch_size': 16, 'weight_decay': 8.260808399079598e-07, 'dropout': 0.15212112147976886, 'epochs': 47, 'beta1': 0.882069553542002, 'beta2': 0.9290937911057844}. Best is trial 0 with value: 0.8118313599999999.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 16:22:03,849] Trial 2 finished with value: 0.8206147200000001 and parameters: {'lr': 0.0028016351587162596, 'batch_size': 128, 'weight_decay': 0.0008431013932082463, 'dropout': 0.09983689107917987, 'epochs': 46, 'beta1': 0.9125587680837881, 'beta2': 0.9046403962307278}. Best is trial 2 with value: 0.8206147200000001.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 16:22:20,543] Trial 3 finished with value: 0.8194464 and parameters: {'lr': 0.0026926469100861782, 'batch_size': 128, 'weight_decay': 0.001101505679026963, 'dropout': 0.15230688458668534, 'epochs': 16, 'beta1': 0.9300042750373099, 'beta2': 0.9439712341245862}. Best is trial 2 with value: 0.8206147200000001.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 16:23:38,239] Trial 4 finished with value: 0.62546832 and parameters: {'lr': 3.077180271250682e-05, 'batch_size': 64, 'weight_decay': 0.0002054051942538847, 'dropout': 0.15585553804470548, 'epochs': 46, 'beta1': 0.9038749530752231, 'beta2': 0.9184669601070001}. Best is trial 2 with value: 0.8206147200000001.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 16:24:40,617] Trial 5 finished with value: 0.82388912 and parameters: {'lr': 0.07556810141274425, 'batch_size': 32, 'weight_decay': 0.004067908494359549, 'dropout': 0.04424625102595975, 'epochs': 23, 'beta1': 0.8085931848930022, 'beta2': 0.9325005000432501}. Best is trial 5 with value: 0.82388912.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 16:27:54,102] Trial 6 finished with value: 0.8118999999999998 and parameters: {'lr': 0.00035868164986275477, 'batch_size': 32, 'weight_decay': 5.1698794422985435e-05, 'dropout': 0.07046211248738132, 'epochs': 66, 'beta1': 0.8141646222991565, 'beta2': 0.9985900049663917}. Best is trial 5 with value: 0.82388912.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 16:28:14,450] Trial 7 finished with value: 0.82093488 and parameters: {'lr': 0.012273800987852962, 'batch_size': 64, 'weight_decay': 0.00044160688951185945, 'dropout': 0.38563517334297287, 'epochs': 15, 'beta1': 0.8681084884234118, 'beta2': 0.9115753190465605}. Best is trial 5 with value: 0.82388912.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 16:32:20,353] Trial 8 finished with value: 0.8230678399999999 and parameters: {'lr': 0.028340904295147733, 'batch_size': 16, 'weight_decay': 4.225874644996163e-06, 'dropout': 0.36480308916903204, 'epochs': 55, 'beta1': 0.9685704210895021, 'beta2': 0.9471742710236788}. Best is trial 5 with value: 0.82388912.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 16:33:05,655] Trial 9 finished with value: 0.6862304 and parameters: {'lr': 3.0086868214458443e-05, 'batch_size': 128, 'weight_decay': 2.9442723591496814e-05, 'dropout': 0.26136641469099703, 'epochs': 40, 'beta1': 0.8048296340813781, 'beta2': 0.9107783535566312}. Best is trial 5 with value: 0.82388912.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 16:34:39,292] Trial 10 finished with value: 0.8184087999999999 and parameters: {'lr': 0.0827910165597764, 'batch_size': 32, 'weight_decay': 0.007041830285016003, 'dropout': 0.4661451709558936, 'epochs': 29, 'beta1': 0.8414084911521513, 'beta2': 0.9663082789974039}. Best is trial 5 with value: 0.82388912.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 16:40:24,005] Trial 11 finished with value: 0.8256652 and parameters: {'lr': 0.08839094438875611, 'batch_size': 16, 'weight_decay': 4.4411941114519195e-06, 'dropout': 0.2842687389297235, 'epochs': 59, 'beta1': 0.9809510036213808, 'beta2': 0.9433921915484655}. Best is trial 11 with value: 0.8256652.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 16:41:55,217] Trial 12 finished with value: 0.82780928 and parameters: {'lr': 0.09462889395526383, 'batch_size': 32, 'weight_decay': 6.3931934868044555e-06, 'dropout': 0.26553742181137824, 'epochs': 28, 'beta1': 0.9803027688910775, 'beta2': 0.9323724703187037}. Best is trial 12 with value: 0.82780928.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 16:47:24,123] Trial 13 finished with value: 0.82379088 and parameters: {'lr': 0.01197464711238876, 'batch_size': 16, 'weight_decay': 5.847640854500916e-06, 'dropout': 0.26981005340139885, 'epochs': 78, 'beta1': 0.9890710771159088, 'beta2': 0.9644149741471004}. Best is trial 12 with value: 0.82780928.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 16:48:53,958] Trial 14 finished with value: 0.8235691199999999 and parameters: {'lr': 0.0244334331178376, 'batch_size': 32, 'weight_decay': 1.1115180731967168e-07, 'dropout': 0.3307971266063877, 'epochs': 35, 'beta1': 0.9515232715359391, 'beta2': 0.9323840588066516}. Best is trial 12 with value: 0.82780928.
+      Evaluating best adagrad on Test Set...
+Using BCEWithLogitsLoss with pos_weight=1.00
+Threshold Moving: Optimal Threshold = 0.740 (F1=0.4619)
+=== Baseline MLP Evaluation ===
+Accuracy: 0.7984
+F1-score: 0.4619
+Precision: 0.3676
+Recall: 0.6210
+ROC-AUC: 0.8195582870078573
+Brier score: 0.2257
+Confusion matrix:
+[[36116, 7551], [2679, 4390]]
+   Running Genetic...
+GA Generation 1/3 — evaluating 8 individuals
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8205 time=72.9s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8223 time=44.0s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8190 time=71.9s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8208 time=171.2s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8250 time=50.0s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8235 time=46.9s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8227 time=14.6s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8182 time=94.6s
+GA Generation 2/3 — evaluating 8 individuals
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8249 time=49.7s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8230 time=44.9s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8227 time=13.4s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8224 time=43.8s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8230 time=65.7s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8213 time=22.7s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8236 time=127.0s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8219 time=15.2s
+GA Generation 3/3 — evaluating 8 individuals
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8245 time=72.5s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8244 time=122.0s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8230 time=49.0s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8230 time=60.7s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8246 time=142.2s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8231 time=166.3s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8237 time=167.4s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8205 time=130.9s
+      Evaluating best adagrad on Test Set...
+Using BCEWithLogitsLoss with pos_weight=1.00
+Threshold Moving: Optimal Threshold = 0.780 (F1=0.4606)
+=== Baseline MLP Evaluation ===
+Accuracy: 0.8172
+F1-score: 0.4606
+Precision: 0.3910
+Recall: 0.5603
+ROC-AUC: 0.8215077866714642
+Brier score: 0.2272
+Confusion matrix:
+[[37498, 6169], [3108, 3961]]
+   Running ALSHADE...
+Evaluating initial population (8)...
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+[ALSHADE] Generation 1, Evals 8/24, Best AUC: 0.8235
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+[ALSHADE] Generation 2, Evals 16/24, Best AUC: 0.8237
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+[ALSHADE] Generation 3, Evals 21/24, Best AUC: 0.8245
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+      Evaluating best adagrad on Test Set...
+Using BCEWithLogitsLoss with pos_weight=1.00
+Threshold Moving: Optimal Threshold = 0.760 (F1=0.4631)
+=== Baseline MLP Evaluation ===
+Accuracy: 0.8044
+F1-score: 0.4631
+Precision: 0.3750
+Recall: 0.6053
+ROC-AUC: 0.8202171138420976
+Brier score: 0.2335
+Confusion matrix:
+[[36535, 7132], [2790, 4279]]
+
+--- OPTIMIZER: ADADELTA ---
+   Running Random Search...
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 1/10] roc_auc=0.7838 time=19.8s hparams={'lr': 0.0019004375238737116, 'epochs': 15, 'optimizer_name': 'adadelta'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 2/10] roc_auc=0.7793 time=19.6s hparams={'lr': 0.0019004375238737116, 'epochs': 15, 'optimizer_name': 'adadelta'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 3/10] roc_auc=0.6457 time=19.5s hparams={'lr': 0.00011942731780421021, 'epochs': 15, 'optimizer_name': 'adadelta'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 4/10] roc_auc=0.7096 time=19.9s hparams={'lr': 0.0006562536901904111, 'epochs': 15, 'optimizer_name': 'adadelta'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 5/10] roc_auc=0.6120 time=19.5s hparams={'lr': 0.0003497444477863494, 'epochs': 15, 'optimizer_name': 'adadelta'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 6/10] roc_auc=0.8139 time=19.6s hparams={'lr': 0.005977728042983692, 'epochs': 15, 'optimizer_name': 'adadelta'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 7/10] roc_auc=0.7541 time=20.1s hparams={'lr': 0.0005054666557506716, 'epochs': 15, 'optimizer_name': 'adadelta'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 8/10] roc_auc=0.7738 time=20.2s hparams={'lr': 0.0012482904754698156, 'epochs': 15, 'optimizer_name': 'adadelta'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 9/10] roc_auc=0.3591 time=19.9s hparams={'lr': 0.00013607174450468637, 'epochs': 15, 'optimizer_name': 'adadelta'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 10/10] roc_auc=0.7588 time=19.6s hparams={'lr': 0.000988719586312263, 'epochs': 15, 'optimizer_name': 'adadelta'}
+      Evaluating best adadelta on Test Set...
+Using BCEWithLogitsLoss with pos_weight=1.00
+Threshold Moving: Optimal Threshold = 0.690 (F1=0.4477)
+=== Baseline MLP Evaluation ===
+Accuracy: 0.7716
+F1-score: 0.4477
+Precision: 0.3376
+Recall: 0.6646
+ROC-AUC: 0.8114166969159717
+Brier score: 0.2262
+Confusion matrix:
+[[34449, 9218], [2371, 4698]]
+   Running Optuna...
+[I 2025-12-31 17:58:10,386] A new study created in memory with name: no-name-95507e2b-db3f-4f42-ba1d-74c21dceb851
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 18:03:37,919] Trial 0 finished with value: 0.7980850400000001 and parameters: {'lr': 0.00031489116479568613, 'batch_size': 16, 'weight_decay': 6.025215736203855e-07, 'dropout': 0.02904180608409973, 'epochs': 71, 'beta1': 0.9142118522312097, 'beta2': 0.970736450521825}. Best is trial 0 with value: 0.7980850400000001.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 18:07:02,476] Trial 1 finished with value: 0.49131376000000004 and parameters: {'lr': 1.2087541473056957e-05, 'batch_size': 16, 'weight_decay': 8.260808399079598e-07, 'dropout': 0.15212112147976886, 'epochs': 47, 'beta1': 0.882069553542002, 'beta2': 0.9290937911057844}. Best is trial 0 with value: 0.7980850400000001.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 18:07:44,426] Trial 2 finished with value: 0.8073927999999999 and parameters: {'lr': 0.0028016351587162596, 'batch_size': 128, 'weight_decay': 0.0008431013932082463, 'dropout': 0.09983689107917987, 'epochs': 46, 'beta1': 0.9125587680837881, 'beta2': 0.9046403962307278}. Best is trial 2 with value: 0.8073927999999999.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 18:07:59,134] Trial 3 finished with value: 0.7855296 and parameters: {'lr': 0.0026926469100861782, 'batch_size': 128, 'weight_decay': 0.001101505679026963, 'dropout': 0.15230688458668534, 'epochs': 16, 'beta1': 0.9300042750373099, 'beta2': 0.9439712341245862}. Best is trial 2 with value: 0.8073927999999999.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 18:09:03,933] Trial 4 finished with value: 0.43770712 and parameters: {'lr': 3.077180271250682e-05, 'batch_size': 64, 'weight_decay': 0.0002054051942538847, 'dropout': 0.15585553804470548, 'epochs': 46, 'beta1': 0.9038749530752231, 'beta2': 0.9184669601070001}. Best is trial 2 with value: 0.8073927999999999.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 18:09:58,944] Trial 5 finished with value: 0.8231784 and parameters: {'lr': 0.07556810141274425, 'batch_size': 32, 'weight_decay': 0.004067908494359549, 'dropout': 0.04424625102595975, 'epochs': 23, 'beta1': 0.8085931848930022, 'beta2': 0.9325005000432501}. Best is trial 5 with value: 0.8231784.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 18:12:36,290] Trial 6 finished with value: 0.79416696 and parameters: {'lr': 0.00035868164986275477, 'batch_size': 32, 'weight_decay': 5.1698794422985435e-05, 'dropout': 0.07046211248738132, 'epochs': 66, 'beta1': 0.8141646222991565, 'beta2': 0.9985900049663917}. Best is trial 5 with value: 0.8231784.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 18:12:57,448] Trial 7 finished with value: 0.8130150399999999 and parameters: {'lr': 0.012273800987852962, 'batch_size': 64, 'weight_decay': 0.00044160688951185945, 'dropout': 0.38563517334297287, 'epochs': 15, 'beta1': 0.8681084884234118, 'beta2': 0.9115753190465605}. Best is trial 5 with value: 0.8231784.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 18:16:56,503] Trial 8 finished with value: 0.8173993599999999 and parameters: {'lr': 0.028340904295147733, 'batch_size': 16, 'weight_decay': 4.225874644996163e-06, 'dropout': 0.36480308916903204, 'epochs': 55, 'beta1': 0.9685704210895021, 'beta2': 0.9471742710236788}. Best is trial 5 with value: 0.8231784.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 18:17:32,386] Trial 9 finished with value: 0.5959856 and parameters: {'lr': 3.0086868214458443e-05, 'batch_size': 128, 'weight_decay': 2.9442723591496814e-05, 'dropout': 0.26136641469099703, 'epochs': 40, 'beta1': 0.8048296340813781, 'beta2': 0.9107783535566312}. Best is trial 5 with value: 0.8231784.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 18:18:40,617] Trial 10 finished with value: 0.8181814399999999 and parameters: {'lr': 0.0827910165597764, 'batch_size': 32, 'weight_decay': 0.007041830285016003, 'dropout': 0.4661451709558936, 'epochs': 29, 'beta1': 0.8414084911521513, 'beta2': 0.9663082789974039}. Best is trial 5 with value: 0.8231784.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 18:19:46,736] Trial 11 finished with value: 0.81825248 and parameters: {'lr': 0.08351341199237841, 'batch_size': 32, 'weight_decay': 0.009723610182105586, 'dropout': 0.4961896453618238, 'epochs': 28, 'beta1': 0.846438277457362, 'beta2': 0.967655146830987}. Best is trial 5 with value: 0.8231784.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 18:20:52,852] Trial 12 finished with value: 0.8176356 and parameters: {'lr': 0.09462889395526383, 'batch_size': 32, 'weight_decay': 0.00946385897443924, 'dropout': 0.4990658407333439, 'epochs': 28, 'beta1': 0.8436522267129151, 'beta2': 0.9697593530559109}. Best is trial 5 with value: 0.8231784.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 18:21:53,922] Trial 13 finished with value: 0.81983856 and parameters: {'lr': 0.014566096837677395, 'batch_size': 32, 'weight_decay': 0.003016428816748977, 'dropout': 0.26981005340139885, 'epochs': 26, 'beta1': 0.8395382613549711, 'beta2': 0.9874926249665519}. Best is trial 5 with value: 0.8231784.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 18:22:19,775] Trial 14 finished with value: 0.8130151999999999 and parameters: {'lr': 0.00905238829127675, 'batch_size': 32, 'weight_decay': 0.00197545207563069, 'dropout': 0.2628785755251211, 'epochs': 11, 'beta1': 0.8137344194883506, 'beta2': 0.9994181015286248}. Best is trial 5 with value: 0.8231784.
+      Evaluating best adadelta on Test Set...
+Using BCEWithLogitsLoss with pos_weight=1.00
+Threshold Moving: Optimal Threshold = 0.760 (F1=0.4604)
+=== Baseline MLP Evaluation ===
+Accuracy: 0.8029
+F1-score: 0.4604
+Precision: 0.3722
+Recall: 0.6033
+ROC-AUC: 0.8213274554702528
+Brier score: 0.2290
+Confusion matrix:
+[[36472, 7195], [2804, 4265]]
+   Running Genetic...
+GA Generation 1/3 — evaluating 8 individuals
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8198 time=65.7s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8219 time=40.7s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8099 time=69.4s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8207 time=157.6s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8229 time=46.8s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8225 time=33.1s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8205 time=12.6s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8183 time=95.0s
+GA Generation 2/3 — evaluating 8 individuals
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8225 time=47.0s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8223 time=33.1s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8217 time=40.6s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8209 time=157.7s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8225 time=47.0s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8209 time=99.9s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8221 time=144.7s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8197 time=43.3s
+GA Generation 3/3 — evaluating 8 individuals
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8226 time=47.1s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8225 time=46.8s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8226 time=33.1s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8213 time=144.5s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8225 time=45.5s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8234 time=46.5s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8211 time=46.8s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8238 time=47.1s
+      Evaluating best adadelta on Test Set...
+Using BCEWithLogitsLoss with pos_weight=1.00
+Threshold Moving: Optimal Threshold = 0.750 (F1=0.4613)
+=== Baseline MLP Evaluation ===
+Accuracy: 0.7986
+F1-score: 0.4613
+Precision: 0.3676
+Recall: 0.6189
+ROC-AUC: 0.8215406975611275
+Brier score: 0.2287
+Confusion matrix:
+[[36141, 7526], [2694, 4375]]
+   Running ALSHADE...
+Evaluating initial population (8)...
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+[ALSHADE] Generation 1, Evals 8/24, Best AUC: 0.8224
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+[ALSHADE] Generation 2, Evals 16/24, Best AUC: 0.8239
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+[ALSHADE] Generation 3, Evals 21/24, Best AUC: 0.8239
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+      Evaluating best adadelta on Test Set...
+Using BCEWithLogitsLoss with pos_weight=1.00
+Threshold Moving: Optimal Threshold = 0.750 (F1=0.4585)
+=== Baseline MLP Evaluation ===
+Accuracy: 0.7909
+F1-score: 0.4585
+Precision: 0.3586
+Recall: 0.6353
+ROC-AUC: 0.8182956721778385
+Brier score: 0.2344
+Confusion matrix:
+[[35636, 8031], [2578, 4491]]
+
+--- OPTIMIZER: LION ---
+   Running Random Search...
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 1/10] roc_auc=0.8225 time=17.7s hparams={'lr': 0.0019004375238737116, 'epochs': 15, 'optimizer_name': 'lion'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 2/10] roc_auc=0.8239 time=17.7s hparams={'lr': 0.0019004375238737116, 'epochs': 15, 'optimizer_name': 'lion'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 3/10] roc_auc=0.8281 time=17.7s hparams={'lr': 0.00011942731780421021, 'epochs': 15, 'optimizer_name': 'lion'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 4/10] roc_auc=0.8259 time=17.7s hparams={'lr': 0.0006562536901904111, 'epochs': 15, 'optimizer_name': 'lion'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 5/10] roc_auc=0.8263 time=17.7s hparams={'lr': 0.0003497444477863494, 'epochs': 15, 'optimizer_name': 'lion'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 6/10] roc_auc=0.8208 time=17.7s hparams={'lr': 0.005977728042983692, 'epochs': 15, 'optimizer_name': 'lion'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 7/10] roc_auc=0.8269 time=17.7s hparams={'lr': 0.0005054666557506716, 'epochs': 15, 'optimizer_name': 'lion'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 8/10] roc_auc=0.8286 time=17.6s hparams={'lr': 0.0012482904754698156, 'epochs': 15, 'optimizer_name': 'lion'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 9/10] roc_auc=0.8251 time=17.6s hparams={'lr': 0.00013607174450468637, 'epochs': 15, 'optimizer_name': 'lion'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 10/10] roc_auc=0.8281 time=17.5s hparams={'lr': 0.000988719586312263, 'epochs': 15, 'optimizer_name': 'lion'}
+      Evaluating best lion on Test Set...
+Using BCEWithLogitsLoss with pos_weight=1.00
+Threshold Moving: Optimal Threshold = 0.740 (F1=0.4502)
+=== Baseline MLP Evaluation ===
+Accuracy: 0.7858
+F1-score: 0.4502
+Precision: 0.3504
+Recall: 0.6295
+ROC-AUC: 0.8129810866893276
+Brier score: 0.2352
+Confusion matrix:
+[[35417, 8250], [2619, 4450]]
+   Running Optuna...
+[I 2025-12-31 19:34:37,068] A new study created in memory with name: no-name-4c6b68a3-015d-4e8d-9e7a-3de536d6476d
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 19:39:00,628] Trial 0 finished with value: 0.83137704 and parameters: {'lr': 0.00031489116479568613, 'batch_size': 16, 'weight_decay': 6.025215736203855e-07, 'dropout': 0.02904180608409973, 'epochs': 71, 'beta1': 0.9142118522312097, 'beta2': 0.970736450521825}. Best is trial 0 with value: 0.83137704.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 19:41:55,679] Trial 1 finished with value: 0.82216048 and parameters: {'lr': 1.2087541473056957e-05, 'batch_size': 16, 'weight_decay': 8.260808399079598e-07, 'dropout': 0.15212112147976886, 'epochs': 47, 'beta1': 0.882069553542002, 'beta2': 0.9290937911057844}. Best is trial 0 with value: 0.83137704.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 19:42:33,765] Trial 2 finished with value: 0.8276372000000001 and parameters: {'lr': 0.0028016351587162596, 'batch_size': 128, 'weight_decay': 0.0008431013932082463, 'dropout': 0.09983689107917987, 'epochs': 46, 'beta1': 0.9125587680837881, 'beta2': 0.9046403962307278}. Best is trial 0 with value: 0.83137704.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 19:42:47,018] Trial 3 finished with value: 0.82720064 and parameters: {'lr': 0.0026926469100861782, 'batch_size': 128, 'weight_decay': 0.001101505679026963, 'dropout': 0.15230688458668534, 'epochs': 16, 'beta1': 0.9300042750373099, 'beta2': 0.9439712341245862}. Best is trial 0 with value: 0.83137704.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 19:43:44,155] Trial 4 finished with value: 0.8235337600000001 and parameters: {'lr': 3.077180271250682e-05, 'batch_size': 64, 'weight_decay': 0.0002054051942538847, 'dropout': 0.15585553804470548, 'epochs': 46, 'beta1': 0.9038749530752231, 'beta2': 0.9184669601070001}. Best is trial 0 with value: 0.83137704.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 19:44:32,265] Trial 5 finished with value: 0.5004 and parameters: {'lr': 0.07556810141274425, 'batch_size': 32, 'weight_decay': 0.004067908494359549, 'dropout': 0.04424625102595975, 'epochs': 23, 'beta1': 0.8085931848930022, 'beta2': 0.9325005000432501}. Best is trial 0 with value: 0.83137704.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 19:46:49,046] Trial 6 finished with value: 0.8310924 and parameters: {'lr': 0.00035868164986275477, 'batch_size': 32, 'weight_decay': 5.1698794422985435e-05, 'dropout': 0.07046211248738132, 'epochs': 66, 'beta1': 0.8141646222991565, 'beta2': 0.9985900049663917}. Best is trial 0 with value: 0.83137704.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 19:47:07,843] Trial 7 finished with value: 0.8012806400000001 and parameters: {'lr': 0.012273800987852962, 'batch_size': 64, 'weight_decay': 0.00044160688951185945, 'dropout': 0.38563517334297287, 'epochs': 15, 'beta1': 0.8681084884234118, 'beta2': 0.9115753190465605}. Best is trial 0 with value: 0.83137704.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 19:50:35,110] Trial 8 finished with value: 0.5 and parameters: {'lr': 0.028340904295147733, 'batch_size': 16, 'weight_decay': 4.225874644996163e-06, 'dropout': 0.36480308916903204, 'epochs': 55, 'beta1': 0.9685704210895021, 'beta2': 0.9471742710236788}. Best is trial 0 with value: 0.83137704.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 19:51:08,561] Trial 9 finished with value: 0.82032384 and parameters: {'lr': 3.0086868214458443e-05, 'batch_size': 128, 'weight_decay': 2.9442723591496814e-05, 'dropout': 0.26136641469099703, 'epochs': 40, 'beta1': 0.8048296340813781, 'beta2': 0.9107783535566312}. Best is trial 0 with value: 0.83137704.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 19:56:03,565] Trial 10 finished with value: 0.8254055199999999 and parameters: {'lr': 0.00031470708498898336, 'batch_size': 16, 'weight_decay': 1.0907785690006111e-07, 'dropout': 0.4661451709558936, 'epochs': 79, 'beta1': 0.9724563111036784, 'beta2': 0.9764787717520845}. Best is trial 0 with value: 0.83137704.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 19:58:36,804] Trial 11 finished with value: 0.83169928 and parameters: {'lr': 0.00022552353528655793, 'batch_size': 32, 'weight_decay': 1.0232319754608961e-05, 'dropout': 0.00818622053115401, 'epochs': 74, 'beta1': 0.8489325741465695, 'beta2': 0.9985546176604633}. Best is trial 11 with value: 0.83169928.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 20:01:16,145] Trial 12 finished with value: 0.82644112 and parameters: {'lr': 0.00016588321848039583, 'batch_size': 32, 'weight_decay': 1.221019140919634e-06, 'dropout': 0.002161896532907181, 'epochs': 77, 'beta1': 0.8407306107637741, 'beta2': 0.9738836216906468}. Best is trial 11 with value: 0.83169928.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 20:05:17,964] Trial 13 finished with value: 0.8270646399999999 and parameters: {'lr': 9.188227716652768e-05, 'batch_size': 16, 'weight_decay': 7.717407396015278e-06, 'dropout': 0.007545576763330015, 'epochs': 65, 'beta1': 0.850641188555077, 'beta2': 0.9995020515215688}. Best is trial 11 with value: 0.83169928.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 20:07:37,805] Trial 14 finished with value: 0.8283404000000001 and parameters: {'lr': 0.0011399654597808394, 'batch_size': 32, 'weight_decay': 1.1464028669118929e-07, 'dropout': 0.23543521798227693, 'epochs': 67, 'beta1': 0.9413799335046389, 'beta2': 0.9760616009785539}. Best is trial 11 with value: 0.83169928.
+      Evaluating best lion on Test Set...
+Using BCEWithLogitsLoss with pos_weight=1.00
+Threshold Moving: Optimal Threshold = 0.760 (F1=0.4633)
+=== Baseline MLP Evaluation ===
+Accuracy: 0.7982
+F1-score: 0.4633
+Precision: 0.3681
+Recall: 0.6251
+ROC-AUC: 0.8181775247080068
+Brier score: 0.2359
+Confusion matrix:
+[[36080, 7587], [2650, 4419]]
+   Running Genetic...
+GA Generation 1/3 — evaluating 8 individuals
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.5000 time=58.3s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.5000 time=36.1s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8221 time=62.0s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.5000 time=139.8s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.5000 time=42.6s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.5000 time=30.7s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.5002 time=11.7s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.5000 time=85.5s
+GA Generation 2/3 — evaluating 8 individuals
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8215 time=62.2s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.5000 time=11.7s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.5000 time=58.9s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.5014 time=36.3s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.5000 time=63.1s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.5002 time=48.8s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.5000 time=33.8s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.5000 time=64.8s
+GA Generation 3/3 — evaluating 8 individuals
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8199 time=61.9s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.5000 time=36.3s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.5000 time=48.7s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.5010 time=11.6s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.5000 time=31.7s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.5000 time=36.2s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.5000 time=36.1s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.5000 time=90.1s
+      Evaluating best lion on Test Set...
+Using BCEWithLogitsLoss with pos_weight=1.00
+Threshold Moving: Optimal Threshold = 0.770 (F1=0.4433)
+=== Baseline MLP Evaluation ===
+Accuracy: 0.7723
+F1-score: 0.4433
+Precision: 0.3361
+Recall: 0.6509
+ROC-AUC: 0.8034395300694268
+Brier score: 0.2717
+Confusion matrix:
+[[34580, 9087], [2468, 4601]]
+   Running ALSHADE...
+Evaluating initial population (8)...
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+[ALSHADE] Generation 1, Evals 8/24, Best AUC: 0.8219
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+[ALSHADE] Generation 2, Evals 16/24, Best AUC: 0.8222
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+[ALSHADE] Generation 3, Evals 21/24, Best AUC: 0.8249
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+      Evaluating best lion on Test Set...
+Using BCEWithLogitsLoss with pos_weight=1.00
+Threshold Moving: Optimal Threshold = 0.740 (F1=0.4612)
+=== Baseline MLP Evaluation ===
+Accuracy: 0.7967
+F1-score: 0.4612
+Precision: 0.3656
+Recall: 0.6246
+ROC-AUC: 0.8202458975072869
+Brier score: 0.2276
+Confusion matrix:
+[[36007, 7660], [2654, 4415]]
+
+
+################ REPRESENTATION: PCA ################
+
+--- OPTIMIZER: RMSPROP ---
+   Running Random Search...
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 1/10] roc_auc=0.8267 time=17.5s hparams={'lr': 0.0019004375238737116, 'epochs': 15, 'optimizer_name': 'rmsprop'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 2/10] roc_auc=0.8246 time=17.5s hparams={'lr': 0.0019004375238737116, 'epochs': 15, 'optimizer_name': 'rmsprop'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 3/10] roc_auc=0.8197 time=17.6s hparams={'lr': 0.00011942731780421021, 'epochs': 15, 'optimizer_name': 'rmsprop'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 4/10] roc_auc=0.8248 time=17.6s hparams={'lr': 0.0006562536901904111, 'epochs': 15, 'optimizer_name': 'rmsprop'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 5/10] roc_auc=0.8240 time=17.5s hparams={'lr': 0.0003497444477863494, 'epochs': 15, 'optimizer_name': 'rmsprop'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 6/10] roc_auc=0.8272 time=17.4s hparams={'lr': 0.005977728042983692, 'epochs': 15, 'optimizer_name': 'rmsprop'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 7/10] roc_auc=0.8242 time=17.5s hparams={'lr': 0.0005054666557506716, 'epochs': 15, 'optimizer_name': 'rmsprop'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 8/10] roc_auc=0.8253 time=17.6s hparams={'lr': 0.0012482904754698156, 'epochs': 15, 'optimizer_name': 'rmsprop'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 9/10] roc_auc=0.8217 time=17.5s hparams={'lr': 0.00013607174450468637, 'epochs': 15, 'optimizer_name': 'rmsprop'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 10/10] roc_auc=0.8251 time=17.6s hparams={'lr': 0.000988719586312263, 'epochs': 15, 'optimizer_name': 'rmsprop'}
+      Evaluating best rmsprop on Test Set...
+Using BCEWithLogitsLoss with pos_weight=1.00
+Threshold Moving: Optimal Threshold = 0.740 (F1=0.4566)
+=== Baseline MLP Evaluation ===
+Accuracy: 0.8092
+F1-score: 0.4566
+Precision: 0.3785
+Recall: 0.5753
+ROC-AUC: 0.8165885173688913
+Brier score: 0.2156
+Confusion matrix:
+[[36990, 6677], [3002, 4067]]
+   Running Optuna...
+[I 2025-12-31 20:53:07,258] A new study created in memory with name: no-name-db3d7416-e32f-4320-82b3-59ed721fd457
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 20:57:43,186] Trial 0 finished with value: 0.8292835199999999 and parameters: {'lr': 0.00031489116479568613, 'batch_size': 16, 'weight_decay': 6.025215736203855e-07, 'dropout': 0.02904180608409973, 'epochs': 71, 'beta1': 0.9142118522312097, 'beta2': 0.970736450521825}. Best is trial 0 with value: 0.8292835199999999.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 21:00:46,309] Trial 1 finished with value: 0.8179499200000001 and parameters: {'lr': 1.2087541473056957e-05, 'batch_size': 16, 'weight_decay': 8.260808399079598e-07, 'dropout': 0.15212112147976886, 'epochs': 47, 'beta1': 0.882069553542002, 'beta2': 0.9290937911057844}. Best is trial 0 with value: 0.8292835199999999.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 21:01:25,480] Trial 2 finished with value: 0.82476768 and parameters: {'lr': 0.0028016351587162596, 'batch_size': 128, 'weight_decay': 0.0008431013932082463, 'dropout': 0.09983689107917987, 'epochs': 46, 'beta1': 0.9125587680837881, 'beta2': 0.9046403962307278}. Best is trial 0 with value: 0.8292835199999999.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 21:01:39,316] Trial 3 finished with value: 0.8239375999999999 and parameters: {'lr': 0.0026926469100861782, 'batch_size': 128, 'weight_decay': 0.001101505679026963, 'dropout': 0.15230688458668534, 'epochs': 16, 'beta1': 0.9300042750373099, 'beta2': 0.9439712341245862}. Best is trial 0 with value: 0.8292835199999999.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 21:02:38,629] Trial 4 finished with value: 0.819896 and parameters: {'lr': 3.077180271250682e-05, 'batch_size': 64, 'weight_decay': 0.0002054051942538847, 'dropout': 0.15585553804470548, 'epochs': 46, 'beta1': 0.9038749530752231, 'beta2': 0.9184669601070001}. Best is trial 0 with value: 0.8292835199999999.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 21:03:32,688] Trial 5 finished with value: 0.8066337600000001 and parameters: {'lr': 0.07556810141274425, 'batch_size': 32, 'weight_decay': 0.004067908494359549, 'dropout': 0.04424625102595975, 'epochs': 23, 'beta1': 0.8085931848930022, 'beta2': 0.9325005000432501}. Best is trial 0 with value: 0.8292835199999999.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 21:05:54,872] Trial 6 finished with value: 0.82582112 and parameters: {'lr': 0.00035868164986275477, 'batch_size': 32, 'weight_decay': 5.1698794422985435e-05, 'dropout': 0.07046211248738132, 'epochs': 66, 'beta1': 0.8141646222991565, 'beta2': 0.9985900049663917}. Best is trial 0 with value: 0.8292835199999999.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 21:06:14,338] Trial 7 finished with value: 0.81666288 and parameters: {'lr': 0.012273800987852962, 'batch_size': 64, 'weight_decay': 0.00044160688951185945, 'dropout': 0.38563517334297287, 'epochs': 15, 'beta1': 0.8681084884234118, 'beta2': 0.9115753190465605}. Best is trial 0 with value: 0.8292835199999999.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 21:09:51,200] Trial 8 finished with value: 0.7899041600000001 and parameters: {'lr': 0.028340904295147733, 'batch_size': 16, 'weight_decay': 4.225874644996163e-06, 'dropout': 0.36480308916903204, 'epochs': 55, 'beta1': 0.9685704210895021, 'beta2': 0.9471742710236788}. Best is trial 0 with value: 0.8292835199999999.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 21:10:25,466] Trial 9 finished with value: 0.81811952 and parameters: {'lr': 3.0086868214458443e-05, 'batch_size': 128, 'weight_decay': 2.9442723591496814e-05, 'dropout': 0.26136641469099703, 'epochs': 40, 'beta1': 0.8048296340813781, 'beta2': 0.9107783535566312}. Best is trial 0 with value: 0.8292835199999999.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 21:15:34,934] Trial 10 finished with value: 0.82467888 and parameters: {'lr': 0.00031470708498898336, 'batch_size': 16, 'weight_decay': 1.0907785690006111e-07, 'dropout': 0.4661451709558936, 'epochs': 79, 'beta1': 0.9724563111036784, 'beta2': 0.9764787717520845}. Best is trial 0 with value: 0.8292835199999999.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 21:18:14,249] Trial 11 finished with value: 0.82510208 and parameters: {'lr': 0.00022552353528655793, 'batch_size': 32, 'weight_decay': 1.0232319754608961e-05, 'dropout': 0.00818622053115401, 'epochs': 74, 'beta1': 0.8489325741465695, 'beta2': 0.9985546176604633}. Best is trial 0 with value: 0.8292835199999999.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 21:20:37,432] Trial 12 finished with value: 0.8251284799999999 and parameters: {'lr': 0.0002344574163871335, 'batch_size': 32, 'weight_decay': 6.313486264438969e-07, 'dropout': 0.24215308915193964, 'epochs': 66, 'beta1': 0.8407306107637741, 'beta2': 0.9738679588514415}. Best is trial 0 with value: 0.8292835199999999.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 21:24:46,026] Trial 13 finished with value: 0.82875312 and parameters: {'lr': 0.0007510744896915734, 'batch_size': 16, 'weight_decay': 8.367086029042142e-05, 'dropout': 0.06487809737516287, 'epochs': 64, 'beta1': 0.9330099741097112, 'beta2': 0.9995020515215688}. Best is trial 0 with value: 0.8292835199999999.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 21:28:50,771] Trial 14 finished with value: 0.83218128 and parameters: {'lr': 0.0011399654597808394, 'batch_size': 16, 'weight_decay': 6.635139581380289e-05, 'dropout': 0.0023369998520831464, 'epochs': 62, 'beta1': 0.9413799335046389, 'beta2': 0.9756882622258031}. Best is trial 14 with value: 0.83218128.
+      Evaluating best rmsprop on Test Set...
+Using BCEWithLogitsLoss with pos_weight=1.00
+Threshold Moving: Optimal Threshold = 0.740 (F1=0.4574)
+=== Baseline MLP Evaluation ===
+Accuracy: 0.7969
+F1-score: 0.4574
+Precision: 0.3643
+Recall: 0.6144
+ROC-AUC: 0.8188935560397049
+Brier score: 0.2268
+Confusion matrix:
+[[36090, 7577], [2726, 4343]]
+   Running Genetic...
+GA Generation 1/3 — evaluating 8 individuals
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8019 time=63.2s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.7953 time=40.3s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8195 time=64.2s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.7979 time=149.7s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8065 time=47.3s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8091 time=38.1s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8079 time=14.5s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8119 time=89.6s
+GA Generation 2/3 — evaluating 8 individuals
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8188 time=65.7s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8061 time=89.6s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8140 time=37.8s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8104 time=14.1s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8129 time=67.6s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8100 time=15.1s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8087 time=34.5s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.7978 time=37.1s
+GA Generation 3/3 — evaluating 8 individuals
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8176 time=64.5s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8128 time=38.4s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8145 time=67.0s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.7849 time=14.4s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8105 time=34.9s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8112 time=34.5s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8143 time=36.4s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8062 time=39.4s
+      Evaluating best rmsprop on Test Set...
+Using BCEWithLogitsLoss with pos_weight=1.00
+Threshold Moving: Optimal Threshold = 0.750 (F1=0.4507)
+=== Baseline MLP Evaluation ===
+Accuracy: 0.7924
+F1-score: 0.4507
+Precision: 0.3569
+Recall: 0.6113
+ROC-AUC: 0.815987828031048
+Brier score: 0.2305
+Confusion matrix:
+[[35881, 7786], [2748, 4321]]
+   Running ALSHADE...
+Evaluating initial population (8)...
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+[ALSHADE] Generation 1, Evals 8/24, Best AUC: 0.8195
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+[ALSHADE] Generation 2, Evals 16/24, Best AUC: 0.8206
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+[ALSHADE] Generation 3, Evals 21/24, Best AUC: 0.8206
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+      Evaluating best rmsprop on Test Set...
+Using BCEWithLogitsLoss with pos_weight=1.00
+Threshold Moving: Optimal Threshold = 0.780 (F1=0.4511)
+=== Baseline MLP Evaluation ===
+Accuracy: 0.8111
+F1-score: 0.4511
+Precision: 0.3790
+Recall: 0.5571
+ROC-AUC: 0.8175048454311834
+Brier score: 0.2449
+Confusion matrix:
+[[37214, 6453], [3131, 3938]]
+
+--- OPTIMIZER: ADAM ---
+   Running Random Search...
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 1/10] roc_auc=0.8273 time=19.3s hparams={'lr': 0.0019004375238737116, 'epochs': 15, 'optimizer_name': 'adam'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 2/10] roc_auc=0.8257 time=19.2s hparams={'lr': 0.0019004375238737116, 'epochs': 15, 'optimizer_name': 'adam'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 3/10] roc_auc=0.8209 time=19.1s hparams={'lr': 0.00011942731780421021, 'epochs': 15, 'optimizer_name': 'adam'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 4/10] roc_auc=0.8251 time=19.2s hparams={'lr': 0.0006562536901904111, 'epochs': 15, 'optimizer_name': 'adam'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 5/10] roc_auc=0.8240 time=19.2s hparams={'lr': 0.0003497444477863494, 'epochs': 15, 'optimizer_name': 'adam'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 6/10] roc_auc=0.8283 time=19.2s hparams={'lr': 0.005977728042983692, 'epochs': 15, 'optimizer_name': 'adam'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 7/10] roc_auc=0.8239 time=19.2s hparams={'lr': 0.0005054666557506716, 'epochs': 15, 'optimizer_name': 'adam'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 8/10] roc_auc=0.8249 time=19.2s hparams={'lr': 0.0012482904754698156, 'epochs': 15, 'optimizer_name': 'adam'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 9/10] roc_auc=0.8222 time=19.1s hparams={'lr': 0.00013607174450468637, 'epochs': 15, 'optimizer_name': 'adam'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 10/10] roc_auc=0.8251 time=19.2s hparams={'lr': 0.000988719586312263, 'epochs': 15, 'optimizer_name': 'adam'}
+      Evaluating best adam on Test Set...
+Using BCEWithLogitsLoss with pos_weight=1.00
+Threshold Moving: Optimal Threshold = 0.730 (F1=0.4548)
+=== Baseline MLP Evaluation ===
+Accuracy: 0.7873
+F1-score: 0.4548
+Precision: 0.3537
+Recall: 0.6367
+ROC-AUC: 0.8146256592985981
+Brier score: 0.2347
+Confusion matrix:
+[[35444, 8223], [2568, 4501]]
+   Running Optuna...
+[I 2025-12-31 22:22:47,188] A new study created in memory with name: no-name-ff92a4e1-be48-4f37-ab07-84d0406681e6
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 22:27:51,020] Trial 0 finished with value: 0.82971536 and parameters: {'lr': 0.00031489116479568613, 'batch_size': 16, 'weight_decay': 6.025215736203855e-07, 'dropout': 0.02904180608409973, 'epochs': 71, 'beta1': 0.9142118522312097, 'beta2': 0.970736450521825}. Best is trial 0 with value: 0.82971536.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 22:31:12,656] Trial 1 finished with value: 0.81756736 and parameters: {'lr': 1.2087541473056957e-05, 'batch_size': 16, 'weight_decay': 8.260808399079598e-07, 'dropout': 0.15212112147976886, 'epochs': 47, 'beta1': 0.882069553542002, 'beta2': 0.9290937911057844}. Best is trial 0 with value: 0.82971536.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 22:31:53,677] Trial 2 finished with value: 0.823688 and parameters: {'lr': 0.0028016351587162596, 'batch_size': 128, 'weight_decay': 0.0008431013932082463, 'dropout': 0.09983689107917987, 'epochs': 46, 'beta1': 0.9125587680837881, 'beta2': 0.9046403962307278}. Best is trial 0 with value: 0.82971536.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 22:32:08,018] Trial 3 finished with value: 0.8235881599999999 and parameters: {'lr': 0.0026926469100861782, 'batch_size': 128, 'weight_decay': 0.001101505679026963, 'dropout': 0.15230688458668534, 'epochs': 16, 'beta1': 0.9300042750373099, 'beta2': 0.9439712341245862}. Best is trial 0 with value: 0.82971536.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 22:33:11,826] Trial 4 finished with value: 0.81967984 and parameters: {'lr': 3.077180271250682e-05, 'batch_size': 64, 'weight_decay': 0.0002054051942538847, 'dropout': 0.15585553804470548, 'epochs': 46, 'beta1': 0.9038749530752231, 'beta2': 0.9184669601070001}. Best is trial 0 with value: 0.82971536.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 22:34:06,079] Trial 5 finished with value: 0.8009856000000001 and parameters: {'lr': 0.07556810141274425, 'batch_size': 32, 'weight_decay': 0.004067908494359549, 'dropout': 0.04424625102595975, 'epochs': 23, 'beta1': 0.8085931848930022, 'beta2': 0.9325005000432501}. Best is trial 0 with value: 0.82971536.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 22:36:41,892] Trial 6 finished with value: 0.8264184 and parameters: {'lr': 0.00035868164986275477, 'batch_size': 32, 'weight_decay': 5.1698794422985435e-05, 'dropout': 0.07046211248738132, 'epochs': 66, 'beta1': 0.8141646222991565, 'beta2': 0.9985900049663917}. Best is trial 0 with value: 0.82971536.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 22:37:02,851] Trial 7 finished with value: 0.8179468799999999 and parameters: {'lr': 0.012273800987852962, 'batch_size': 64, 'weight_decay': 0.00044160688951185945, 'dropout': 0.38563517334297287, 'epochs': 15, 'beta1': 0.8681084884234118, 'beta2': 0.9115753190465605}. Best is trial 0 with value: 0.82971536.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 22:40:57,995] Trial 8 finished with value: 0.81145168 and parameters: {'lr': 0.028340904295147733, 'batch_size': 16, 'weight_decay': 4.225874644996163e-06, 'dropout': 0.36480308916903204, 'epochs': 55, 'beta1': 0.9685704210895021, 'beta2': 0.9471742710236788}. Best is trial 0 with value: 0.82971536.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 22:41:34,153] Trial 9 finished with value: 0.81789992 and parameters: {'lr': 3.0086868214458443e-05, 'batch_size': 128, 'weight_decay': 2.9442723591496814e-05, 'dropout': 0.26136641469099703, 'epochs': 40, 'beta1': 0.8048296340813781, 'beta2': 0.9107783535566312}. Best is trial 0 with value: 0.82971536.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 22:47:13,754] Trial 10 finished with value: 0.82445904 and parameters: {'lr': 0.00031470708498898336, 'batch_size': 16, 'weight_decay': 1.0907785690006111e-07, 'dropout': 0.4661451709558936, 'epochs': 79, 'beta1': 0.9724563111036784, 'beta2': 0.9764787717520845}. Best is trial 0 with value: 0.82971536.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 22:50:07,967] Trial 11 finished with value: 0.82610688 and parameters: {'lr': 0.00022552353528655793, 'batch_size': 32, 'weight_decay': 1.0232319754608961e-05, 'dropout': 0.00818622053115401, 'epochs': 74, 'beta1': 0.8489325741465695, 'beta2': 0.9985546176604633}. Best is trial 0 with value: 0.82971536.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 22:52:43,803] Trial 12 finished with value: 0.82496024 and parameters: {'lr': 0.0002344574163871335, 'batch_size': 32, 'weight_decay': 6.313486264438969e-07, 'dropout': 0.24215308915193964, 'epochs': 66, 'beta1': 0.8407306107637741, 'beta2': 0.9738679588514415}. Best is trial 0 with value: 0.82971536.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 22:57:17,698] Trial 13 finished with value: 0.82963312 and parameters: {'lr': 0.0007510744896915734, 'batch_size': 16, 'weight_decay': 8.367086029042142e-05, 'dropout': 0.06487809737516287, 'epochs': 64, 'beta1': 0.9330099741097112, 'beta2': 0.9995020515215688}. Best is trial 0 with value: 0.82971536.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 23:01:43,020] Trial 14 finished with value: 0.82949504 and parameters: {'lr': 0.0011399654597808394, 'batch_size': 16, 'weight_decay': 6.635139581380289e-05, 'dropout': 0.0023369998520831464, 'epochs': 62, 'beta1': 0.9413799335046389, 'beta2': 0.9756882622258031}. Best is trial 0 with value: 0.82971536.
+      Evaluating best adam on Test Set...
+Using BCEWithLogitsLoss with pos_weight=1.00
+Threshold Moving: Optimal Threshold = 0.730 (F1=0.4584)
+=== Baseline MLP Evaluation ===
+Accuracy: 0.7837
+F1-score: 0.4584
+Precision: 0.3521
+Recall: 0.6570
+ROC-AUC: 0.820159028178975
+Brier score: 0.2326
+Confusion matrix:
+[[35120, 8547], [2425, 4644]]
+   Running Genetic...
+GA Generation 1/3 — evaluating 8 individuals
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.7970 time=66.4s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.7989 time=40.9s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8170 time=69.9s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8042 time=158.9s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8146 time=47.0s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8093 time=33.3s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8142 time=12.7s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8071 time=96.2s
+GA Generation 2/3 — evaluating 8 individuals
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8189 time=69.9s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8087 time=46.8s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8098 time=12.6s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8110 time=33.4s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8099 time=70.8s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8101 time=30.9s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8099 time=31.5s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8111 time=12.9s
+GA Generation 3/3 — evaluating 8 individuals
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8187 time=70.0s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8097 time=12.9s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8090 time=33.5s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8090 time=30.7s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8120 time=12.8s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8138 time=12.7s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8071 time=12.9s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8133 time=33.3s
+      Evaluating best adam on Test Set...
+Using BCEWithLogitsLoss with pos_weight=1.00
+Threshold Moving: Optimal Threshold = 0.720 (F1=0.4471)
+=== Baseline MLP Evaluation ===
+Accuracy: 0.7776
+F1-score: 0.4471
+Precision: 0.3420
+Recall: 0.6456
+ROC-AUC: 0.8144969896740634
+Brier score: 0.2280
+Confusion matrix:
+[[34886, 8781], [2505, 4564]]
+   Running ALSHADE...
+Evaluating initial population (8)...
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+[ALSHADE] Generation 1, Evals 8/24, Best AUC: 0.8201
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+[ALSHADE] Generation 2, Evals 16/24, Best AUC: 0.8201
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+[ALSHADE] Generation 3, Evals 21/24, Best AUC: 0.8246
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+      Evaluating best adam on Test Set...
+Using BCEWithLogitsLoss with pos_weight=1.00
+Threshold Moving: Optimal Threshold = 0.740 (F1=0.4554)
+=== Baseline MLP Evaluation ===
+Accuracy: 0.7893
+F1-score: 0.4554
+Precision: 0.3558
+Recall: 0.6323
+ROC-AUC: 0.8176061746232627
+Brier score: 0.2409
+Confusion matrix:
+[[35575, 8092], [2599, 4470]]
+
+--- OPTIMIZER: SGD ---
+   Running Random Search...
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 1/10] roc_auc=0.8235 time=15.5s hparams={'lr': 0.0019004375238737116, 'epochs': 15, 'optimizer_name': 'sgd'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 2/10] roc_auc=0.8226 time=15.5s hparams={'lr': 0.0019004375238737116, 'epochs': 15, 'optimizer_name': 'sgd'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 3/10] roc_auc=0.8005 time=15.6s hparams={'lr': 0.00011942731780421021, 'epochs': 15, 'optimizer_name': 'sgd'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 4/10] roc_auc=0.8180 time=15.5s hparams={'lr': 0.0006562536901904111, 'epochs': 15, 'optimizer_name': 'sgd'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 5/10] roc_auc=0.8169 time=15.5s hparams={'lr': 0.0003497444477863494, 'epochs': 15, 'optimizer_name': 'sgd'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 6/10] roc_auc=0.8243 time=15.4s hparams={'lr': 0.005977728042983692, 'epochs': 15, 'optimizer_name': 'sgd'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 7/10] roc_auc=0.8164 time=15.5s hparams={'lr': 0.0005054666557506716, 'epochs': 15, 'optimizer_name': 'sgd'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 8/10] roc_auc=0.8225 time=15.4s hparams={'lr': 0.0012482904754698156, 'epochs': 15, 'optimizer_name': 'sgd'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 9/10] roc_auc=0.7998 time=15.6s hparams={'lr': 0.00013607174450468637, 'epochs': 15, 'optimizer_name': 'sgd'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 10/10] roc_auc=0.8206 time=15.5s hparams={'lr': 0.000988719586312263, 'epochs': 15, 'optimizer_name': 'sgd'}
+      Evaluating best sgd on Test Set...
+Using BCEWithLogitsLoss with pos_weight=1.00
+Threshold Moving: Optimal Threshold = 0.740 (F1=0.4604)
+=== Baseline MLP Evaluation ===
+Accuracy: 0.7818
+F1-score: 0.4604
+Precision: 0.3512
+Recall: 0.6681
+ROC-AUC: 0.820750419923223
+Brier score: 0.2339
+Confusion matrix:
+[[34942, 8725], [2346, 4723]]
+   Running Optuna...
+[I 2025-12-31 23:47:58,785] A new study created in memory with name: no-name-0fdd571a-69e8-487b-b7af-c85d6f96acac
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 23:51:55,504] Trial 0 finished with value: 0.825472 and parameters: {'lr': 0.00031489116479568613, 'batch_size': 16, 'weight_decay': 6.025215736203855e-07, 'dropout': 0.02904180608409973, 'epochs': 71, 'beta1': 0.9142118522312097, 'beta2': 0.970736450521825}. Best is trial 0 with value: 0.825472.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 23:54:32,725] Trial 1 finished with value: 0.79751056 and parameters: {'lr': 1.2087541473056957e-05, 'batch_size': 16, 'weight_decay': 8.260808399079598e-07, 'dropout': 0.15212112147976886, 'epochs': 47, 'beta1': 0.882069553542002, 'beta2': 0.9290937911057844}. Best is trial 0 with value: 0.825472.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 23:55:08,442] Trial 2 finished with value: 0.82210336 and parameters: {'lr': 0.0028016351587162596, 'batch_size': 128, 'weight_decay': 0.0008431013932082463, 'dropout': 0.09983689107917987, 'epochs': 46, 'beta1': 0.9125587680837881, 'beta2': 0.9046403962307278}. Best is trial 0 with value: 0.825472.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 23:55:20,882] Trial 3 finished with value: 0.81976016 and parameters: {'lr': 0.0026926469100861782, 'batch_size': 128, 'weight_decay': 0.001101505679026963, 'dropout': 0.15230688458668534, 'epochs': 16, 'beta1': 0.9300042750373099, 'beta2': 0.9439712341245862}. Best is trial 0 with value: 0.825472.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 23:56:13,592] Trial 4 finished with value: 0.7909721599999999 and parameters: {'lr': 3.077180271250682e-05, 'batch_size': 64, 'weight_decay': 0.0002054051942538847, 'dropout': 0.15585553804470548, 'epochs': 46, 'beta1': 0.9038749530752231, 'beta2': 0.9184669601070001}. Best is trial 0 with value: 0.825472.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 23:56:57,047] Trial 5 finished with value: 0.81655136 and parameters: {'lr': 0.07556810141274425, 'batch_size': 32, 'weight_decay': 0.004067908494359549, 'dropout': 0.04424625102595975, 'epochs': 23, 'beta1': 0.8085931848930022, 'beta2': 0.9325005000432501}. Best is trial 0 with value: 0.825472.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 23:59:01,557] Trial 6 finished with value: 0.82220464 and parameters: {'lr': 0.00035868164986275477, 'batch_size': 32, 'weight_decay': 5.1698794422985435e-05, 'dropout': 0.07046211248738132, 'epochs': 66, 'beta1': 0.8141646222991565, 'beta2': 0.9985900049663917}. Best is trial 0 with value: 0.825472.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2025-12-31 23:59:19,025] Trial 7 finished with value: 0.8221835200000001 and parameters: {'lr': 0.012273800987852962, 'batch_size': 64, 'weight_decay': 0.00044160688951185945, 'dropout': 0.38563517334297287, 'epochs': 15, 'beta1': 0.8681084884234118, 'beta2': 0.9115753190465605}. Best is trial 0 with value: 0.825472.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2026-01-01 00:02:23,742] Trial 8 finished with value: 0.82385152 and parameters: {'lr': 0.028340904295147733, 'batch_size': 16, 'weight_decay': 4.225874644996163e-06, 'dropout': 0.36480308916903204, 'epochs': 55, 'beta1': 0.9685704210895021, 'beta2': 0.9471742710236788}. Best is trial 0 with value: 0.825472.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2026-01-01 00:02:55,104] Trial 9 finished with value: 0.73207888 and parameters: {'lr': 3.0086868214458443e-05, 'batch_size': 128, 'weight_decay': 2.9442723591496814e-05, 'dropout': 0.26136641469099703, 'epochs': 40, 'beta1': 0.8048296340813781, 'beta2': 0.9107783535566312}. Best is trial 0 with value: 0.825472.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2026-01-01 00:07:20,071] Trial 10 finished with value: 0.82143232 and parameters: {'lr': 0.00031470708498898336, 'batch_size': 16, 'weight_decay': 1.0907785690006111e-07, 'dropout': 0.4661451709558936, 'epochs': 79, 'beta1': 0.9724563111036784, 'beta2': 0.9764787717520845}. Best is trial 0 with value: 0.825472.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2026-01-01 00:10:57,979] Trial 11 finished with value: 0.7978697600000001 and parameters: {'lr': 0.0718533677674885, 'batch_size': 16, 'weight_decay': 2.5965530249440264e-06, 'dropout': 0.29085995618578236, 'epochs': 65, 'beta1': 0.9825779233317606, 'beta2': 0.9666005743843695}. Best is trial 0 with value: 0.825472.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2026-01-01 00:14:25,945] Trial 12 finished with value: 0.8207796799999999 and parameters: {'lr': 0.00023404033918091065, 'batch_size': 16, 'weight_decay': 5.8376191279478e-06, 'dropout': 0.36063085292066926, 'epochs': 62, 'beta1': 0.9515421834729748, 'beta2': 0.9622823135450688}. Best is trial 0 with value: 0.825472.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2026-01-01 00:18:51,725] Trial 13 finished with value: 0.82521064 and parameters: {'lr': 0.014566096837677395, 'batch_size': 16, 'weight_decay': 2.702991058763226e-07, 'dropout': 0.4878421711863927, 'epochs': 79, 'beta1': 0.9441163078816529, 'beta2': 0.9886274911834095}. Best is trial 0 with value: 0.825472.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2026-01-01 00:23:10,069] Trial 14 finished with value: 0.82640808 and parameters: {'lr': 0.00489688158570715, 'batch_size': 16, 'weight_decay': 1.028352613928272e-07, 'dropout': 0.4867299266960195, 'epochs': 77, 'beta1': 0.8529698369134195, 'beta2': 0.9913175192181677}. Best is trial 14 with value: 0.82640808.
+      Evaluating best sgd on Test Set...
+Using BCEWithLogitsLoss with pos_weight=1.00
+Threshold Moving: Optimal Threshold = 0.740 (F1=0.4593)
+=== Baseline MLP Evaluation ===
+Accuracy: 0.7972
+F1-score: 0.4593
+Precision: 0.3654
+Recall: 0.6183
+ROC-AUC: 0.8199611206383729
+Brier score: 0.2317
+Confusion matrix:
+[[36075, 7592], [2698, 4371]]
+   Running Genetic...
+GA Generation 1/3 — evaluating 8 individuals
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8112 time=53.5s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8170 time=32.5s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8187 time=56.3s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8117 time=125.8s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8188 time=38.7s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8196 time=28.6s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8209 time=10.9s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8145 time=76.1s
+GA Generation 2/3 — evaluating 8 individuals
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8213 time=11.0s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8206 time=28.6s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8196 time=38.9s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8198 time=56.4s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8207 time=10.9s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8194 time=43.8s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8174 time=53.4s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8215 time=39.6s
+GA Generation 3/3 — evaluating 8 individuals
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8227 time=39.4s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8218 time=10.9s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8206 time=11.1s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8206 time=28.6s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8204 time=10.8s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8201 time=10.9s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8199 time=11.0s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8204 time=25.1s
+      Evaluating best sgd on Test Set...
+Using BCEWithLogitsLoss with pos_weight=1.00
+Threshold Moving: Optimal Threshold = 0.750 (F1=0.4536)
+=== Baseline MLP Evaluation ===
+Accuracy: 0.7947
+F1-score: 0.4536
+Precision: 0.3605
+Recall: 0.6114
+ROC-AUC: 0.8161708545625282
+Brier score: 0.2369
+Confusion matrix:
+[[36000, 7667], [2747, 4322]]
+   Running ALSHADE...
+Evaluating initial population (8)...
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+[ALSHADE] Generation 1, Evals 8/24, Best AUC: 0.8218
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+[ALSHADE] Generation 2, Evals 16/24, Best AUC: 0.8218
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+[ALSHADE] Generation 3, Evals 21/24, Best AUC: 0.8218
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+      Evaluating best sgd on Test Set...
+Using BCEWithLogitsLoss with pos_weight=1.00
+Threshold Moving: Optimal Threshold = 0.750 (F1=0.4577)
+=== Baseline MLP Evaluation ===
+Accuracy: 0.7957
+F1-score: 0.4577
+Precision: 0.3632
+Recall: 0.6188
+ROC-AUC: 0.8201368419177426
+Brier score: 0.2313
+Confusion matrix:
+[[35998, 7669], [2695, 4374]]
+
+--- OPTIMIZER: ADAGRAD ---
+   Running Random Search...
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 1/10] roc_auc=0.8184 time=17.1s hparams={'lr': 0.0019004375238737116, 'epochs': 15, 'optimizer_name': 'adagrad'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 2/10] roc_auc=0.8168 time=17.2s hparams={'lr': 0.0019004375238737116, 'epochs': 15, 'optimizer_name': 'adagrad'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 3/10] roc_auc=0.7634 time=17.1s hparams={'lr': 0.00011942731780421021, 'epochs': 15, 'optimizer_name': 'adagrad'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 4/10] roc_auc=0.8112 time=17.1s hparams={'lr': 0.0006562536901904111, 'epochs': 15, 'optimizer_name': 'adagrad'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 5/10] roc_auc=0.8014 time=17.1s hparams={'lr': 0.0003497444477863494, 'epochs': 15, 'optimizer_name': 'adagrad'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 6/10] roc_auc=0.8223 time=17.2s hparams={'lr': 0.005977728042983692, 'epochs': 15, 'optimizer_name': 'adagrad'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 7/10] roc_auc=0.8045 time=17.1s hparams={'lr': 0.0005054666557506716, 'epochs': 15, 'optimizer_name': 'adagrad'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 8/10] roc_auc=0.8173 time=17.0s hparams={'lr': 0.0012482904754698156, 'epochs': 15, 'optimizer_name': 'adagrad'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 9/10] roc_auc=0.7360 time=17.0s hparams={'lr': 0.00013607174450468637, 'epochs': 15, 'optimizer_name': 'adagrad'}
+Using BCEWithLogitsLoss with pos_weight=1.00
+[Random 10/10] roc_auc=0.8161 time=17.0s hparams={'lr': 0.000988719586312263, 'epochs': 15, 'optimizer_name': 'adagrad'}
+      Evaluating best adagrad on Test Set...
+Using BCEWithLogitsLoss with pos_weight=1.00
+Threshold Moving: Optimal Threshold = 0.780 (F1=0.4560)
+=== Baseline MLP Evaluation ===
+Accuracy: 0.8052
+F1-score: 0.4560
+Precision: 0.3732
+Recall: 0.5861
+ROC-AUC: 0.8191606496631
+Brier score: 0.2354
+Confusion matrix:
+[[36708, 6959], [2926, 4143]]
+   Running Optuna...
+[I 2026-01-01 01:05:10,076] A new study created in memory with name: no-name-1a8a1ab9-d6eb-49a5-8498-69511689db79
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2026-01-01 01:09:36,599] Trial 0 finished with value: 0.81406208 and parameters: {'lr': 0.00031489116479568613, 'batch_size': 16, 'weight_decay': 6.025215736203855e-07, 'dropout': 0.02904180608409973, 'epochs': 71, 'beta1': 0.9142118522312097, 'beta2': 0.970736450521825}. Best is trial 0 with value: 0.81406208.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2026-01-01 01:12:33,047] Trial 1 finished with value: 0.62010608 and parameters: {'lr': 1.2087541473056957e-05, 'batch_size': 16, 'weight_decay': 8.260808399079598e-07, 'dropout': 0.15212112147976886, 'epochs': 47, 'beta1': 0.882069553542002, 'beta2': 0.9290937911057844}. Best is trial 0 with value: 0.81406208.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2026-01-01 01:13:11,132] Trial 2 finished with value: 0.81840992 and parameters: {'lr': 0.0028016351587162596, 'batch_size': 128, 'weight_decay': 0.0008431013932082463, 'dropout': 0.09983689107917987, 'epochs': 46, 'beta1': 0.9125587680837881, 'beta2': 0.9046403962307278}. Best is trial 2 with value: 0.81840992.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2026-01-01 01:13:24,453] Trial 3 finished with value: 0.8177785599999999 and parameters: {'lr': 0.0026926469100861782, 'batch_size': 128, 'weight_decay': 0.001101505679026963, 'dropout': 0.15230688458668534, 'epochs': 16, 'beta1': 0.9300042750373099, 'beta2': 0.9439712341245862}. Best is trial 2 with value: 0.81840992.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2026-01-01 01:14:21,873] Trial 4 finished with value: 0.68003024 and parameters: {'lr': 3.077180271250682e-05, 'batch_size': 64, 'weight_decay': 0.0002054051942538847, 'dropout': 0.15585553804470548, 'epochs': 46, 'beta1': 0.9038749530752231, 'beta2': 0.9184669601070001}. Best is trial 2 with value: 0.81840992.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2026-01-01 01:15:14,656] Trial 5 finished with value: 0.8229030400000001 and parameters: {'lr': 0.07556810141274425, 'batch_size': 32, 'weight_decay': 0.004067908494359549, 'dropout': 0.04424625102595975, 'epochs': 23, 'beta1': 0.8085931848930022, 'beta2': 0.9325005000432501}. Best is trial 5 with value: 0.8229030400000001.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2026-01-01 01:17:32,297] Trial 6 finished with value: 0.81123168 and parameters: {'lr': 0.00035868164986275477, 'batch_size': 32, 'weight_decay': 5.1698794422985435e-05, 'dropout': 0.07046211248738132, 'epochs': 66, 'beta1': 0.8141646222991565, 'beta2': 0.9985900049663917}. Best is trial 5 with value: 0.8229030400000001.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2026-01-01 01:17:51,378] Trial 7 finished with value: 0.81996064 and parameters: {'lr': 0.012273800987852962, 'batch_size': 64, 'weight_decay': 0.00044160688951185945, 'dropout': 0.38563517334297287, 'epochs': 15, 'beta1': 0.8681084884234118, 'beta2': 0.9115753190465605}. Best is trial 5 with value: 0.8229030400000001.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2026-01-01 01:21:17,378] Trial 8 finished with value: 0.8240752 and parameters: {'lr': 0.028340904295147733, 'batch_size': 16, 'weight_decay': 4.225874644996163e-06, 'dropout': 0.36480308916903204, 'epochs': 55, 'beta1': 0.9685704210895021, 'beta2': 0.9471742710236788}. Best is trial 8 with value: 0.8240752.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2026-01-01 01:21:50,931] Trial 9 finished with value: 0.60012416 and parameters: {'lr': 3.0086868214458443e-05, 'batch_size': 128, 'weight_decay': 2.9442723591496814e-05, 'dropout': 0.26136641469099703, 'epochs': 40, 'beta1': 0.8048296340813781, 'beta2': 0.9107783535566312}. Best is trial 8 with value: 0.8240752.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2026-01-01 01:25:38,059] Trial 10 finished with value: 0.82485904 and parameters: {'lr': 0.082254236741211, 'batch_size': 16, 'weight_decay': 4.407403192995745e-06, 'dropout': 0.46837969067731766, 'epochs': 60, 'beta1': 0.9724563111036784, 'beta2': 0.9653722146247983}. Best is trial 10 with value: 0.82485904.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2026-01-01 01:29:27,944] Trial 11 finished with value: 0.8237328 and parameters: {'lr': 0.08347986552378672, 'batch_size': 16, 'weight_decay': 4.826003258530631e-06, 'dropout': 0.4975371455496223, 'epochs': 61, 'beta1': 0.9836451931512117, 'beta2': 0.9669427431133294}. Best is trial 10 with value: 0.82485904.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2026-01-01 01:33:02,605] Trial 12 finished with value: 0.82409072 and parameters: {'lr': 0.016137610321187157, 'batch_size': 16, 'weight_decay': 1.2951521385168002e-07, 'dropout': 0.40329184170930826, 'epochs': 57, 'beta1': 0.9831276823081536, 'beta2': 0.9626370579043478}. Best is trial 10 with value: 0.82485904.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2026-01-01 01:37:59,286] Trial 13 finished with value: 0.82312784 and parameters: {'lr': 0.014566096837677395, 'batch_size': 16, 'weight_decay': 2.4354300395392825e-07, 'dropout': 0.4939955966734043, 'epochs': 79, 'beta1': 0.9549386195918228, 'beta2': 0.9711265824411198}. Best is trial 10 with value: 0.82485904.
+Using BCEWithLogitsLoss with pos_weight=1.00
+[I 2026-01-01 01:40:03,615] Trial 14 finished with value: 0.8194036800000001 and parameters: {'lr': 0.004877596236128783, 'batch_size': 16, 'weight_decay': 1.027341681847546e-07, 'dropout': 0.3843495678667675, 'epochs': 33, 'beta1': 0.989327508975462, 'beta2': 0.9870275344401069}. Best is trial 10 with value: 0.82485904.
+      Evaluating best adagrad on Test Set...
+Using BCEWithLogitsLoss with pos_weight=1.00
+Threshold Moving: Optimal Threshold = 0.740 (F1=0.4603)
+=== Baseline MLP Evaluation ===
+Accuracy: 0.8013
+F1-score: 0.4603
+Precision: 0.3703
+Recall: 0.6081
+ROC-AUC: 0.8208908362635683
+Brier score: 0.2289
+Confusion matrix:
+[[36357, 7310], [2770, 4299]]
+   Running Genetic...
+GA Generation 1/3 — evaluating 8 individuals
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8203 time=63.5s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8212 time=39.9s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8183 time=62.3s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8205 time=151.3s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8245 time=44.6s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8227 time=37.2s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8219 time=12.7s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8187 time=84.7s
+GA Generation 2/3 — evaluating 8 individuals
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8231 time=43.4s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8225 time=37.6s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8217 time=13.2s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8221 time=40.2s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8223 time=50.7s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8215 time=16.6s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8226 time=92.3s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8205 time=12.4s
+GA Generation 3/3 — evaluating 8 individuals
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8234 time=44.6s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8225 time=94.1s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8226 time=37.7s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8230 time=51.2s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8228 time=82.3s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8219 time=91.8s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8226 time=93.5s
+Using BCEWithLogitsLoss with pos_weight=1.00
+  ind roc_auc=0.8205 time=90.4s
+      Evaluating best adagrad on Test Set...
+Using BCEWithLogitsLoss with pos_weight=1.00
+Threshold Moving: Optimal Threshold = 0.750 (F1=0.4590)
+=== Baseline MLP Evaluation ===
+Accuracy: 0.7925
+F1-score: 0.4590
+Precision: 0.3604
+Recall: 0.6319
+ROC-AUC: 0.8212538538403968
+Brier score: 0.2300
+Confusion matrix:
+[[35741, 7926], [2602, 4467]]
+   Running ALSHADE...
+Evaluating initial population (8)...
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+[ALSHADE] Generation 1, Evals 8/24, Best AUC: 0.8225
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+[ALSHADE] Generation 2, Evals 16/24, Best AUC: 0.8232
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00
+Using BCEWithLogitsLoss with pos_weight=1.00

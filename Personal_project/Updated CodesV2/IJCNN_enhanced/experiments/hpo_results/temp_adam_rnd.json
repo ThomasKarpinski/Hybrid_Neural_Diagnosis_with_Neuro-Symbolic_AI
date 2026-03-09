@@ -1,0 +1,46 @@
+{
+  "method": "random_search",
+  "n_evals": 2,
+  "time_s": 4.851102113723755,
+  "best": {
+    "roc_auc": 0.8418079999999999,
+    "train_time": 1.6279432773590088,
+    "hparams": {
+      "lr": 0.0019004375238737116,
+      "batch_size": 64,
+      "epochs": 9,
+      "dropout": 0.07346755614104286,
+      "optimizer_name": "adam"
+    },
+    "eval_index": 2
+  },
+  "all_results": [
+    {
+      "roc_auc": 0.833504,
+      "train_time": 1.6318609714508057,
+      "hparams": {
+        "lr": 0.0019004375238737116,
+        "batch_size": 64,
+        "epochs": 9,
+        "dropout": 0.07346755614104286,
+        "optimizer_name": "adam"
+      },
+      "eval_index": 1
+    },
+    {
+      "roc_auc": 0.8418079999999999,
+      "train_time": 1.6279432773590088,
+      "hparams": {
+        "lr": 0.0019004375238737116,
+        "batch_size": 64,
+        "epochs": 9,
+        "dropout": 0.07346755614104286,
+        "optimizer_name": "adam"
+      },
+      "eval_index": 2
+    }
+  ],
+  "fixed_hparams": {
+    "optimizer_name": "adam"
+  }
+}

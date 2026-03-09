@@ -1,0 +1,280 @@
+{
+  "method": "genetic",
+  "n_evals": 15,
+  "time_s": 3316.4553904533386,
+  "best": {
+    "roc_auc": 0.8102539657009334,
+    "hparams": {
+      "lr": 0.09572173508995606,
+      "batch_size": 59,
+      "weight_decay": 0.0010221925441708352,
+      "dropout": 0.019359567914278585,
+      "epochs": 32,
+      "beta1": 0.8415412152126847,
+      "beta2": 0.9603122305335524,
+      "save_dir": "experiments/best_models/genetic",
+      "optimizer_name": "adagrad"
+    }
+  },
+  "history_len": 3,
+  "all_results": [
+    {
+      "generation": 1,
+      "individual": 1,
+      "roc_auc": 0.8039367845298779,
+      "train_time": 206.3790316581726,
+      "hparams": {
+        "lr": 0.09572173508995606,
+        "batch_size": 59,
+        "weight_decay": 0.0010221925441708352,
+        "dropout": 0.1899636503186687,
+        "epochs": 32,
+        "beta1": 0.9610239296060173,
+        "beta2": 0.9603122305335524,
+        "save_dir": "experiments/best_models/genetic",
+        "optimizer_name": "adagrad"
+      }
+    },
+    {
+      "generation": 1,
+      "individual": 2,
+      "roc_auc": 0.7960965719818458,
+      "train_time": 119.7796847820282,
+      "hparams": {
+        "lr": 0.0892190349748075,
+        "batch_size": 27,
+        "weight_decay": 0.005904966075239153,
+        "dropout": 0.015891339740891797,
+        "epochs": 15,
+        "beta1": 0.8415412152126847,
+        "beta2": 0.9504849932815259,
+        "save_dir": "experiments/best_models/genetic",
+        "optimizer_name": "adagrad"
+      }
+    },
+    {
+      "generation": 1,
+      "individual": 3,
+      "roc_auc": 0.7912902742215063,
+      "train_time": 580.7912549972534,
+      "hparams": {
+        "lr": 0.08094495136321589,
+        "batch_size": 16,
+        "weight_decay": 0.007588097790560961,
+        "dropout": 0.07982965818844506,
+        "epochs": 37,
+        "beta1": 0.8646475981384185,
+        "beta2": 0.915532402031197,
+        "save_dir": "experiments/best_models/genetic",
+        "optimizer_name": "adagrad"
+      }
+    },
+    {
+      "generation": 1,
+      "individual": 4,
+      "roc_auc": 0.7906020574517111,
+      "train_time": 256.84239625930786,
+      "hparams": {
+        "lr": 0.0639462855778038,
+        "batch_size": 19,
+        "weight_decay": 0.007415530842548354,
+        "dropout": 0.12244592690173811,
+        "epochs": 18,
+        "beta1": 0.9399295306911624,
+        "beta2": 0.9676022787935489,
+        "save_dir": "experiments/best_models/genetic",
+        "optimizer_name": "adagrad"
+      }
+    },
+    {
+      "generation": 1,
+      "individual": 5,
+      "roc_auc": 0.7810270994072853,
+      "train_time": 265.02579069137573,
+      "hparams": {
+        "lr": 0.0026633316086895242,
+        "batch_size": 41,
+        "weight_decay": 0.007160224527262743,
+        "dropout": 0.35066248679511797,
+        "epochs": 36,
+        "beta1": 0.8418837181877324,
+        "beta2": 0.9588676418192033,
+        "save_dir": "experiments/best_models/genetic",
+        "optimizer_name": "adagrad"
+      }
+    },
+    {
+      "generation": 2,
+      "individual": 1,
+      "roc_auc": 0.8102539657009334,
+      "train_time": 181.18984293937683,
+      "hparams": {
+        "lr": 0.09572173508995606,
+        "batch_size": 59,
+        "weight_decay": 0.0010221925441708352,
+        "dropout": 0.019359567914278585,
+        "epochs": 32,
+        "beta1": 0.8415412152126847,
+        "beta2": 0.9603122305335524,
+        "save_dir": "experiments/best_models/genetic",
+        "optimizer_name": "adagrad"
+      }
+    },
+    {
+      "generation": 2,
+      "individual": 2,
+      "roc_auc": 0.8062602289589268,
+      "train_time": 182.27973246574402,
+      "hparams": {
+        "lr": 0.09572173508995606,
+        "batch_size": 59,
+        "weight_decay": 0.0010221925441708352,
+        "dropout": 0.1899636503186687,
+        "epochs": 32,
+        "beta1": 0.9610239296060173,
+        "beta2": 0.9603122305335524,
+        "save_dir": "experiments/best_models/genetic",
+        "optimizer_name": "adagrad"
+      }
+    },
+    {
+      "generation": 2,
+      "individual": 3,
+      "roc_auc": 0.8057055602461678,
+      "train_time": 324.24233865737915,
+      "hparams": {
+        "lr": 0.09572173508995606,
+        "batch_size": 29,
+        "weight_decay": 0.0010221925441708352,
+        "dropout": 0.1899636503186687,
+        "epochs": 32,
+        "beta1": 0.9610239296060173,
+        "beta2": 0.9603122305335524,
+        "save_dir": "experiments/best_models/genetic",
+        "optimizer_name": "adagrad"
+      }
+    },
+    {
+      "generation": 2,
+      "individual": 4,
+      "roc_auc": 0.7933364638660071,
+      "train_time": 164.42360377311707,
+      "hparams": {
+        "lr": 0.0892190349748075,
+        "batch_size": 27,
+        "weight_decay": 0.005904966075239153,
+        "dropout": 0.015891339740891797,
+        "epochs": 15,
+        "beta1": 0.8415412152126847,
+        "beta2": 0.9504849932815259,
+        "save_dir": "experiments/best_models/genetic",
+        "optimizer_name": "adagrad"
+      }
+    },
+    {
+      "generation": 2,
+      "individual": 5,
+      "roc_auc": 0.792880517272074,
+      "train_time": 149.57883620262146,
+      "hparams": {
+        "lr": 0.09572173508995606,
+        "batch_size": 27,
+        "weight_decay": 0.005904966075239153,
+        "dropout": 0.1899636503186687,
+        "epochs": 15,
+        "beta1": 0.8415412152126847,
+        "beta2": 0.9603122305335524,
+        "save_dir": "experiments/best_models/genetic",
+        "optimizer_name": "adagrad"
+      }
+    },
+    {
+      "generation": 3,
+      "individual": 1,
+      "roc_auc": 0.8101452175313507,
+      "train_time": 175.58536338806152,
+      "hparams": {
+        "lr": 0.09572173508995606,
+        "batch_size": 59,
+        "weight_decay": 0.0010221925441708352,
+        "dropout": 0.019359567914278585,
+        "epochs": 32,
+        "beta1": 0.8415412152126847,
+        "beta2": 0.9603122305335524,
+        "save_dir": "experiments/best_models/genetic",
+        "optimizer_name": "adagrad"
+      }
+    },
+    {
+      "generation": 3,
+      "individual": 2,
+      "roc_auc": 0.8090682923651571,
+      "train_time": 168.53339862823486,
+      "hparams": {
+        "lr": 0.09572173508995606,
+        "batch_size": 59,
+        "weight_decay": 0.0010221925441708352,
+        "dropout": 0.17495168114965495,
+        "epochs": 32,
+        "beta1": 0.8387365277609101,
+        "beta2": 0.9603122305335524,
+        "save_dir": "experiments/best_models/genetic",
+        "optimizer_name": "adagrad"
+      }
+    },
+    {
+      "generation": 3,
+      "individual": 3,
+      "roc_auc": 0.807365428649212,
+      "train_time": 200.13637113571167,
+      "hparams": {
+        "lr": 0.09572173508995606,
+        "batch_size": 59,
+        "weight_decay": 0.0010221925441708352,
+        "dropout": 0.1899636503186687,
+        "epochs": 32,
+        "beta1": 0.9610239296060173,
+        "beta2": 0.9603122305335524,
+        "save_dir": "experiments/best_models/genetic",
+        "optimizer_name": "adagrad"
+      }
+    },
+    {
+      "generation": 3,
+      "individual": 4,
+      "roc_auc": 0.8063513387058819,
+      "train_time": 188.5846037864685,
+      "hparams": {
+        "lr": 0.09572173508995606,
+        "batch_size": 58,
+        "weight_decay": 0.0010221925441708352,
+        "dropout": 0.21839388435614937,
+        "epochs": 32,
+        "beta1": 0.9610239296060173,
+        "beta2": 0.9603122305335524,
+        "save_dir": "experiments/best_models/genetic",
+        "optimizer_name": "adagrad"
+      }
+    },
+    {
+      "generation": 3,
+      "individual": 5,
+      "roc_auc": 0.8058839072442832,
+      "train_time": 152.5864520072937,
+      "hparams": {
+        "lr": 0.09572173508995606,
+        "batch_size": 60,
+        "weight_decay": 0.0010221925441708352,
+        "dropout": 0.1899636503186687,
+        "epochs": 32,
+        "beta1": 0.8415412152126847,
+        "beta2": 0.9603122305335524,
+        "save_dir": "experiments/best_models/genetic",
+        "optimizer_name": "adagrad"
+      }
+    }
+  ],
+  "fixed_hparams": {
+    "optimizer_name": "adagrad"
+  }
+}

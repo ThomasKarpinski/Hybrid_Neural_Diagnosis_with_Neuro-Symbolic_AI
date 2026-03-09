@@ -1,0 +1,24 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/tomasz/studia/semestr_5/artificial_inteligence/assignment_4/Personal_project/src/pipeline.py", line 238, in <module>
+    run_pipeline()
+    ~~~~~~~~~~~~^^
+  File "/home/tomasz/studia/semestr_5/artificial_inteligence/assignment_4/Personal_project/src/pipeline.py", line 59, in run_pipeline
+    from imblearn.over_sampling import SMOTE
+  File "/home/tomasz/anaconda3/lib/python3.13/site-packages/imblearn/__init__.py", line 52, in <module>
+    from . import (
+    ...<9 lines>...
+    )
+  File "/home/tomasz/anaconda3/lib/python3.13/site-packages/imblearn/ensemble/__init__.py", line 7, in <module>
+    from ._easy_ensemble import EasyEnsembleClassifier
+  File "/home/tomasz/anaconda3/lib/python3.13/site-packages/imblearn/ensemble/_easy_ensemble.py", line 16, in <module>
+    from sklearn.utils._tags import _safe_tags
+ImportError: cannot import name '_safe_tags' from 'sklearn.utils._tags' (/home/tomasz/anaconda3/lib/python3.13/site-packages/sklearn/utils/_tags.py)
+=== Data loading & preprocessing ===
+Local file not found, fetching from ucimlrepo...
+=== Outlier detection on training set ===
+Outliers detected: 64925
+Remaining samples: 138019
+Train samples: before=202944, after=138019
+=== Applying SMOTE to balance classes ===

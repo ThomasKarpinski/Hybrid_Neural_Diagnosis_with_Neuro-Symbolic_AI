@@ -1,0 +1,76 @@
+{
+  "method": "random_search",
+  "n_evals": 5,
+  "time_s": 901.0987691879272,
+  "best": {
+    "roc_auc": 0.805803433598792,
+    "train_time": 354.37731194496155,
+    "hparams": {
+      "lr": 0.008284768840933803,
+      "batch_size": 32,
+      "epochs": 25,
+      "optimizer_name": "adagrad"
+    },
+    "eval_index": 2
+  },
+  "all_results": [
+    {
+      "roc_auc": 0.8027845048393466,
+      "train_time": 176.92075181007385,
+      "hparams": {
+        "lr": 0.008284768840933803,
+        "batch_size": 32,
+        "epochs": 25,
+        "optimizer_name": "adagrad"
+      },
+      "eval_index": 1
+    },
+    {
+      "roc_auc": 0.805803433598792,
+      "train_time": 354.37731194496155,
+      "hparams": {
+        "lr": 0.008284768840933803,
+        "batch_size": 32,
+        "epochs": 25,
+        "optimizer_name": "adagrad"
+      },
+      "eval_index": 2
+    },
+    {
+      "roc_auc": 0.43329084904841636,
+      "train_time": 245.37661910057068,
+      "hparams": {
+        "lr": 0.00013051352453616747,
+        "batch_size": 32,
+        "epochs": 29,
+        "optimizer_name": "adagrad"
+      },
+      "eval_index": 3
+    },
+    {
+      "roc_auc": 0.7781263613414156,
+      "train_time": 76.39948058128357,
+      "hparams": {
+        "lr": 0.001681154540009978,
+        "batch_size": 32,
+        "epochs": 14,
+        "optimizer_name": "adagrad"
+      },
+      "eval_index": 4
+    },
+    {
+      "roc_auc": 0.6487101512225522,
+      "train_time": 47.93800902366638,
+      "hparams": {
+        "lr": 0.0006540730319855326,
+        "batch_size": 64,
+        "epochs": 15,
+        "optimizer_name": "adagrad"
+      },
+      "eval_index": 5
+    }
+  ],
+  "fixed_hparams": {
+    "optimizer_name": "adagrad"
+  }
+}
