@@ -1,0 +1,233 @@
+{
+  "method": "optuna",
+  "n_evals": 15,
+  "time_s": 2155.9179282188416,
+  "best": {
+    "roc_auc": 0.82780928,
+    "hparams": {
+      "lr": 0.09462889395526383,
+      "batch_size": 32,
+      "weight_decay": 6.3931934868044555e-06,
+      "dropout": 0.26553742181137824,
+      "epochs": 28,
+      "beta1": 0.9803027688910775,
+      "beta2": 0.9323724703187037,
+      "optimizer_name": "adagrad"
+    }
+  },
+  "all_results": [
+    {
+      "trial_number": 0,
+      "roc_auc": 0.8118313599999999,
+      "hparams": {
+        "lr": 0.00031489116479568613,
+        "batch_size": 16,
+        "weight_decay": 6.025215736203855e-07,
+        "dropout": 0.02904180608409973,
+        "epochs": 71,
+        "beta1": 0.9142118522312097,
+        "beta2": 0.970736450521825
+      },
+      "state": "COMPLETE"
+    },
+    {
+      "trial_number": 1,
+      "roc_auc": 0.56250416,
+      "hparams": {
+        "lr": 1.2087541473056957e-05,
+        "batch_size": 16,
+        "weight_decay": 8.260808399079598e-07,
+        "dropout": 0.15212112147976886,
+        "epochs": 47,
+        "beta1": 0.882069553542002,
+        "beta2": 0.9290937911057844
+      },
+      "state": "COMPLETE"
+    },
+    {
+      "trial_number": 2,
+      "roc_auc": 0.8206147200000001,
+      "hparams": {
+        "lr": 0.0028016351587162596,
+        "batch_size": 128,
+        "weight_decay": 0.0008431013932082463,
+        "dropout": 0.09983689107917987,
+        "epochs": 46,
+        "beta1": 0.9125587680837881,
+        "beta2": 0.9046403962307278
+      },
+      "state": "COMPLETE"
+    },
+    {
+      "trial_number": 3,
+      "roc_auc": 0.8194464,
+      "hparams": {
+        "lr": 0.0026926469100861782,
+        "batch_size": 128,
+        "weight_decay": 0.001101505679026963,
+        "dropout": 0.15230688458668534,
+        "epochs": 16,
+        "beta1": 0.9300042750373099,
+        "beta2": 0.9439712341245862
+      },
+      "state": "COMPLETE"
+    },
+    {
+      "trial_number": 4,
+      "roc_auc": 0.62546832,
+      "hparams": {
+        "lr": 3.077180271250682e-05,
+        "batch_size": 64,
+        "weight_decay": 0.0002054051942538847,
+        "dropout": 0.15585553804470548,
+        "epochs": 46,
+        "beta1": 0.9038749530752231,
+        "beta2": 0.9184669601070001
+      },
+      "state": "COMPLETE"
+    },
+    {
+      "trial_number": 5,
+      "roc_auc": 0.82388912,
+      "hparams": {
+        "lr": 0.07556810141274425,
+        "batch_size": 32,
+        "weight_decay": 0.004067908494359549,
+        "dropout": 0.04424625102595975,
+        "epochs": 23,
+        "beta1": 0.8085931848930022,
+        "beta2": 0.9325005000432501
+      },
+      "state": "COMPLETE"
+    },
+    {
+      "trial_number": 6,
+      "roc_auc": 0.8118999999999998,
+      "hparams": {
+        "lr": 0.00035868164986275477,
+        "batch_size": 32,
+        "weight_decay": 5.1698794422985435e-05,
+        "dropout": 0.07046211248738132,
+        "epochs": 66,
+        "beta1": 0.8141646222991565,
+        "beta2": 0.9985900049663917
+      },
+      "state": "COMPLETE"
+    },
+    {
+      "trial_number": 7,
+      "roc_auc": 0.82093488,
+      "hparams": {
+        "lr": 0.012273800987852962,
+        "batch_size": 64,
+        "weight_decay": 0.00044160688951185945,
+        "dropout": 0.38563517334297287,
+        "epochs": 15,
+        "beta1": 0.8681084884234118,
+        "beta2": 0.9115753190465605
+      },
+      "state": "COMPLETE"
+    },
+    {
+      "trial_number": 8,
+      "roc_auc": 0.8230678399999999,
+      "hparams": {
+        "lr": 0.028340904295147733,
+        "batch_size": 16,
+        "weight_decay": 4.225874644996163e-06,
+        "dropout": 0.36480308916903204,
+        "epochs": 55,
+        "beta1": 0.9685704210895021,
+        "beta2": 0.9471742710236788
+      },
+      "state": "COMPLETE"
+    },
+    {
+      "trial_number": 9,
+      "roc_auc": 0.6862304,
+      "hparams": {
+        "lr": 3.0086868214458443e-05,
+        "batch_size": 128,
+        "weight_decay": 2.9442723591496814e-05,
+        "dropout": 0.26136641469099703,
+        "epochs": 40,
+        "beta1": 0.8048296340813781,
+        "beta2": 0.9107783535566312
+      },
+      "state": "COMPLETE"
+    },
+    {
+      "trial_number": 10,
+      "roc_auc": 0.8184087999999999,
+      "hparams": {
+        "lr": 0.0827910165597764,
+        "batch_size": 32,
+        "weight_decay": 0.007041830285016003,
+        "dropout": 0.4661451709558936,
+        "epochs": 29,
+        "beta1": 0.8414084911521513,
+        "beta2": 0.9663082789974039
+      },
+      "state": "COMPLETE"
+    },
+    {
+      "trial_number": 11,
+      "roc_auc": 0.8256652,
+      "hparams": {
+        "lr": 0.08839094438875611,
+        "batch_size": 16,
+        "weight_decay": 4.4411941114519195e-06,
+        "dropout": 0.2842687389297235,
+        "epochs": 59,
+        "beta1": 0.9809510036213808,
+        "beta2": 0.9433921915484655
+      },
+      "state": "COMPLETE"
+    },
+    {
+      "trial_number": 12,
+      "roc_auc": 0.82780928,
+      "hparams": {
+        "lr": 0.09462889395526383,
+        "batch_size": 32,
+        "weight_decay": 6.3931934868044555e-06,
+        "dropout": 0.26553742181137824,
+        "epochs": 28,
+        "beta1": 0.9803027688910775,
+        "beta2": 0.9323724703187037
+      },
+      "state": "COMPLETE"
+    },
+    {
+      "trial_number": 13,
+      "roc_auc": 0.82379088,
+      "hparams": {
+        "lr": 0.01197464711238876,
+        "batch_size": 16,
+        "weight_decay": 5.847640854500916e-06,
+        "dropout": 0.26981005340139885,
+        "epochs": 78,
+        "beta1": 0.9890710771159088,
+        "beta2": 0.9644149741471004
+      },
+      "state": "COMPLETE"
+    },
+    {
+      "trial_number": 14,
+      "roc_auc": 0.8235691199999999,
+      "hparams": {
+        "lr": 0.0244334331178376,
+        "batch_size": 32,
+        "weight_decay": 1.1115180731967168e-07,
+        "dropout": 0.3307971266063877,
+        "epochs": 35,
+        "beta1": 0.9515232715359391,
+        "beta2": 0.9323840588066516
+      },
+      "state": "COMPLETE"
+    }
+  ],
+  "fixed_hparams": {
+    "optimizer_name": "adagrad"
+  }
+}

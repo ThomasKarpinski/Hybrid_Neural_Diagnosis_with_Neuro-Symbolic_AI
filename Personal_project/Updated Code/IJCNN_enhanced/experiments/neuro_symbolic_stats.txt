@@ -1,0 +1,6 @@
+MLP vs Rules Disagreement: 47.62%
+MLP vs Fuzzy Disagreement: 2.64%
+MLP vs Bayes Disagreement: 23.22%
+SafetyNet_FN_Rules: 80.02%
+SafetyNet_FN_Fuzzy: 2.89%
+SafetyNet_FN_Bayes: 53.79%

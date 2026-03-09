@@ -1,0 +1,32 @@
+{
+    "adam": {
+        "Representation": "Raw",
+        "Optimizer": "adam",
+        "Hyperparameters": {
+            "lr": 0.001,
+            "epochs": 10,
+            "batch_size": 64
+        },
+        "Metrics": {
+            "Accuracy": 0.6793598233995585,
+            "Recall": 0.7994058565567973,
+            "AUC": 0.7999922561088049,
+            "F1": 0.40993833877402974
+        }
+    },
+    "sgd": {
+        "Representation": "Raw",
+        "Optimizer": "sgd",
+        "Hyperparameters": {
+            "lr": 0.001,
+            "epochs": 10,
+            "batch_size": 64
+        },
+        "Metrics": {
+            "Accuracy": 0.6585067801955219,
+            "Recall": 0.8411373603055595,
+            "AUC": 0.8110422743989856,
+            "F1": 0.40700937778082
+        }
+    }
+}

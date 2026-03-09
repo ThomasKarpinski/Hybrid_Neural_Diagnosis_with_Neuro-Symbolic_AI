@@ -1,0 +1,16 @@
+\begin{table}[htbp]
+\caption{Concrete Auditing of Diagnostic Failures (FN Reduction)}
+\label{tab:auditing}
+\centering
+\scriptsize
+\begin{tabular}{lcccc|c}
+\toprule
+\textbf{Model} & \textbf{TP} & \textbf{FP} & \textbf{TN} & \textbf{FN} & \textbf{FN Rate} \\
+\midrule
+MLP (PCA+Lion) & 4250 & 7085 & 36582 & 2819 & 39.88\% \\
+Hybrid System & 4824 & 10353 & 33314 & 2245 & 31.76\% \\
+\midrule
+\textbf{Improvement} & \multicolumn{5}{c}{\textbf{20.36\% reduction in False Negatives}} \\
+\bottomrule
+\end{tabular}
+\end{table}

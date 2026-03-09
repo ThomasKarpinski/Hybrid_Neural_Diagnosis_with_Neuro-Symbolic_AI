@@ -28,25 +28,30 @@ class Lion(torch.optim.Optimizer):
                 loss = closure()
 
         for group in self.param_groups:
+            lr = group['lr']
+            beta1, beta2 = group['betas']
+            wd = group['weight_decay']
+            
             for p in group['params']:
                 if p.grad is None:
                     continue
 
-                # Perform stepweight decay
-                p.data.mul_(1 - group['lr'] * group['weight_decay'])
-
                 grad = p.grad
                 state = self.state[p]
+                
                 # State initialization
                 if len(state) == 0:
                     state['exp_avg'] = torch.zeros_like(p)
 
                 exp_avg = state['exp_avg']
-                beta1, beta2 = group['betas']
+                
+                # Weight decay
+                if wd != 0:
+                    p.mul_(1 - lr * wd)
 
                 # Weight update
-                update = exp_avg * beta1 + grad * (1 - beta1)
-                p.add_(torch.sign(update), alpha=-group['lr'])
+                update = exp_avg.mul(beta1).add(grad, alpha=1 - beta1)
+                p.add_(torch.sign(update), alpha=-lr)
 
                 # Decay the momentum running average coefficient
                 exp_avg.mul_(beta2).add_(grad, alpha=1 - beta2)
@@ -60,12 +65,14 @@ def set_seed(seed: int = 42):
     torch.manual_seed(seed)
     if torch.cuda.is_available():
         torch.cuda.manual_seed_all(seed)
+        torch.backends.cudnn.deterministic = True
+        torch.backends.cudnn.benchmark = True
 
 def train_baseline(
-    X_train: np.ndarray,
-    y_train: np.ndarray,
-    X_val: np.ndarray,
-    y_val: np.ndarray,
+    X_train: Any,
+    y_train: Any,
+    X_val: Any,
+    y_val: Any,
     input_dim: int = 21,
     lr: float = 1e-3,
     batch_size: int = 64,
@@ -82,38 +89,31 @@ def train_baseline(
 ) -> Tuple[nn.Module, Dict[str, Any]]:
     """
     Train the baseline MLP and return (model, history).
-    Uses BCE loss and returns the trained best model on validation loss.
-    Supports optimizers: adam, rmsprop, sgd, adagrad, adadelta, nadam, lion.
+    Optimized for GPU by keeping tensors on device and using fast slicing.
     """
     set_seed(seed)
     device = device or ("cuda" if torch.cuda.is_available() else "cpu")
 
-    X_tr = torch.tensor(X_train, dtype=torch.float32)
-    y_tr = torch.tensor(y_train.reshape(-1, 1), dtype=torch.float32)
-    X_v = torch.tensor(X_val, dtype=torch.float32)
-    y_v = torch.tensor(y_val.reshape(-1, 1), dtype=torch.float32)
-
-    train_ds = TensorDataset(X_tr, y_tr)
-    val_ds = TensorDataset(X_v, y_v)
-
-    train_loader = DataLoader(train_ds, batch_size=batch_size, shuffle=True)
-    val_loader = DataLoader(val_ds, batch_size=batch_size, shuffle=False)
+    # Move data to device once
+    if not isinstance(X_train, torch.Tensor):
+        X_tr = torch.tensor(X_train, dtype=torch.float32, device=device)
+        y_tr = torch.tensor(y_train.reshape(-1, 1), dtype=torch.float32, device=device)
+        X_v = torch.tensor(X_val, dtype=torch.float32, device=device)
+        y_v = torch.tensor(y_val.reshape(-1, 1), dtype=torch.float32, device=device)
+    else:
+        X_tr, y_tr, X_v, y_v = X_train.to(device), y_train.to(device), X_val.to(device), y_val.to(device)
 
     model = BaselineMLP(input_dim=input_dim, hidden_dims=(32,16), dropout=dropout).to(device)
-
-    # Calculate positive weight for imbalanced dataset
-    # pos_weight = negative_samples / positive_samples
-    num_pos = np.sum(y_train == 1)
-    num_neg = np.sum(y_train == 0)
-    # Avoid division by zero
-    if num_pos > 0:
-        pos_weight_val = num_neg / num_pos
-    else:
-        pos_weight_val = 1.0
     
-    pos_weight = torch.tensor([pos_weight_val], device=device)
-    print(f"Using BCEWithLogitsLoss with pos_weight={pos_weight_val:.2f}")
+    # Optional: torch.compile for faster execution on modern GPUs
+    # if hasattr(torch, "compile") and device == "cuda":
+    #     model = torch.compile(model)
 
+    num_pos = (y_tr == 1).sum().item()
+    num_neg = (y_tr == 0).sum().item()
+    pos_weight_val = num_neg / num_pos if num_pos > 0 else 1.0
+    pos_weight = torch.tensor([pos_weight_val], device=device)
+    
     criterion = nn.BCEWithLogitsLoss(pos_weight=pos_weight)
     
     opt_name = optimizer_name.lower()
@@ -132,13 +132,9 @@ def train_baseline(
     elif opt_name == "lion":
         optimizer = Lion(model.parameters(), lr=lr, betas=betas, weight_decay=weight_decay)
     else:
-        # Fallback to Adam if unknown
-        print(f"Warning: Optimizer {optimizer_name} not found, defaulting to Adam.")
         optimizer = torch.optim.Adam(model.parameters(), lr=lr, betas=betas, weight_decay=weight_decay)
 
-    fuzzy_ctrl = None
-    if use_fuzzy:
-        fuzzy_ctrl = FuzzyController()
+    fuzzy_ctrl = FuzzyController() if use_fuzzy else None
 
     history = {"train_loss": [], "val_loss": []}
     start_time = time.time()
@@ -146,58 +142,57 @@ def train_baseline(
     os.makedirs(save_dir, exist_ok=True)
     best_path = os.path.join(save_dir, f"baseline_mlp_{opt_name}.pth")
 
+    n_samples = X_tr.size(0)
+    indices = torch.arange(n_samples, device=device)
+
     for epoch in range(1, epochs + 1):
         model.train()
         running_loss = 0.0
-        for xb, yb in train_loader:
-            xb = xb.to(device)
-            yb = yb.to(device)
+        
+        # Fast shuffling on GPU
+        perm = torch.randperm(n_samples, device=device)
+        X_tr_shuffled = X_tr[perm]
+        y_tr_shuffled = y_tr[perm]
 
-            optimizer.zero_grad()
+        for i in range(0, n_samples, batch_size):
+            xb = X_tr_shuffled[i : i + batch_size]
+            yb = y_tr_shuffled[i : i + batch_size]
+
+            optimizer.zero_grad(set_to_none=True)
             preds = model(xb)
             loss = criterion(preds, yb)
             loss.backward()
             optimizer.step()
             running_loss += loss.item() * xb.size(0)
 
-        avg_train_loss = running_loss / len(train_loader.dataset)
+        avg_train_loss = running_loss / n_samples
         history["train_loss"].append(avg_train_loss)
         
-        # Check for NaN
-        if np.isnan(avg_train_loss):
-            if verbose:
-                print(f"Epoch {epoch}: Train loss is NaN. Stopping early.")
-            break
+        if np.isnan(avg_train_loss): break
 
         # validation
         model.eval()
         val_loss = 0.0
         with torch.no_grad():
-            for xb, yb in val_loader:
-                xb = xb.to(device)
-                yb = yb.to(device)
+            for i in range(0, X_v.size(0), batch_size):
+                xb = X_v[i : i + batch_size]
+                yb = y_v[i : i + batch_size]
                 preds = model(xb)
                 loss = criterion(preds, yb)
                 val_loss += loss.item() * xb.size(0)
-        avg_val_loss = val_loss / len(val_loader.dataset)
+        
+        avg_val_loss = val_loss / X_v.size(0)
         history["val_loss"].append(avg_val_loss)
 
-        if np.isnan(avg_val_loss):
-             if verbose:
-                print(f"Epoch {epoch}: Val loss is NaN. Stopping early.")
-             break
+        if np.isnan(avg_val_loss): break
 
-        # Fuzzy Update
         if fuzzy_ctrl:
             prev_loss = history["val_loss"][-2] if len(history["val_loss"]) > 1 else None
             factor = fuzzy_ctrl.compute_update(avg_val_loss, prev_loss)
-            
-            # Update LR
             if factor != 1.0:
                 for param_group in optimizer.param_groups:
-                    param_group['lr'] = param_group['lr'] * factor
+                    param_group['lr'] *= factor
 
-        # save best
         if avg_val_loss < best_val_loss:
             best_val_loss = avg_val_loss
             torch.save(model.state_dict(), best_path)
@@ -205,13 +200,8 @@ def train_baseline(
         if verbose and (epoch % 10 == 0 or epoch == 1 or epoch == epochs):
             print(f"Epoch {epoch}/{epochs} — train_loss: {avg_train_loss:.4f}, val_loss: {avg_val_loss:.4f}")
 
-    total_time = time.time() - start_time
-    history["train_time"] = total_time
-
-    # load best model
+    history["train_time"] = time.time() - start_time
     if os.path.exists(best_path):
         model.load_state_dict(torch.load(best_path, map_location=device))
-    else:
-        print("Warning: No best model saved (likely NaN or divergence). Returning last model.")
-
+    
     return model, history

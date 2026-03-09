@@ -9,10 +9,11 @@ from src.models.train import train_baseline
 def train_and_eval_on_val(hparams: Dict[str, Any], X_train, y_train, X_val, y_val, input_dim:int, seed: int = 42):
     """
     Train with hparams and return validation ROC-AUC and training time.
-    hparams keys:
-      - lr, batch_size, epochs, dropout, weight_decay, beta1, beta2
-      - optimizer_name (optional, default="adam")
+    Supports both numpy arrays and torch tensors.
     """
+    device = "cuda" if torch.cuda.is_available() else "cpu"
+    
+    # Ensure data is on device if it's already a tensor, otherwise train_baseline handles it
     start = time.time()
     model, history = train_baseline(
         X_train, y_train, X_val, y_val,
@@ -27,18 +28,28 @@ def train_and_eval_on_val(hparams: Dict[str, Any], X_train, y_train, X_val, y_va
         save_dir=hparams.get("save_dir", "experiments/best_models"),
         verbose=False,
         seed=seed,
-        use_fuzzy=hparams.get("use_fuzzy", False)
+        use_fuzzy=hparams.get("use_fuzzy", False),
+        device=device
     )
     train_time = history.get("train_time", time.time() - start)
 
     # compute val probs and roc_auc
-    device = next(model.parameters()).device
-    X_v = torch.tensor(X_val, dtype=torch.float32).to(device)
     model.eval()
+    
+    # Fast evaluation on GPU
+    if not isinstance(X_val, torch.Tensor):
+        X_v = torch.tensor(X_val, dtype=torch.float32, device=device)
+    else:
+        X_v = X_val.to(device)
+        
     with torch.no_grad():
-        probs = model(X_v).cpu().numpy().reshape(-1)
+        logits = model(X_v)
+        probs = torch.sigmoid(logits).cpu().numpy().reshape(-1)
+        
+    y_v_true = y_val.cpu().numpy().reshape(-1) if isinstance(y_val, torch.Tensor) else y_val.reshape(-1)
+    
     try:
-        roc = float(roc_auc_score(y_val.reshape(-1).astype(int), probs))
+        roc = float(roc_auc_score(y_v_true.astype(int), probs))
     except Exception:
         roc = float("nan")
 

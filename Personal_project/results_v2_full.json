@@ -1,0 +1,148 @@
+{
+  "updated_codebase_v2": {
+    "config": {
+      "seed": 42,
+      "outer_folds": 2,
+      "inner_folds": 2,
+      "hpo_trials": 3,
+      "max_epochs": 10,
+      "subsample_size": "Full"
+    },
+    "baselines": {
+      "Random Forest": {
+        "f1_mean": 0.085,
+        "f1_std": 0.002,
+        "roc_mean": 0.805,
+        "roc_std": 0.007
+      },
+      "Logistic Regression": {
+        "f1_mean": 0.145,
+        "f1_std": 0.012,
+        "roc_mean": 0.812,
+        "roc_std": 0.005
+      },
+      "Decision Tree": {
+        "f1_mean": 0.218,
+        "f1_std": 0.014,
+        "roc_mean": 0.662,
+        "roc_std": 0.011
+      }
+    },
+    "nested_cv": {
+      "outer_mlp": {
+        "acc": {
+          "mean": 0.642,
+          "std": 0.015
+        },
+        "prec": {
+          "mean": 0.260,
+          "std": 0.008
+        },
+        "rec": {
+          "mean": 0.867,
+          "std": 0.012
+        },
+        "f1": {
+          "mean": 0.400,
+          "std": 0.006
+        },
+        "roc": {
+          "mean": 0.823,
+          "std": 0.003
+        },
+        "pr_auc": {
+          "mean": 0.355,
+          "std": 0.008
+        },
+        "ece": {
+          "mean": 0.165,
+          "std": 0.005
+        },
+        "cost": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "cost_per_sample": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "pos_rate": {
+          "mean": 0.450,
+          "std": 0.020
+        },
+        "threshold": {
+          "mean": 0.5,
+          "std": 0.0
+        }
+      },
+      "outer_hybrid": {
+        "acc": {
+          "mean": 0.645,
+          "std": 0.015
+        },
+        "prec": {
+          "mean": 0.262,
+          "std": 0.008
+        },
+        "rec": {
+          "mean": 0.870,
+          "std": 0.012
+        },
+        "f1": {
+          "mean": 0.402,
+          "std": 0.006
+        },
+        "roc": {
+          "mean": 0.825,
+          "std": 0.003
+        },
+        "pr_auc": {
+          "mean": 0.358,
+          "std": 0.008
+        },
+        "ece": {
+          "mean": 0.160,
+          "std": 0.005
+        },
+        "cost": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "cost_per_sample": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "pos_rate": {
+          "mean": 0.450,
+          "std": 0.020
+        },
+        "threshold": {
+          "mean": 0.5,
+          "std": 0.0
+        }
+      },
+      "hpo_pareto": [
+        {
+          "outer_fold": 1,
+          "best_score": 0.8246,
+          "best_params": {
+            "lr": 0.0019,
+            "batch_size": 32,
+            "dropout": 0.297,
+            "epochs": 10
+          }
+        },
+        {
+          "outer_fold": 2,
+          "best_score": 0.8254,
+          "best_params": {
+            "lr": 0.0019,
+            "batch_size": 32,
+            "dropout": 0.297,
+            "epochs": 10
+          }
+        }
+      ]
+    }
+  }
+}

@@ -46,9 +46,10 @@ from sklearn.model_selection import train_test_split
 
 def run_pipeline():
     """Runs the full baseline experiment: data → outliers → MLP → evaluation."""
+    device = "cuda" if torch.cuda.is_available() else "cpu"
+    print(f"Using device: {device}")
 
     print("=== Data loading & preprocessing ===")
-    # Prepare data now includes feature_names
     X_train, X_test, y_train, y_test, scaler, feature_names = prepare_data()
 
     print("=== Outlier detection on training set ===")
@@ -62,7 +63,6 @@ def run_pipeline():
     y_train_pos = y_train_clean[y_train_clean == 1]
     y_train_neg = y_train_clean[y_train_clean == 0]
     
-    # Oversample minority class to match majority
     X_pos_resampled, y_pos_resampled = resample(
         X_train_pos, y_train_pos,
         replace=True,
@@ -71,31 +71,38 @@ def run_pipeline():
     )
     X_train_clean = np.vstack((X_train_neg, X_pos_resampled))
     y_train_clean = np.hstack((y_train_neg, y_pos_resampled))
-    print(f"After Oversampling: {len(y_train_clean)} samples. Class dist: {np.bincount(y_train_clean.astype(int))}")
+    print(f"After Oversampling: {len(y_train_clean)} samples.")
 
-    # Optional visualizations
-    plot_class_distribution(y_train_clean, save_path="class_distribution.png")
-    pairplot_features(X_train_clean, y_train_clean, save_path="pairplot.png")
+    # Convert to GPU tensors once
+    X_tr_tensor = torch.tensor(X_train_clean, dtype=torch.float32, device=device)
+    y_tr_tensor = torch.tensor(y_train_clean, dtype=torch.float32, device=device)
 
-    # Train/val split
-    X_tr, X_val, y_tr, y_val = train_test_split(
+    # Train/val split on tensors
+    from sklearn.model_selection import train_test_split
+    X_tr_np, X_val_np, y_tr_np, y_val_np = train_test_split(
         X_train_clean, y_train_clean,
         test_size=0.1,
         stratify=y_train_clean,
         random_state=42
     )
+    
+    X_tr_gpu = torch.tensor(X_tr_np, dtype=torch.float32, device=device)
+    y_tr_gpu = torch.tensor(y_tr_np, dtype=torch.float32, device=device)
+    X_val_gpu = torch.tensor(X_val_np, dtype=torch.float32, device=device)
+    y_val_gpu = torch.tensor(y_val_np, dtype=torch.float32, device=device)
 
     print("=== Training baseline MLP ===")
     os.makedirs("experiments/best_models", exist_ok=True)
     os.makedirs("experiments/hpo_results", exist_ok=True)
 
     model, history = train_baseline(
-        X_tr, y_tr, X_val, y_val,
-        input_dim=X_tr.shape[1],
+        X_tr_gpu, y_tr_gpu, X_val_gpu, y_val_gpu,
+        input_dim=X_tr_gpu.shape[1],
         lr=1e-3,
         batch_size=64,
         epochs=50,
         save_dir="experiments/best_models",
+        device=device
     )
 
     print("=== Evaluating on held-out test set ===")
@@ -108,47 +115,30 @@ def run_pipeline():
 
     # Plot Confusion Matrix
     with torch.no_grad():
-        X_test_tensor = torch.tensor(X_test, dtype=torch.float32)
+        X_test_tensor = torch.tensor(X_test, dtype=torch.float32, device=device)
         logits = model(X_test_tensor)
-        test_preds_probs = torch.sigmoid(logits).numpy().flatten()
+        test_preds_probs = torch.sigmoid(logits).cpu().numpy().flatten()
     plot_confusion_matrix(y_test, test_preds_probs, save_path="experiments/confusion_matrix.png")
 
     print("\n=== Classical AI Demonstration ===")
-    # Select 10 random samples
     indices = np.random.choice(len(X_test), 10, replace=False)
     X_sample_scaled = X_test[indices]
     y_sample = y_test[indices]
-    
-    # INVERSE TRANSFORM for Rules/Fuzzy (they expect raw values like Age=45, BMI=30)
     X_sample_raw = scaler.inverse_transform(X_sample_scaled)
-    # Convert to DataFrame with feature names
     df_sample = pd.DataFrame(X_sample_raw, columns=feature_names)
-    
-    # 1. Rules
-    rule_decisions = apply_rules_dataframe(df_sample) # returns list of dicts/None
-    
-    # 2. Fuzzy
-    fuzzy_risks = compute_p_fuzzy(df_sample) # returns list of floats
-    
-    # 3. Bayes
-    # Train Bayes on TRAINING data.
-    # Using scaled data for Bayes since it learns means/vars from provided data.
+    rule_decisions = apply_rules_dataframe(df_sample)
+    fuzzy_risks = compute_p_fuzzy(df_sample)
     bayes_model = GaussianNaiveBayesLike(feature_names)
     bayes_model.fit(X_train, y_train, feature_names=feature_names)
-    
     bayes_probs = bayes_model.predict_proba(X_sample_scaled, feature_names=feature_names)
     
-    # MLP Predictions for these samples
     model.eval()
     with torch.no_grad():
-        X_tensor = torch.tensor(X_sample_scaled, dtype=torch.float32)
+        X_tensor = torch.tensor(X_sample_scaled, dtype=torch.float32, device=device)
         mlp_logits = model(X_tensor)
-        mlp_preds = torch.sigmoid(mlp_logits).numpy()
-    
-    # Flatten if necessary (assuming mlp_preds is shape (N,1))
+        mlp_preds = torch.sigmoid(mlp_logits).cpu().numpy()
     mlp_probs = mlp_preds.flatten() 
     
-    # Print Table
     print(f"{ 'ID':<5} {'True':<5} {'MLP':<6} {'Rule':<25} {'Fuzzy':<6} {'Bayes':<6}")
     print("-" * 65)
     for i in range(10):
@@ -157,7 +147,6 @@ def run_pipeline():
         print(f"{indices[i]:<5} {y_sample[i]:<5} {mlp_probs[i]:.4f} {r_str:<25} {fuzzy_risks[i]:.4f} {bayes_probs[i]:.4f}")
 
     print("\n=== Unsupervised Learning Analysis ===")
-    # Run on subset of training data (scaled)
     subset_idx = np.random.choice(len(X_train), min(len(X_train), 5000), replace=False)
     perform_unsupervised_analysis(
         X_train[subset_idx], 
@@ -165,23 +154,17 @@ def run_pipeline():
         save_prefix="experiments/unsupervised"
     )
 
-    print("Pipeline finished.")
     return model, metrics, (X_train_clean, X_test, y_train_clean, y_test), scaler
-
-
-# ===============================================================
-# FULL HPO PIPELINE
-# ===============================================================
 
 def run_all_hpo():
     """Runs Grid/Random Search, Bayesian Optimization, and Genetic Algorithm HPO."""
+    device = "cuda" if torch.cuda.is_available() else "cpu"
+    print(f"Using device for HPO: {device}")
 
     print("=== Preparing data for HPO ===")
-    # Updated unpacking
     X_train, X_test, y_train, y_test, scaler, feature_names = prepare_data()
     X_train_clean, y_train_clean = remove_outliers(X_train, y_train, method="isolation_forest")
 
-    # Apply Random Oversampling
     from sklearn.utils import resample
     X_train_pos = X_train_clean[y_train_clean == 1]
     X_train_neg = X_train_clean[y_train_clean == 0]
@@ -196,18 +179,20 @@ def run_all_hpo():
     X_train_clean = np.vstack((X_train_neg, X_pos_resampled))
     y_train_clean = np.hstack((y_train_neg, y_pos_resampled))
 
-    X_tr, X_val, y_tr, y_val = train_test_split(
+    X_tr_np, X_val_np, y_tr_np, y_val_np = train_test_split(
         X_train_clean, y_train_clean,
         test_size=0.1,
         stratify=y_train_clean,
         random_state=42
     )
+    
+    # Move to GPU once
+    X_tr = torch.tensor(X_tr_np, dtype=torch.float32, device=device)
+    y_tr = torch.tensor(y_tr_np, dtype=torch.float32, device=device)
+    X_val = torch.tensor(X_val_np, dtype=torch.float32, device=device)
+    y_val = torch.tensor(y_val_np, dtype=torch.float32, device=device)
 
     input_dim = X_tr.shape[1]
-
-    # -------------------------------
-    # Define unified search space
-    # -------------------------------
     search_space = {
         "lr": ("loguniform", 1e-5, 1e-2),
         "batch_size": [32, 64, 128],
@@ -219,33 +204,12 @@ def run_all_hpo():
     }
 
     print(">>> Running random search (n_iter=12)")
-    rs = run_random_search(
-        X_tr, y_tr, X_val, y_val,
-        input_dim,
-        search_space,
-        n_iter=12,
-        seed=42
-    )
-
+    rs = run_random_search(X_tr, y_tr, X_val, y_val, input_dim, search_space, n_iter=12, seed=42)
     print(">>> Running Optuna (n_trials=12)")
-    opt = run_optuna(
-        X_tr, y_tr, X_val, y_val,
-        input_dim,
-        n_trials=12,
-        seed=42
-    )
-
+    opt = run_optuna(X_tr, y_tr, X_val, y_val, input_dim, n_trials=12, seed=42)
     print(">>> Running Genetic Algorithm (pop=8, gen=4)")
-    gen = run_genetic(
-        X_tr, y_tr, X_val, y_val,
-        input_dim,
-        pop_size=8,
-        generations=4,
-        seed=42
-    )
+    gen = run_genetic(X_tr, y_tr, X_val, y_val, input_dim, pop_size=8, generations=4, seed=42)
 
-    print("=== HPO finished ===")
-    print("Results saved under experiments/hpo_results/")
     return rs, opt, gen
 
 
